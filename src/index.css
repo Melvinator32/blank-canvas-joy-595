@@ -3,9 +3,9 @@
 @theme {
   /* Minimal Color Palette */
   --color-background: oklch(96% 0.01 85);
-  --color-foreground: oklch(65% 0.24 30);
+  --color-foreground: oklch(60% 0.08 140);
   --color-muted: oklch(56% 0 0);
-  --color-muted-foreground: oklch(50% 0 0);
+  --color-muted-foreground: oklch(50% 0.05 140);
   --color-border: oklch(90% 0.01 85);
 
   /* Minimal semantic colors for compatibility */
