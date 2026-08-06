@@ -12,6 +12,7 @@ import type {
   Education,
   SocialLink,
 } from "@/types/portfolio";
+import headshot from "@/assets/headshot.jpg.asset.json";
 
 // ===== Portfolio Data =====
 
