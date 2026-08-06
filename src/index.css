@@ -78,7 +78,7 @@
 @layer base {
   body {
     background-color: oklch(96% 0.01 85);
-    color: oklch(65% 0.24 30);
+    color: oklch(60% 0.08 140);
     font-family: var(--font-family-serif);
     font-size: var(--text-body);
     line-height: var(--text-body--line-height);
