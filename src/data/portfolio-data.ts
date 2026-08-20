@@ -15,6 +15,10 @@ import type {
 } from "@/types/portfolio";
 
 import headshot from "@/assets/headshot.jpg.asset.json";
+import weirwoodThumb from "@/assets/weirwood.jpg.asset.json";
+import rewardsThumb from "@/assets/rewards-ledger.jpg.asset.json";
+import blackjackThumb from "@/assets/blackjack-trainer.jpg.asset.json";
+import zenThumb from "@/assets/zen-garden.jpg.asset.json";
 
 // ===== Portfolio Data =====
 
