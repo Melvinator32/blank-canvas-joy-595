@@ -108,6 +108,46 @@ export const speaking: Speaking[] = [];
 
 export const projects: Project[] = [
   {
+    id: "demo-weirwood",
+    name: "Weirwood — Marine Movement Intelligence",
+    description:
+      "An interactive vessel and cargo movement dashboard built on Vortexa data across the IMTT terminal network, with region, product, and terminal filters, pivot views, and PDF/PPT/XLS export of any view.",
+    techStack: ["Data Visualization", "Market Intelligence", "Dashboards"],
+    demoUrl: "/demos/weirwood.html",
+    thumbnail: weirwoodThumb.url,
+    status: "active",
+  },
+  {
+    id: "demo-rewards",
+    name: "Credit Card & Spend Dashboard",
+    description:
+      "A personal spend and rewards ledger that ingests statement exports, categorizes transactions, and tracks points earn rates and card-level value across time.",
+    techStack: ["Spend Analytics", "XLSX Parsing", "Dashboards"],
+    demoUrl: "/demos/rewards-ledger.html",
+    thumbnail: rewardsThumb.url,
+    status: "active",
+  },
+  {
+    id: "demo-blackjack",
+    name: "Blackjack Strategy Trainer",
+    description:
+      "A basic-strategy and counting trainer that deals real shoes, grades every decision against optimal play, and tracks accuracy over sessions.",
+    techStack: ["Game Logic", "Probability", "PWA"],
+    demoUrl: "/demos/blackjack-trainer.html",
+    thumbnail: blackjackThumb.url,
+    status: "active",
+  },
+  {
+    id: "demo-zen",
+    name: "Zen Garden",
+    description:
+      "A canvas-based zen garden sandbox — rake patterns into sand, place stones and plants, and pan or zoom around the composition.",
+    techStack: ["Canvas", "Generative Art", "Touch UX"],
+    demoUrl: "/demos/zen-garden.html",
+    thumbnail: zenThumb.url,
+    status: "active",
+  },
+  {
     id: "proj-1",
     name: "Dock Utilization & Simulation Model",
     description:
