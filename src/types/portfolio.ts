@@ -56,8 +56,16 @@ export interface Project {
   techStack: string[];
   liveUrl?: string;
   githubUrl?: string;
+  demoUrl?: string;
+  thumbnail?: string;
   status: "active" | "archived";
 }
+
+export interface Interest {
+  name: string;
+  description: string;
+}
+
 
 export interface Education {
   id: string;
