@@ -5,6 +5,8 @@ import AboutSection from "@/components/sections/AboutSection";
 import WorkSection from "@/components/sections/WorkSection";
 import EducationSection from "@/components/sections/EducationSection";
 import SkillsSection from "@/components/sections/SkillsSection";
+import InterestsSection from "@/components/sections/InterestsSection";
+
 import ContactSection from "@/components/sections/ContactSection";
 import { useActiveSection } from "@/hooks/useActiveSection";
 
@@ -18,6 +20,8 @@ export default function Index() {
       <WorkSection />
       <EducationSection />
       <SkillsSection />
+      <InterestsSection />
+
       <ContactSection />
     </Layout>
   );

@@ -11,7 +11,9 @@ import type {
   Project,
   Education,
   SocialLink,
+  Interest,
 } from "@/types/portfolio";
+
 import headshot from "@/assets/headshot.jpg.asset.json";
 
 // ===== Portfolio Data =====
@@ -135,7 +137,33 @@ export const projects: Project[] = [
   },
 ];
 
+export const interests: Interest[] = [
+  {
+    name: "Travel",
+    description:
+      "Planning trips around new places, new food, and long drives — the more unfamiliar the better.",
+  },
+  {
+    name: "Golf",
+    description: "Weekend rounds and a standing effort to fix my short game.",
+  },
+  {
+    name: "Backpacking",
+    description:
+      "Multi-day trips in the mountains, a habit picked up leading student expeditions through Slovenia and Croatia.",
+  },
+  {
+    name: "Fly Fishing",
+    description: "Cold water, slow mornings, and the occasional fish.",
+  },
+  {
+    name: "Live Music",
+    description: "New Orleans makes this an easy one — shows and festivals whenever they come through.",
+  },
+];
+
 export const education: Education[] = [
+
   {
     id: "edu-1",
     institution: "Tulane University, A. B. Freeman School of Business",
