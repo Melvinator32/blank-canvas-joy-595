@@ -22,6 +22,7 @@ export default function Index() {
       <EducationSection />
       <SkillsSection />
       <InterestsSection />
+      <PhotoGallerySection />
 
       <ContactSection />
     </Layout>
