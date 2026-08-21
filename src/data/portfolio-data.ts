@@ -12,6 +12,7 @@ import type {
   Education,
   SocialLink,
   Interest,
+  Photo,
 } from "@/types/portfolio";
 
 import headshot from "@/assets/headshot.png.asset.json";
@@ -20,6 +21,12 @@ import rewardsThumb from "@/assets/rewards-ledger.jpg.asset.json";
 import blackjackThumb from "@/assets/blackjack-trainer.jpg.asset.json";
 import zenThumb from "@/assets/zen-garden.jpg.asset.json";
 import radioThumb from "@/assets/radio-station.jpg.asset.json";
+import travelMountain from "@/assets/travel-mountain.jpg.asset.json";
+import huntingMarsh from "@/assets/hunting-marsh.jpg.asset.json";
+import lsuFootball from "@/assets/lsu-football.jpg.asset.json";
+import winterBridge from "@/assets/winter-bridge.jpg.asset.json";
+import jazzFest from "@/assets/jazz-fest.jpg.asset.json";
+import flyFishing from "@/assets/fly-fishing.jpg.asset.json";
 
 // ===== Portfolio Data =====
 
@@ -223,6 +230,39 @@ export const interests: Interest[] = [
   {
     name: "Live Music",
     description: "New Orleans makes this an easy one — shows and festivals whenever they come through.",
+  },
+];
+
+export const photos: Photo[] = [
+  {
+    src: travelMountain.url,
+    alt: "Two people in an alpine field with a snow-dusted pyramidal mountain peak in the background",
+    caption: "Alpine travel — Matterhorn region",
+  },
+  {
+    src: huntingMarsh.url,
+    alt: "Two people in camouflage in a boat among tall reeds at sunrise",
+    caption: "Duck hunting in the marsh",
+  },
+  {
+    src: lsuFootball.url,
+    alt: "Two people posing in front of a brightly lit LSU football stadium at night",
+    caption: "LSU football — Saturday nights in Death Valley",
+  },
+  {
+    src: winterBridge.url,
+    alt: "A couple sitting on a bridge railing over water with snow-dusted evergreen forest behind",
+    caption: "Winter outing",
+  },
+  {
+    src: jazzFest.url,
+    alt: "A couple in the crowd at the New Orleans Jazz Fest festival stage",
+    caption: "Jazz Fest — New Orleans",
+  },
+  {
+    src: flyFishing.url,
+    alt: "A man holding a silver bonefish on a skiff in calm water",
+    caption: "Fly fishing for bonefish — Belize",
   },
 ];
 
