@@ -233,6 +233,39 @@ export const interests: Interest[] = [
   },
 ];
 
+export const photos: Photo[] = [
+  {
+    src: travelMountain.url,
+    alt: "Two people in an alpine field with a snow-dusted pyramidal mountain peak in the background",
+    caption: "Alpine travel — Matterhorn region",
+  },
+  {
+    src: huntingMarsh.url,
+    alt: "Two people in camouflage in a boat among tall reeds at sunrise",
+    caption: "Duck hunting in the marsh",
+  },
+  {
+    src: lsuFootball.url,
+    alt: "Two people posing in front of a brightly lit LSU football stadium at night",
+    caption: "LSU football — Saturday nights in Death Valley",
+  },
+  {
+    src: winterBridge.url,
+    alt: "A couple sitting on a bridge railing over water with snow-dusted evergreen forest behind",
+    caption: "Winter outing",
+  },
+  {
+    src: jazzFest.url,
+    alt: "A couple in the crowd at the New Orleans Jazz Fest festival stage",
+    caption: "Jazz Fest — New Orleans",
+  },
+  {
+    src: flyFishing.url,
+    alt: "A man holding a silver bonefish on a skiff in calm water",
+    caption: "Fly fishing for bonefish — Belize",
+  },
+];
+
 export const education: Education[] = [
 
   {
