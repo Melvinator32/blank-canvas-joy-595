@@ -68,6 +68,12 @@ export interface Interest {
   description: string;
 }
 
+export interface Photo {
+  src: string;
+  alt: string;
+  caption: string;
+}
+
 
 export interface Education {
   id: string;
