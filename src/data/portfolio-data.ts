@@ -110,6 +110,7 @@ export const speaking: Speaking[] = [];
 export const projects: Project[] = [
   {
     id: "demo-radio",
+    icon: "Radio",
     name: "Radio Station — Productivity Workspace",
     description:
       "An all-in-one personal productivity workspace: table, kanban, matrix, and goal views over the same task set, plus focus timers, subtasks, tags, a rewards system, notebook, and export — all running entirely in the browser.",
@@ -120,6 +121,7 @@ export const projects: Project[] = [
   },
   {
     id: "demo-weirwood",
+    icon: "Ship",
     name: "Weirwood — Marine Movement Intelligence",
     description:
       "An interactive vessel and cargo movement dashboard built on Vortexa data across the IMTT terminal network, with region, product, and terminal filters, pivot views, and PDF/PPT/XLS export of any view.",
@@ -130,6 +132,7 @@ export const projects: Project[] = [
   },
   {
     id: "demo-rewards",
+    icon: "CreditCard",
     name: "Credit Card & Spend Dashboard",
     description:
       "A personal spend and rewards ledger that ingests statement exports, categorizes transactions, and tracks points earn rates and card-level value across time.",
@@ -140,6 +143,7 @@ export const projects: Project[] = [
   },
   {
     id: "demo-blackjack",
+    icon: "Spade",
     name: "Blackjack Strategy Trainer",
     description:
       "A basic-strategy and counting trainer that deals real shoes, grades every decision against optimal play, and tracks accuracy over sessions.",
@@ -150,6 +154,7 @@ export const projects: Project[] = [
   },
   {
     id: "demo-zen",
+    icon: "Flower2",
     name: "Zen Garden",
     description:
       "A canvas-based zen garden sandbox — rake patterns into sand, place stones and plants, and pan or zoom around the composition.",
@@ -160,6 +165,7 @@ export const projects: Project[] = [
   },
   {
     id: "proj-1",
+    icon: "Anchor",
     name: "Dock Utilization & Simulation Model",
     description:
       "A dynamic, nearly fully automated dock simulation model used in quarterly executive updates to evaluate site capacity against customer volume trends, dock constraints, and contract-specific operating nuances.",
@@ -168,6 +174,7 @@ export const projects: Project[] = [
   },
   {
     id: "proj-2",
+    icon: "Users",
     name: "CRM Implementation & Automation Suite",
     description:
       "Led platform selection and implementation to migrate commercial and business development teams off Excel-based relationship tracking, including custom reporting logic and a proprietary activity tracker that prompts reps to re-engage customers based on relationship cadence.",
@@ -176,6 +183,7 @@ export const projects: Project[] = [
   },
   {
     id: "proj-3",
+    icon: "Calculator",
     name: "Standardized Underwriting Toolkit",
     description:
       "A commercial model template and buy-versus-lease capex framework adopted by operations leadership across all terminals, plus refined terminal-level tax and insurance assumptions that improved project underwriting accuracy.",
@@ -184,6 +192,7 @@ export const projects: Project[] = [
   },
   {
     id: "proj-4",
+    icon: "ShoppingBag",
     name: "Print-on-Demand E-commerce Store",
     description:
       "A 50+ product Etsy catalog run on roughly two hours of upkeep per month through automation, with a 150% conversion lift from pricing, copy, and keyword strategy.",
