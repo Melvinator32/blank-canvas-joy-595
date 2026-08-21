@@ -19,6 +19,7 @@ import weirwoodThumb from "@/assets/weirwood.jpg.asset.json";
 import rewardsThumb from "@/assets/rewards-ledger.jpg.asset.json";
 import blackjackThumb from "@/assets/blackjack-trainer.jpg.asset.json";
 import zenThumb from "@/assets/zen-garden.jpg.asset.json";
+import radioThumb from "@/assets/radio-station.jpg.asset.json";
 
 // ===== Portfolio Data =====
 
