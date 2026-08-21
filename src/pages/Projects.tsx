@@ -1,3 +1,4 @@
+import { icons } from "lucide-react";
 import Layout from "@/components/Layout";
 import Navigation from "@/components/Navigation";
 import { projects } from "@/data/portfolio-data";
