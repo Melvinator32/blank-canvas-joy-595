@@ -21,6 +21,12 @@ import rewardsThumb from "@/assets/rewards-ledger.jpg.asset.json";
 import blackjackThumb from "@/assets/blackjack-trainer.jpg.asset.json";
 import zenThumb from "@/assets/zen-garden.jpg.asset.json";
 import radioThumb from "@/assets/radio-station.jpg.asset.json";
+import travelMountain from "@/assets/travel-mountain.jpg.asset.json";
+import huntingMarsh from "@/assets/hunting-marsh.jpg.asset.json";
+import lsuFootball from "@/assets/lsu-football.jpg.asset.json";
+import winterBridge from "@/assets/winter-bridge.jpg.asset.json";
+import jazzFest from "@/assets/jazz-fest.jpg.asset.json";
+import flyFishing from "@/assets/fly-fishing.jpg.asset.json";
 
 // ===== Portfolio Data =====
 
