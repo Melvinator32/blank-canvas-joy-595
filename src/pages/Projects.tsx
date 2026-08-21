@@ -12,7 +12,7 @@ export default function Projects() {
       <Navigation />
       <section className="px-8 md:px-16 lg:px-24 pt-32 pb-20 md:pt-36 md:pb-24">
         <div className="max-w-7xl mx-auto">
-          <p className="text-tiny tracking-widest mb-6">AI CODING PROJECTS PORTFOLIO</p>
+          <p className="text-tiny tracking-widest mb-6">PASSION PROJECTS</p>
           <h1 className="text-section mb-16 md:mb-20">Selected work &amp; demos</h1>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
