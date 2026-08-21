@@ -2,7 +2,8 @@ import { photos } from "@/data/portfolio-data";
 
 /**
  * PhotoGallerySection Component
- * A grid of personal photos shown below the Interests section
+ * Masonry-style collage of personal photos, shown below the Interests section.
+ * Uses CSS columns so mixed portrait/landscape photos tile without cropping.
  */
 export default function PhotoGallerySection() {
   return (
@@ -11,20 +12,18 @@ export default function PhotoGallerySection() {
         <div className="md:sticky md:top-32 mb-10 md:mb-16">
           <h2 className="text-section">In Focus</h2>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+        <div className="columns-2 md:columns-3 gap-3 md:gap-4 [column-fill:balance]">
           {photos.map((photo) => (
             <figure
               key={photo.src}
-              className="group relative overflow-hidden border border-foreground/15"
+              className="group relative mb-3 md:mb-4 break-inside-avoid overflow-hidden border border-foreground/15"
             >
-              <div className="aspect-[3/4] w-full overflow-hidden bg-secondary">
-                <img
-                  src={photo.src}
-                  alt={photo.alt}
-                  loading="lazy"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
+              <img
+                src={photo.src}
+                alt={photo.alt}
+                loading="lazy"
+                className="w-full h-auto block transition-transform duration-500 group-hover:scale-[1.03]"
+              />
               <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-3 md:p-4">
                 <span className="text-tiny text-white/90 leading-tight">
                   {photo.caption}
