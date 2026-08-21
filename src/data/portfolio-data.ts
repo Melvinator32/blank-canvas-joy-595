@@ -32,7 +32,7 @@ import flyFishing from "@/assets/fly-fishing.jpg.asset.json";
 
 export const personalInfo: PersonalInfo = {
   name: "James McKnight",
-  title: "Corporate Development Analyst",
+  title: "Corporate Development Analyst at IMTT",
   location: { city: "New Orleans, LA", country: "USA" },
   website: "www.linkedin.com/in/james-r-mcknight",
   email: "jrmcknight08@gmail.com",
