@@ -1,6 +1,7 @@
 import { experience } from "@/data/portfolio-data";
 import SplitSection from "@/components/ui/split-section";
 import { format } from "date-fns";
+import LinkedText from "@/components/LinkedText";
 
 /**
  * WorkSection Component
@@ -19,13 +20,13 @@ export default function WorkSection() {
               {index > 0 && <hr className="border-t border-foreground/15 mb-16 md:mb-20" />}
               <div className="space-y-3">
                 <h3 className="text-large leading-tight">
-                  {job.role} at {job.company}
+                  <LinkedText>{`${job.role} at ${job.company}`}</LinkedText>
                 </h3>
                 <p className="text-small">
                   {startYear} - {endYear}
                 </p>
                 <p className="text-body leading-relaxed mt-6">
-                  {job.description}
+                  <LinkedText>{job.description}</LinkedText>
                 </p>
               </div>
             </div>

@@ -1,4 +1,5 @@
 import { personalInfo } from "@/data/portfolio-data";
+import LinkedText from "@/components/LinkedText";
 
 /**
  * HeaderSection Component
@@ -14,7 +15,9 @@ export default function HeaderSection() {
     <section className="flex items-center justify-center px-8 md:px-16 lg:px-24 pt-24 pb-20 md:pt-28 md:pb-24">
       <div className="w-full max-w-7xl">
         <div className="text-center mb-16 md:mb-20">
-          <p className="text-tiny tracking-widest">{personalInfo.title}</p>
+          <p className="text-tiny tracking-widest">
+            <LinkedText>{personalInfo.title}</LinkedText>
+          </p>
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16 items-center">
