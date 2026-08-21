@@ -27,7 +27,7 @@ export default function Navigation(_props: NavigationProps) {
               className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold hover:text-muted-foreground transition-colors"
               aria-current={pathname === "/projects" ? "page" : undefined}
             >
-              Projects
+              Portfolio
             </Link>
             <a
               href={onHome ? "#contact" : "/#contact"}
