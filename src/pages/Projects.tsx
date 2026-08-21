@@ -1,3 +1,4 @@
+import { icons } from "lucide-react";
 import Layout from "@/components/Layout";
 import Navigation from "@/components/Navigation";
 import { projects } from "@/data/portfolio-data";
@@ -17,6 +18,11 @@ export default function Projects() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
             {projects.map((project) => {
+              const Icon = project.icon
+                ? (icons as Record<string, React.ComponentType<{ className?: string; strokeWidth?: number }>>)[
+                    project.icon
+                  ]
+                : undefined;
               const inner = (
                 <>
                   <div className="aspect-[4/3] w-full overflow-hidden border border-foreground/15 group-hover:border-foreground/40 transition-colors">
@@ -28,7 +34,8 @@ export default function Projects() {
                         className="w-full h-full object-cover"
                       />
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center bg-secondary p-8">
+                      <div className="w-full h-full flex flex-col items-center justify-center gap-6 bg-secondary p-8">
+                        {Icon && <Icon className="w-10 h-10" strokeWidth={1.25} />}
                         <span className="text-large text-center leading-tight">
                           {project.name}
                         </span>
@@ -37,7 +44,11 @@ export default function Projects() {
                   </div>
 
                   <div className="mt-6 space-y-3">
-                    <h2 className="text-large leading-tight">{project.name}</h2>
+                    <h2 className="text-large leading-tight flex items-center gap-3">
+                      {Icon && <Icon className="w-5 h-5 shrink-0" strokeWidth={1.5} />}
+                      {project.name}
+                    </h2>
+
                     <p className="text-body leading-relaxed">{project.description}</p>
                     <p className="text-tiny">{project.techStack.join(" · ")}</p>
                     {project.demoUrl && (
