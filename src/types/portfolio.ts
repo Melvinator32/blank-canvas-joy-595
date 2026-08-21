@@ -58,6 +58,8 @@ export interface Project {
   githubUrl?: string;
   demoUrl?: string;
   thumbnail?: string;
+  /** lucide-react icon name, e.g. "Radio" */
+  icon?: string;
   status: "active" | "archived";
 }
 
