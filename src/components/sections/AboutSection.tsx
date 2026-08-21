@@ -1,4 +1,5 @@
 import { personalInfo } from "@/data/portfolio-data";
+import LinkedText from "@/components/LinkedText";
 
 /**
  * AboutSection Component
@@ -13,7 +14,7 @@ export default function AboutSection() {
       <div className="w-full max-w-4xl text-center space-y-12 md:space-y-16">
         <h2 className="text-tiny tracking-widest">ABOUT ME</h2>
         <p className="text-body leading-relaxed max-w-3xl mx-auto">
-          {firstParagraph}
+          <LinkedText>{firstParagraph}</LinkedText>
         </p>
       </div>
     </section>
