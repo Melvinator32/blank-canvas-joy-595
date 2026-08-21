@@ -12,6 +12,7 @@ import type {
   Education,
   SocialLink,
   Interest,
+  Photo,
 } from "@/types/portfolio";
 
 import headshot from "@/assets/headshot.png.asset.json";
