@@ -109,6 +109,16 @@ export const speaking: Speaking[] = [];
 
 export const projects: Project[] = [
   {
+    id: "demo-radio",
+    name: "Radio Station — Productivity Workspace",
+    description:
+      "An all-in-one personal productivity workspace: table, kanban, matrix, and goal views over the same task set, plus focus timers, subtasks, tags, a rewards system, notebook, and export — all running entirely in the browser.",
+    techStack: ["App Design", "State Management", "Productivity UX"],
+    demoUrl: "/demos/radio-station.html",
+    thumbnail: radioThumb.url,
+    status: "active",
+  },
+  {
     id: "demo-weirwood",
     name: "Weirwood — Marine Movement Intelligence",
     description:
