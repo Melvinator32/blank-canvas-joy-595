@@ -1,28 +1,39 @@
 @import "tailwindcss";
 
 @theme {
-  /* Minimal Color Palette */
-  --color-background: oklch(96% 0.01 85);
-  --color-foreground: oklch(60% 0.08 140);
-  --color-muted: oklch(56% 0 0);
-  --color-muted-foreground: oklch(50% 0.05 140);
-  --color-border: oklch(90% 0.01 85);
+  /* Beach-Inspired Palette */
+  --color-background: #E1E2D8;      /* Shell White */
+  --color-foreground: #292D28;      /* Wet Slate */
+  --color-muted: #A69C89;           /* Driftwood Sand */
+  --color-muted-foreground: #535958;/* Storm Stone */
+  --color-border: #A69C89;          /* Driftwood Sand */
 
-  /* Minimal semantic colors for compatibility */
-  --color-primary: oklch(60% 0.08 140);
-  --color-primary-foreground: oklch(96% 0.01 85);
-  --color-secondary: oklch(92% 0.01 85);
-  --color-secondary-foreground: oklch(60% 0.08 140);
-  --color-accent: oklch(96% 0 0);
-  --color-accent-foreground: oklch(21% 0 0);
-  --color-destructive: oklch(58% 0.22 29);
-  --color-destructive-foreground: oklch(100% 0 0);
-  --color-card: oklch(100% 0 0);
-  --color-card-foreground: oklch(21% 0 0);
-  --color-popover: oklch(100% 0 0);
-  --color-popover-foreground: oklch(21% 0 0);
-  --color-input: oklch(90% 0 0);
-  --color-ring: oklch(21% 0 0);
+  /* Semantic colors */
+  --color-primary: #292D28;         /* Wet Slate */
+  --color-primary-foreground: #E1E2D8;
+  --color-secondary: #A69C89;       /* Driftwood Sand */
+  --color-secondary-foreground: #292D28;
+  --color-accent: #6F8F7A;          /* Jade Green */
+  --color-accent-foreground: #E1E2D8;
+  --color-destructive: #59251F;     /* OxBlood */
+  --color-destructive-foreground: #E1E2D8;
+  --color-card: #E1E2D8;
+  --color-card-foreground: #292D28;
+  --color-popover: #E1E2D8;
+  --color-popover-foreground: #292D28;
+  --color-input: #A69C89;
+  --color-ring: #6F8F7A;
+
+  /* Palette extras */
+  --color-oxblood: #59251F;
+  --color-seaweed: #77785A;
+  --color-storm: #535958;
+  --color-kelp: #806A27;
+  --color-shell: #E1E2D8;
+  --color-driftwood: #A69C89;
+  --color-jade: #6F8F7A;
+  --color-clay: #B5523C;
+  --color-slate: #292D28;
 
   /* Border Radius */
   --radius-sm: 0.25rem;
@@ -77,8 +88,8 @@
 
 @layer base {
   body {
-    background-color: oklch(96% 0.01 85);
-    color: oklch(60% 0.08 140);
+    background-color: var(--color-background);
+    color: var(--color-foreground);
     font-family: var(--font-family-serif);
     font-size: var(--text-body);
     line-height: var(--text-body--line-height);
