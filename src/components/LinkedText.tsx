@@ -7,6 +7,7 @@ import { Fragment, type ReactNode } from "react";
 const LINK_MAP: Record<string, string> = {
   IMTT: "https://imtt.com/",
   Fidelis: "https://www.fidelisnewenergy.com/",
+  Nscale: "https://www.nscale.com",
 };
 
 // Sort keys by length descending so "IMTT" never gets matched inside a longer
