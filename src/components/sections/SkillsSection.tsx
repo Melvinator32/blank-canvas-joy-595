@@ -28,7 +28,7 @@ const SKILL_ICONS: Record<string, string> = {
 };
 
 function SkillIcon({ name, ...props }: { name: string } & LucideProps) {
-  const LucideIcon = icons[name];
+  const LucideIcon = (icons as Record<string, React.ComponentType<LucideProps>>)[name];
   if (!LucideIcon) return null;
   return <LucideIcon {...props} />;
 }
