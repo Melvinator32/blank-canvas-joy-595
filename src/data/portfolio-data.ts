@@ -171,30 +171,12 @@ export const projects: Project[] = [
     status: "active",
   },
   {
-    id: "proj-1",
-    icon: "Anchor",
-    name: "Dock Utilization & Simulation Model",
-    description:
-      "A dynamic, nearly fully automated dock simulation model used in quarterly executive updates to evaluate site capacity against customer volume trends, dock constraints, and contract-specific operating nuances.",
-    techStack: ["Excel", "Scenario Modeling", "Capacity Analysis"],
-    status: "active",
-  },
-  {
     id: "proj-2",
     icon: "Users",
     name: "CRM Implementation & Automation Suite",
     description:
       "Led platform selection and implementation to migrate commercial and business development teams off Excel-based relationship tracking, including custom reporting logic and a proprietary activity tracker that prompts reps to re-engage customers based on relationship cadence.",
     techStack: ["CRM Administration", "Workflow Automation", "Reporting"],
-    status: "active",
-  },
-  {
-    id: "proj-3",
-    icon: "Calculator",
-    name: "Standardized Underwriting Toolkit",
-    description:
-      "A commercial model template and buy-versus-lease capex framework adopted by operations leadership across all terminals, plus refined terminal-level tax and insurance assumptions that improved project underwriting accuracy.",
-    techStack: ["DCF", "Capex Frameworks", "Process Design"],
     status: "active",
   },
   {
