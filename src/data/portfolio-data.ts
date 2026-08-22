@@ -55,7 +55,7 @@ export const experience: Experience[] = [
   },
   {
     id: "exp-3",
-    company: "Fidelis New Energy, LLC",
+    company: "Fidelis New Energy, LLC (acquired by Nscale in 2026)",
     role: "Senior Analyst, Analyst, Summer Intern",
     location: "Houston, TX",
     startDate: "2022-08",
