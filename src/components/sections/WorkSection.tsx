@@ -9,7 +9,7 @@ import LinkedText from "@/components/LinkedText";
  */
 export default function WorkSection() {
   return (
-    <SplitSection title="Experience" id="work">
+    <SplitSection title="Professional Experience" id="work">
       <div className="space-y-16 md:space-y-20">
         {experience.map((job, index) => {
           const startYear = format(new Date(job.startDate), "yyyy");
