@@ -54,17 +54,6 @@ export const experience: Experience[] = [
     current: true,
   },
   {
-    id: "exp-2",
-    company: "Etsy / Print-on-Demand E-commerce Business",
-    role: "Founder",
-    location: "New Orleans, LA",
-    startDate: "2025-06",
-    endDate: null,
-    description:
-      "Generate $500+ in monthly revenue across ~50 sales per month while limiting upkeep to roughly 2 hours per month through automation and streamlined operations. Manage a catalog of 50+ products across design, pricing, listings, and fulfillment workflows. Increased conversion by 150% through pricing, product description, and keyword strategy improvements.",
-    current: true,
-  },
-  {
     id: "exp-3",
     company: "Fidelis New Energy, LLC",
     role: "Senior Analyst, Analyst, Summer Intern",
@@ -74,6 +63,18 @@ export const experience: Experience[] = [
     description:
       "Developed project finance models for decarbonization opportunities supporting development decisions across projects representing $8B+ of combined capex. Led coordination of a $9MM grant application for CO2 transportation and storage, saving $400K+ in external consulting fees while managing procurement of 30+ documents totaling 120+ pages. Evaluated hundreds of grant opportunities across clean hydrogen/ammonia, CCS, SAF, and renewable diesel, supporting applications for over $125MM in federal grant awards. Helped develop the proprietary community benefits program used across Fidelis' projects and regularly drafted letters of support and intent for legislators, partners, and stakeholders.",
     current: false,
+  },
+  {
+    id: "exp-2",
+    company: "Etsy / Print-on-Demand E-commerce Business",
+    role: "Founder",
+    location: "New Orleans, LA",
+    startDate: "2025-06",
+    endDate: null,
+    description:
+      "Generate $500+ in monthly revenue across ~50 sales per month while limiting upkeep to roughly 2 hours per month through automation and streamlined operations. Manage a catalog of 50+ products across design, pricing, listings, and fulfillment workflows. Increased conversion by 150% through pricing, product description, and keyword strategy improvements.",
+    current: true,
+    connector: "of",
   },
   {
     id: "exp-4",

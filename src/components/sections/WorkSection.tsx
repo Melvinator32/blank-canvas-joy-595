@@ -20,7 +20,7 @@ export default function WorkSection() {
               {index > 0 && <hr className="border-t border-foreground/15 mb-16 md:mb-20" />}
               <div className="space-y-3">
                 <h3 className="text-large leading-tight">
-                  <LinkedText>{`${job.role} at ${job.company}`}</LinkedText>
+                  <LinkedText>{`${job.role} ${job.connector ?? "at"} ${job.company}`}</LinkedText>
                 </h3>
                 <p className="text-small">
                   {startYear} - {endYear}

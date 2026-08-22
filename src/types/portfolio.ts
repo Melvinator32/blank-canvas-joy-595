@@ -24,6 +24,8 @@ export interface Experience {
   description: string;
   media?: string;
   current: boolean;
+  /** connector between role and company, defaults to "at" */
+  connector?: string;
 }
 
 export interface Writing {
