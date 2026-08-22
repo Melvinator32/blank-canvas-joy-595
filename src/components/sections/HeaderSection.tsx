@@ -25,12 +25,13 @@ export default function HeaderSection() {
             <h1 className="text-display lg:text-[9rem] leading-none font-light lg:font-normal">{firstName}</h1>
           </div>
 
-          <div className="flex justify-center">
+          <div className="flex flex-col items-center">
             <img
               src={personalInfo.avatar}
               alt={personalInfo.name}
               className="w-full max-w-[52rem] h-auto aspect-[52/60] object-cover rounded-t-[160px]"
             />
+            <p className="text-small mt-8 md:mt-10">New Orleans, Louisiana</p>
           </div>
 
           <div className="text-center lg:text-left">
