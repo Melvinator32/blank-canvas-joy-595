@@ -10,9 +10,15 @@ export default function InterestsSection() {
     <SplitSection title="Interests" id="interests">
       <div className="space-y-10 md:space-y-12">
         {interests.map((interest) => (
-          <div key={interest.name} className="space-y-2">
+          <div key={interest.name} className="space-y-3">
             <h3 className="text-large leading-tight">{interest.name}</h3>
-            <p className="text-body leading-relaxed">{interest.description}</p>
+            {interest.description
+              .split("\n\n")
+              .map((para, i) => (
+                <p key={i} className="text-body leading-relaxed">
+                  {para}
+                </p>
+              ))}
           </div>
         ))}
       </div>
