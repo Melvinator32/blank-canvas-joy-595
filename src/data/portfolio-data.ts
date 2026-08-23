@@ -124,6 +124,7 @@ export const projects: Project[] = [
       "An all-in-one personal productivity workspace: table, kanban, matrix, and goal views over the same task set, plus focus timers, subtasks, tags, a rewards system, notebook, and export — all running entirely in the browser.",
     techStack: ["App Design", "State Management", "Productivity UX"],
     demoUrl: "/demos/radio-station.html",
+    walkthroughUrl: "/demos/radio-station-walkthrough.html",
     thumbnail: radioThumb.url,
     status: "active",
   },
