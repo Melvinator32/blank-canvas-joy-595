@@ -66,7 +66,7 @@ export const experience: Experience[] = [
   },
   {
     id: "exp-2",
-    company: "Etsy / Print-on-Demand E-commerce Business",
+    company: "Print-on-Demand E-commerce Business",
     role: "Founder",
     location: "New Orleans, LA",
     startDate: "2025-06",
