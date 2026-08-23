@@ -13,7 +13,7 @@ const SKILL_ICONS: Record<string, string> = {
   "Project Finance": "Landmark",
   "Business Development": "Handshake",
   "Market Research & Intelligence": "Search",
-  "Investment Analysis": "LineChart",
+  "Investment Analysis": "ChartSpline",
   "Executive Presentations": "Presentation",
   "Process Improvement": "Workflow",
   Excel: "FileSpreadsheet",
@@ -21,10 +21,10 @@ const SKILL_ICONS: Record<string, string> = {
   "Capital IQ": "Brain",
   Bloomberg: "Tv",
   Vortexa: "Radar",
-  Tableau: "BarChart3",
+  Tableau: "ChartBar",
   Python: "Code",
   PowerPoint: "MonitorPlay",
-  "Microsoft Project": "KanbanSquare",
+  "Microsoft Project": "ListTodo",
 };
 
 function SkillIcon({ name, ...props }: { name: string } & LucideProps) {
