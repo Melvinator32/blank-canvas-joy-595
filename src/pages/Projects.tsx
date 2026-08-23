@@ -51,14 +51,26 @@ export default function Projects() {
 
                     <p className="text-body leading-relaxed">{project.description}</p>
                     <p className="text-tiny">{project.techStack.join(" · ")}</p>
-                    {project.demoUrl && (
-                      <p className="text-small underline">View demo</p>
-                    )}
+                    <div className="flex items-center gap-5 pt-1">
+                      {project.demoUrl && (
+                        <span className="text-small underline">View demo</span>
+                      )}
+                      {project.walkthroughUrl && (
+                        <a
+                          href={project.walkthroughUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-small underline"
+                        >
+                          Walkthrough
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </>
               );
 
-              return project.demoUrl ? (
+              const card = project.demoUrl ? (
                 <a
                   key={project.id}
                   href={project.demoUrl}
@@ -73,6 +85,8 @@ export default function Projects() {
                   {inner}
                 </div>
               );
+
+              return card;
             })}
           </div>
         </div>
