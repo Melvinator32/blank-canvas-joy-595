@@ -59,6 +59,8 @@ export interface Project {
   liveUrl?: string;
   githubUrl?: string;
   demoUrl?: string;
+  /** path or url to a written walkthrough/guide */
+  walkthroughUrl?: string;
   thumbnail?: string;
   /** lucide-react icon name, e.g. "Radio" */
   icon?: string;
