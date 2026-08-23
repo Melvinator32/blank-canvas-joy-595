@@ -17,7 +17,7 @@ const SKILL_ICONS: Record<string, string> = {
   "Executive Presentations": "Presentation",
   "Process Improvement": "Workflow",
   Excel: "FileSpreadsheet",
-  Macabacus: "Abacus",
+  Macabacus: "SquareSigma",
   "Capital IQ": "Brain",
   Bloomberg: "Tv",
   Vortexa: "Radar",
