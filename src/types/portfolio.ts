@@ -72,6 +72,11 @@ export interface Interest {
   description: string;
 }
 
+export interface SideVenture {
+  name: string;
+  description: string;
+}
+
 export interface Photo {
   src: string;
   alt: string;
