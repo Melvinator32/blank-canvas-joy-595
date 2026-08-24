@@ -104,6 +104,19 @@ export const writing: Writing[] = [];
 
 export const speaking: Speaking[] = [];
 
+export const sideVentures: SideVenture[] = [
+  {
+    name: "Print-on-Demand E-commerce — Bayou Bill",
+    description:
+      "A 50+ product Etsy and personal website catalog run on roughly two hours of upkeep per month through automation, with a 200% YOY conversion lift from pricing, copy, and keyword strategy.\n\nAhhh… my weird-brainchild-turned-independent-lifestyle-brand that started as a result of some late-night experimentation with ChatGPT image generation at the beginning of 2025! What was initially a fun creative outlet evolved into a means of sending my friends unique personalized gifts inspired by shared interests. After a while, I eventually decided to launch a successful online store that generates ~$500 of passive revenue a month.\n\nRunning Bayou Bill has helped me develop hands-on skills in entrepreneurship, e-commerce, branding, and digital marketing. I've learned how to take products from concept to launch, analyze customer demand, refine listings and pricing, and build a consistent brand identity. Along the way, I've also developed practical Photoshop skills in graphic design, image editing, mockup creation, and preparing artwork for digital and physical products.\n\nMy content is largely inspired by the quirky culture of New Orleans and Mardi Gras, my love of live music, and the outdoors. I create original designs that can be printed or embroidered on virtually anything, but my main choice of merch are stickers, shirts, hats, and drinking glasses. I am constantly helping friends and family out with commissioned ideas as well!",
+  },
+  {
+    name: "CardWise — Credit Card Optimization",
+    description:
+      "I manage a small credit card optimization side hustle focused on helping others get more value from their existing spending. This includes evaluating which cards best fit their spending habits, identifying worthwhile welcome offers and benefits, and helping organize rewards, credits, and annual fees so they are easier to manage.\n\nMy credit card management side hustle has taught me how to strategically evaluate rewards programs, welcome bonuses, annual fees, statement credits, and redemption options to maximize the value of everyday spending. I've developed systems to track multiple cards, benefits, deadlines, and points balances while maintaining disciplined payment habits and avoiding unnecessary fees or interest. It has also strengthened my skills in financial analysis, organization, optimization, and attention to detail by requiring me to constantly weigh costs, benefits, and opportunity tradeoffs.",
+  },
+];
+
 export const projects: Project[] = [
   {
     id: "demo-radio",
