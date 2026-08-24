@@ -138,6 +138,7 @@ export const projects: Project[] = [
       "An interactive vessel and cargo movement dashboard built on Vortexa data across the IMTT terminal network, with region, product, and terminal filters, pivot views, and PDF/PPT/XLS export of any view.",
     techStack: ["Data Visualization", "Market Intelligence", "Dashboards"],
     demoUrl: "/demos/weirwood.html",
+    walkthroughUrl: "/demos/Weirwood_Walkthrough.pdf",
     thumbnail: weirwoodThumb.url,
     status: "active",
   },
