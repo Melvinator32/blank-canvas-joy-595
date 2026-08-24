@@ -3,6 +3,7 @@ import Navigation from "@/components/Navigation";
 import HeaderSection from "@/components/sections/HeaderSection";
 import AboutSection from "@/components/sections/AboutSection";
 import WorkSection from "@/components/sections/WorkSection";
+import SideVenturesSection from "@/components/sections/SideVenturesSection";
 import EducationSection from "@/components/sections/EducationSection";
 import SkillsSection from "@/components/sections/SkillsSection";
 import InterestsSection from "@/components/sections/InterestsSection";
@@ -19,6 +20,7 @@ export default function Index() {
       <HeaderSection />
       <AboutSection />
       <WorkSection />
+      <SideVenturesSection />
       <EducationSection />
       <SkillsSection />
       <InterestsSection />
