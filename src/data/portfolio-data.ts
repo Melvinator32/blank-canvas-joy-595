@@ -66,18 +66,6 @@ export const experience: Experience[] = [
     current: false,
   },
   {
-    id: "exp-2",
-    company: "Print-on-Demand E-commerce Business",
-    role: "Founder",
-    location: "New Orleans, LA",
-    startDate: "2025-06",
-    endDate: null,
-    description:
-      "Generate $500+ in monthly revenue across ~50 sales per month while limiting upkeep to roughly 2 hours per month through automation and streamlined operations. Manage a catalog of 50+ products across design, pricing, listings, and fulfillment workflows. Increased conversion by 150% through pricing, product description, and keyword strategy improvements.",
-    current: true,
-    connector: "of",
-  },
-  {
     id: "exp-4",
     company: "Darwin Fenner Fund",
     role: "Investment Analyst",
