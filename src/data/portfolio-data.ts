@@ -12,6 +12,7 @@ import type {
   Education,
   SocialLink,
   Interest,
+  SideVenture,
   Photo,
 } from "@/types/portfolio";
 
