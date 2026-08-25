@@ -12,9 +12,9 @@ export default function HeaderSection() {
   const lastName = nameParts.slice(1).join(' ');
   
   return (
-    <section className="flex items-center justify-center px-8 md:px-16 lg:px-24 pt-24 pb-20 md:pt-28 md:pb-24">
+    <section className="flex items-center justify-center px-8 md:px-16 lg:px-24 pt-24 pb-12 md:pt-28 md:pb-14">
       <div className="w-full max-w-7xl">
-        <div className="text-center mb-16 md:mb-20">
+        <div className="text-center mb-12 md:mb-16">
           <p className="text-tiny tracking-widest">
             <LinkedText>{personalInfo.title}</LinkedText>
           </p>
@@ -31,7 +31,6 @@ export default function HeaderSection() {
               alt={personalInfo.name}
               className="w-full max-w-[52rem] h-auto aspect-[52/60] object-cover rounded-t-[160px]"
             />
-            <p className="text-small mt-8 md:mt-10">New Orleans, Louisiana</p>
           </div>
 
           <div className="text-center lg:text-left">
@@ -39,7 +38,11 @@ export default function HeaderSection() {
           </div>
         </div>
         
-        <div className="text-center mt-16 md:mt-20">
+        <div className="text-center mt-10 md:mt-14">
+          <h2 className="text-[3.5rem] md:text-[5rem] lg:text-[6rem] leading-none font-light tracking-tight">New Orleans, Louisiana</h2>
+        </div>
+
+        <div className="text-center mt-8 md:mt-10">
           <p className="text-small">{currentYear}</p>
         </div>
       </div>
