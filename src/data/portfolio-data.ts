@@ -236,6 +236,41 @@ export const interests: Interest[] = [
     description:
       "My parents split time between Nashville and Cashiers, North Carolina, where they bought what will ultimately be their retirement oasis. My dad works in sales for Rich's Foods, and my mom runs Sixth Street Creative, a consultancy firm for both residential and commercial art using local artists in Nashville.\n\nI have two younger sisters, Walker and Caroline. Walker is two years younger than me and currently works for ADP in New York. Caroline is two years younger than Walker and works for Naomi's Village in Austin.",
   },
+  {
+    name: "Micro hobbies",
+    children: [
+      {
+        name: "Indie video games",
+        children: [
+          { name: "Hades" },
+          { name: "Outer Wilds" },
+          { name: "Balatro" },
+          { name: "Dredge" },
+        ],
+      },
+      { name: "Collecting concert posters and other music-related art" },
+      { name: "Longboarding" },
+      { name: "Testing different AI tools" },
+      {
+        name: "Creating playlists for myself and friends",
+        description:
+          "Currently 100+ and counting — and yes, I shockingly use most of them in a given year.",
+      },
+      { name: "Houseplants" },
+      { name: "Reading" },
+      { name: "Training my dachshund" },
+      {
+        name: "Learning how to do new things",
+        description:
+          "This year was vibe code, surf, drive a boat, and longboard. I'm thinking about learning how to play a synthesizer as my next mini adventure…",
+      },
+      {
+        name: "Hot Sauces",
+        description:
+          "I typically have a dozen in my fridge at any given time. Right now my favorites are Marie Sharpe's Habanero, Yellowbird Serrano, and Peruana Aji Yellow. I also love making my own habanero sauce.",
+      },
+    ],
+  },
 ];
 
 export const photos: Photo[] = [

@@ -69,7 +69,9 @@ export interface Project {
 
 export interface Interest {
   name: string;
-  description: string;
+  description?: string;
+  /** nested sub-interests, rendered as an indented list */
+  children?: Interest[];
 }
 
 export interface SideVenture {
