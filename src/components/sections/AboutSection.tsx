@@ -10,8 +10,8 @@ export default function AboutSection() {
   const firstParagraph = personalInfo.bio.split('\n\n')[0];
   
   return (
-    <section id="about" className="flex items-center justify-center px-8 md:px-16 lg:px-24 py-20 md:py-24">
-      <div className="w-full max-w-4xl text-center space-y-12 md:space-y-16">
+    <section id="about" className="flex items-center justify-center px-8 md:px-16 lg:px-24 pt-10 md:pt-12 pb-16 md:pb-20">
+      <div className="w-full max-w-4xl text-center space-y-10 md:space-y-12">
         <h2 className="text-tiny tracking-widest">ABOUT ME</h2>
         <p className="text-body leading-relaxed max-w-3xl mx-auto">
           <LinkedText>{firstParagraph}</LinkedText>
