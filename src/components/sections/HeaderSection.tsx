@@ -39,7 +39,7 @@ export default function HeaderSection() {
         </div>
         
         <div className="text-center mt-10 md:mt-14">
-          <h2 className="text-[3.5rem] md:text-[5rem] lg:text-[6rem] leading-none font-light tracking-tight">New Orleans, Louisiana</h2>
+          <h2 className="text-[2.5rem] md:text-[3.5rem] lg:text-[4rem] leading-none font-light tracking-tight">New Orleans, Louisiana</h2>
         </div>
 
         <div className="text-center mt-8 md:mt-10">
