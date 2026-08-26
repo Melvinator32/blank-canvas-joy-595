@@ -1,7 +1,8 @@
-import { personalInfo } from "@/data/portfolio-data";
 import SplitSection from "@/components/ui/split-section";
 import { icons } from "lucide-react";
 import type { LucideProps } from "lucide-react";
+import EditableText from "@/components/EditableText";
+import { useContentEditor } from "@/components/ContentEditorProvider";
 
 /**
  * SkillsSection Component
@@ -34,13 +35,20 @@ function SkillIcon({ name, ...props }: { name: string } & LucideProps) {
 }
 
 export default function SkillsSection() {
+  const { content, isEditing } = useContentEditor();
+  const personalInfo = content.personalInfo;
   const skillsList = personalInfo.skills
     .split(",")
     .map((skill) => skill.trim())
     .filter(Boolean);
 
   return (
-    <SplitSection title="Skills" id="skills">
+    <SplitSection title="Skills" titleKey="labels.sectionSkills" id="skills">
+      {isEditing ? (
+        <div className="text-body leading-relaxed">
+          <EditableText contentKey="personalInfo.skills" fallback={personalInfo.skills} multiline label="Skills, separated by commas" />
+        </div>
+      ) : (
       <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-4 list-none p-0">
         {skillsList.map((skill, index) => {
           const iconName = SKILL_ICONS[skill] ?? "CircleDot";
@@ -60,6 +68,7 @@ export default function SkillsSection() {
           );
         })}
       </ul>
+      )}
     </SplitSection>
   );
 }

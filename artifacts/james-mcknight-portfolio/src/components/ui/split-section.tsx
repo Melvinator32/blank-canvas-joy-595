@@ -1,11 +1,13 @@
 import { ReactNode } from "react";
 import { cn } from "@/lib/utils";
+import EditableText from "@/components/EditableText";
 
 interface SplitSectionProps {
   title: string;
   children: ReactNode;
   className?: string;
   id?: string;
+  titleKey?: string;
 }
 
 /**
@@ -16,7 +18,8 @@ export default function SplitSection({
   title,
   children, 
   className,
-  id 
+  id,
+  titleKey,
 }: SplitSectionProps) {
   return (
     <section 
@@ -28,7 +31,9 @@ export default function SplitSection({
     >
       <div className="w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-[1fr_2fr] lg:grid-cols-[1fr_1.5fr] gap-12 md:gap-24 lg:gap-32 items-start">
         <div className="md:text-left flex items-start md:sticky md:top-32">
-          <h2 className="text-section">{title}</h2>
+          <h2 className="text-section">
+            <EditableText contentKey={titleKey ?? `labels.${id ?? "section"}`} fallback={title} label={`${title} section title`} />
+          </h2>
         </div>
         <div>
           {children}

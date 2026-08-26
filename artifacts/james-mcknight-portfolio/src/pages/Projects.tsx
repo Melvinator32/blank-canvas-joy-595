@@ -1,7 +1,8 @@
 import { icons } from "lucide-react";
 import Layout from "@/components/Layout";
 import Navigation from "@/components/Navigation";
-import { projects } from "@/data/portfolio-data";
+import EditableText from "@/components/EditableText";
+import { useContentEditor } from "@/components/ContentEditorProvider";
 
 function withBasePath(path: string) {
   return `${import.meta.env.BASE_URL.replace(/\/$/, "")}${path}`;
@@ -12,16 +13,23 @@ function withBasePath(path: string) {
  * Large thumbnail grid linking out to live app demos
  */
 export default function Projects() {
+  const { content, isEditing } = useContentEditor();
+  const projects = content.projects;
+
   return (
     <Layout>
       <Navigation />
       <section className="px-8 md:px-16 lg:px-24 pt-32 pb-20 md:pt-36 md:pb-24">
         <div className="max-w-7xl mx-auto">
-          <p className="text-tiny tracking-widest mb-6">PASSION PROJECTS</p>
-          <h1 className="text-section mb-16 md:mb-20">Selected work &amp; demos</h1>
+          <p className="text-tiny tracking-widest mb-6">
+            <EditableText contentKey="labels.projectsEyebrow" fallback="PASSION PROJECTS" label="Projects section label" />
+          </p>
+          <h1 className="text-section mb-16 md:mb-20">
+            <EditableText contentKey="labels.projectsTitle" fallback="Selected work & demos" label="Projects page title" />
+          </h1>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
-            {projects.map((project) => {
+            {projects.map((project, index) => {
               const Icon = project.icon
                 ? (icons as Record<string, React.ComponentType<{ className?: string; strokeWidth?: number }>>)[
                     project.icon
@@ -43,13 +51,17 @@ export default function Projects() {
                       />
                       <div className="hidden w-full h-full flex-col items-center justify-center gap-6 bg-secondary p-8 text-center">
                         {Icon && <Icon className="w-10 h-10" strokeWidth={1.25} />}
-                        <span className="text-large leading-tight">{project.name}</span>
+                        <span className="text-large leading-tight">
+                          <EditableText contentKey={`projects.${index}.name`} fallback={project.name} label="Project name" />
+                        </span>
                       </div>
                     </>
                   ) : (
                     <div className="w-full h-full flex flex-col items-center justify-center gap-6 bg-secondary p-8 text-center">
                       {Icon && <Icon className="w-10 h-10" strokeWidth={1.25} />}
-                      <span className="text-large leading-tight">{project.name}</span>
+                      <span className="text-large leading-tight">
+                        <EditableText contentKey={`projects.${index}.name`} fallback={project.name} label="Project name" />
+                      </span>
                     </div>
                   )}
                 </div>
@@ -59,31 +71,47 @@ export default function Projects() {
                 <div className="mt-6 space-y-3">
                   <h2 className="text-large leading-tight flex items-center gap-3">
                     {Icon && <Icon className="w-5 h-5 shrink-0" strokeWidth={1.5} />}
-                    {project.name}
+                    <EditableText contentKey={`projects.${index}.name`} fallback={project.name} label="Project name" />
                   </h2>
 
-                  <p className="text-body leading-relaxed">{project.description}</p>
-                  <p className="text-tiny">{project.techStack.join(" · ")}</p>
+                  <div className="text-body leading-relaxed">
+                    <EditableText contentKey={`projects.${index}.description`} fallback={project.description} multiline label={`${project.name} description`} />
+                  </div>
+                  <div className="text-tiny">
+                    <EditableText contentKey={`projects.${index}.techStack`} fallback={project.techStack.join(", ")} label={`${project.name} skills, separated by commas`} />
+                  </div>
                   <div className="flex items-center gap-5 pt-1">
                     {project.demoUrl && (
-                      <a
-                        href={withBasePath(project.demoUrl)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-small underline"
-                      >
-                        View demo
-                      </a>
+                      isEditing ? (
+                        <span className="text-small">
+                          <EditableText contentKey="labels.projectDemo" fallback="View demo" label="Project demo link label" />
+                        </span>
+                      ) : (
+                        <a
+                          href={withBasePath(project.demoUrl)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-small underline"
+                        >
+                          <EditableText contentKey="labels.projectDemo" fallback="View demo" label="Project demo link label" />
+                        </a>
+                      )
                     )}
                     {project.walkthroughUrl && (
-                      <a
-                        href={withBasePath(project.walkthroughUrl)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-small underline"
-                      >
-                        Walkthrough
-                      </a>
+                      isEditing ? (
+                        <span className="text-small">
+                          <EditableText contentKey="labels.projectWalkthrough" fallback="Walkthrough" label="Project walkthrough link label" />
+                        </span>
+                      ) : (
+                        <a
+                          href={withBasePath(project.walkthroughUrl)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-small underline"
+                        >
+                          <EditableText contentKey="labels.projectWalkthrough" fallback="Walkthrough" label="Project walkthrough link label" />
+                        </a>
+                      )
                     )}
                   </div>
                 </div>
@@ -91,7 +119,7 @@ export default function Projects() {
 
               return (
                 <div key={project.id} className="group block">
-                  {project.demoUrl ? (
+                  {project.demoUrl && !isEditing ? (
                     <a
                       href={withBasePath(project.demoUrl)}
                       target="_blank"

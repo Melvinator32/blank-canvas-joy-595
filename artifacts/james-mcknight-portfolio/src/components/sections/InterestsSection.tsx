@@ -1,7 +1,8 @@
 import { useState } from "react";
 import type { Interest } from "@/types/portfolio";
-import { interests } from "@/data/portfolio-data";
 import SplitSection from "@/components/ui/split-section";
+import EditableText from "@/components/EditableText";
+import { useContentEditor } from "@/components/ContentEditorProvider";
 
 /**
  * InterestsSection Component
@@ -9,11 +10,14 @@ import SplitSection from "@/components/ui/split-section";
  * collapsed by default; click the name to reveal its description / children.
  */
 export default function InterestsSection() {
+  const { content } = useContentEditor();
+  const interests = content.interests;
+
   return (
-    <SplitSection title="Interests" id="interests">
+    <SplitSection title="Interests" titleKey="labels.sectionInterests" id="interests">
       <div className="space-y-2 md:space-y-3">
-        {interests.map((interest) => (
-          <InterestNode key={interest.name} node={interest} depth={0} />
+        {interests.map((interest, index) => (
+          <InterestNode key={`${interest.name}-${index}`} node={interest} depth={0} contentKey={`interests.${index}`} />
         ))}
       </div>
     </SplitSection>
@@ -24,8 +28,9 @@ export default function InterestsSection() {
  * A recursive node. It is collapsible when it has a description or children;
  * otherwise (leaf name only) it renders as a plain, non-collapsible line.
  */
-function InterestNode({ node, depth }: { node: Interest; depth: number }) {
+function InterestNode({ node, depth, contentKey }: { node: Interest; depth: number; contentKey: string }) {
   const [open, setOpen] = useState(false);
+  const { isEditing } = useContentEditor();
 
   const hasChildren = !!node.children && node.children.length > 0;
   const hasDescription = !!node.description;
@@ -43,6 +48,38 @@ function InterestNode({ node, depth }: { node: Interest; depth: number }) {
       : depth === 1
       ? "text-body leading-tight"
       : "text-small leading-tight";
+
+  if (isEditing) {
+    return (
+      <div className={`border-b border-dashed border-line/40 last:border-0 ${indent}`}>
+        <h3 className={`py-2 ${nameClass}`}>
+          <EditableText contentKey={`${contentKey}.name`} fallback={node.name} label="Interest name" />
+        </h3>
+        {hasDescription && (
+          <div className="pb-3 text-body leading-relaxed">
+            <EditableText
+              contentKey={`${contentKey}.description`}
+              fallback={node.description ?? ""}
+              multiline
+              label={`${node.name} description`}
+            />
+          </div>
+        )}
+        {hasChildren && (
+          <div className="space-y-1 pb-3">
+            {node.children!.map((child, index) => (
+              <InterestNode
+                key={`${child.name}-${index}`}
+                node={child}
+                depth={depth + 1}
+                contentKey={`${contentKey}.children.${index}`}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  }
 
   if (!collapsible) {
     return (
@@ -73,7 +110,7 @@ function InterestNode({ node, depth }: { node: Interest; depth: number }) {
           {hasChildren && (
             <div className="space-y-1">
               {node.children!.map((child) => (
-                <InterestNode key={child.name} node={child} depth={depth + 1} />
+                <InterestNode key={child.name} node={child} depth={depth + 1} contentKey={`${contentKey}.children.${node.children!.indexOf(child)}`} />
               ))}
             </div>
           )}
