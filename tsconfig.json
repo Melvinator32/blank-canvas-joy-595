@@ -1,25 +1,16 @@
 {
+  "extends": "./tsconfig.base.json",
+  "compileOnSave": false,
   "files": [],
   "references": [
     {
-      "path": "./tsconfig.app.json"
+      "path": "./lib/db"
     },
     {
-      "path": "./tsconfig.node.json"
-    }
-  ],
-  "compilerOptions": {
-    "paths": {
-      "@/*": [
-        "./src/*"
-      ]
+      "path": "./lib/api-client-react"
     },
-    "noImplicitAny": true,
-    "noUnusedParameters": true,
-    "skipLibCheck": true,
-    "allowJs": true,
-    "noUnusedLocals": true,
-    "strictNullChecks": true,
-    "strict": true
-  }
+    {
+      "path": "./lib/api-zod"
+    }
+  ]
 }
