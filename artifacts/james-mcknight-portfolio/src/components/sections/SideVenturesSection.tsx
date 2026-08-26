@@ -1,4 +1,3 @@
-import SplitSection from "@/components/ui/split-section";
 import CollapsibleText from "@/components/CollapsibleText";
 import EditableText from "@/components/EditableText";
 import { useContentEditor } from "@/components/ContentEditorProvider";
@@ -12,23 +11,24 @@ export default function SideVenturesSection() {
   const sideVentures = content.sideVentures;
 
   return (
-    <SplitSection title="Side Ventures" titleKey="labels.sectionVentures" id="side-ventures">
-      <div className="space-y-10 md:space-y-12">
+    <section id="ventures" className="scroll-mt-24 space-y-12">
+      <div className="border-b border-slate-200 pb-4"><h2 className="text-3xl font-semibold"><EditableText contentKey="labels.sectionVentures" fallback="Side Ventures" label="Side ventures section title" /></h2></div>
+      <div className="grid gap-8 md:grid-cols-2">
         {sideVentures.map((venture, index) => (
-          <div key={venture.name} className="space-y-2">
-            <h3 className="text-large leading-tight">
+          <article key={venture.name} className="flex h-full flex-col rounded-3xl border border-slate-200 bg-slate-50 p-8">
+            <h3 className="mb-3 text-xl font-semibold text-slate-900">
               <EditableText contentKey={`sideVentures.${index}.name`} fallback={venture.name} label="Side venture name" />
             </h3>
             {isEditing ? (
-              <div className="text-body leading-relaxed">
+              <div className="text-sm leading-relaxed text-slate-600">
                 <EditableText contentKey={`sideVentures.${index}.description`} fallback={venture.description} multiline label={`${venture.name} description`} />
               </div>
             ) : (
-              <CollapsibleText description={venture.description} />
+              <div className="text-sm leading-relaxed text-slate-600"><CollapsibleText description={venture.description} /></div>
             )}
-          </div>
+          </article>
         ))}
       </div>
-    </SplitSection>
+    </section>
   );
 }

@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
  * @returns Current active section ID
  */
 export function useActiveSection(offset: number = 100) {
-  const [activeSection, setActiveSection] = useState("about");
+  const [activeSection, setActiveSection] = useState("hero");
 
   useEffect(() => {
     const handleScroll = () => {

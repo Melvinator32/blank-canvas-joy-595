@@ -1,32 +1,39 @@
 import Layout from "@/components/Layout";
-import Navigation from "@/components/Navigation";
+import PortfolioSidebar from "@/components/PortfolioSidebar";
 import HeaderSection from "@/components/sections/HeaderSection";
-import AboutSection from "@/components/sections/AboutSection";
 import WorkSection from "@/components/sections/WorkSection";
 import SideVenturesSection from "@/components/sections/SideVenturesSection";
 import EducationSection from "@/components/sections/EducationSection";
-import SkillsSection from "@/components/sections/SkillsSection";
 import InterestsSection from "@/components/sections/InterestsSection";
 import PhotoGallerySection from "@/components/sections/PhotoGallerySection";
-
 import ContactSection from "@/components/sections/ContactSection";
-import { useActiveSection } from "@/hooks/useActiveSection";
 
 export default function Index() {
-  useActiveSection(100);
   return (
     <Layout>
-      <Navigation />
-      <HeaderSection />
-      <AboutSection />
-      <WorkSection />
-      <SideVenturesSection />
-      <EducationSection />
-      <SkillsSection />
-      <InterestsSection />
-      <PhotoGallerySection />
-
-      <ContactSection />
+      <PortfolioSidebar />
+      <div className="portfolio-home min-h-screen pt-20 lg:ml-72 lg:pt-0">
+        <div className="prof-theme px-6 py-12 md:px-16 md:py-24">
+          <div className="mx-auto max-w-4xl space-y-32">
+            <HeaderSection />
+            <WorkSection />
+            <SideVenturesSection />
+            <EducationSection />
+          </div>
+        </div>
+        <div className="pers-theme min-h-screen px-6 py-24 md:px-16">
+          <div className="mx-auto max-w-4xl space-y-32">
+            <div className="mx-auto mb-16 max-w-2xl space-y-4 text-center">
+              <span className="inline-block rounded-full bg-stone-800 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-amber-500">Beyond the Models</span>
+              <h2 className="text-4xl font-semibold text-stone-100 md:text-5xl">The Personal Register</h2>
+              <p className="text-lg text-stone-400">Finance is what I do, but it&apos;s not all of who I am. From the Wind River Range to the jazz clubs of New Orleans.</p>
+            </div>
+            <InterestsSection />
+            <PhotoGallerySection />
+            <ContactSection />
+          </div>
+        </div>
+      </div>
     </Layout>
   );
 }

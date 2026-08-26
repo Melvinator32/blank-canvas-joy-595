@@ -14,6 +14,7 @@ import {
   photos,
   projects,
   sideVentures,
+  stats,
 } from "@/data/portfolio-data";
 import type {
   Education,
@@ -23,6 +24,7 @@ import type {
   Photo,
   Project,
   SideVenture,
+  Stat,
 } from "@/types/portfolio";
 
 const STORAGE_KEY = "james-mcknight-portfolio-content-v1";
@@ -35,6 +37,7 @@ export interface PortfolioContent {
   interests: Interest[];
   photos: Photo[];
   education: Education[];
+  stats: Stat[];
   labels: Record<string, string>;
 }
 
@@ -46,9 +49,12 @@ const defaultContent: PortfolioContent = {
   interests,
   photos,
   education,
+  stats,
   labels: {
+    navOverview: "Overview",
     navProjects: "Passion Projects",
     navContact: "Contact",
+    sidebarCta: "Get in touch",
     headerLocation: "New Orleans, Louisiana",
     aboutEyebrow: "ABOUT ME",
     photoTitle: "In Focus",
@@ -104,6 +110,9 @@ function isValidContent(value: unknown): value is PortfolioContent {
     isString(info.avatar) &&
     isString(info.bio) &&
     isString(info.skills) &&
+    isString(info.positioningTag) &&
+    isString(info.heroHeadline) &&
+    isString(info.heroSummary) &&
     isRecord(location) &&
     isString(location.city) &&
     isString(location.country);
@@ -155,6 +164,11 @@ function isValidContent(value: unknown): value is PortfolioContent {
         isString(item.location) &&
         (item.details === undefined || isString(item.details)),
     );
+  const hasStats =
+    Array.isArray(value.stats) &&
+    value.stats.every(
+      (item) => isRecord(item) && isString(item.value) && isString(item.label) && isString(item.detail),
+    );
 
   return (
     hasPersonalInfo &&
@@ -165,6 +179,7 @@ function isValidContent(value: unknown): value is PortfolioContent {
     value.interests.every(isInterest) &&
     hasPhotos &&
     hasEducation &&
+    hasStats &&
     isRecord(value.labels) &&
     Object.values(value.labels).every(isString)
   );

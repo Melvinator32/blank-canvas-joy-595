@@ -1,68 +1,37 @@
-import LinkedText from "@/components/LinkedText";
 import EditableText from "@/components/EditableText";
 import { useContentEditor } from "@/components/ContentEditorProvider";
 
-/**
- * HeaderSection Component
- * Split name layout with centered image
- */
 export default function HeaderSection() {
-  const currentYear = new Date().getFullYear();
   const { content, isEditing } = useContentEditor();
   const personalInfo = content.personalInfo;
-  const nameParts = personalInfo.name.split(' ');
-  const firstName = nameParts[0];
-  const lastName = nameParts.slice(1).join(' ');
-  
+  const stats = content.stats;
+
   return (
-    <section className="flex items-center justify-center px-8 md:px-16 lg:px-24 pt-24 pb-12 md:pt-28 md:pb-14">
-      <div className="w-full max-w-7xl">
-        <div className="text-center mb-12 md:mb-16">
-          <p className="text-tiny tracking-widest">
-            {isEditing ? (
-              <EditableText contentKey="personalInfo.title" fallback={personalInfo.title} label="Professional title" />
-            ) : (
-              <LinkedText>{personalInfo.title}</LinkedText>
-            )}
-          </p>
+    <section id="hero" className="space-y-12 scroll-mt-24">
+      <div className="space-y-6">
+        <div className="inline-block rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-slate-700">
+          <EditableText contentKey="personalInfo.positioningTag" fallback={personalInfo.positioningTag} label="Positioning tag" />
         </div>
-        
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16 items-center">
-          {isEditing ? (
-            <div className="col-span-1 lg:col-span-3 text-center">
-              <h1 className="text-display lg:text-[7rem] leading-none font-light lg:font-normal">
-                <EditableText contentKey="personalInfo.name" fallback={personalInfo.name} label="Name" />
-              </h1>
-            </div>
-          ) : (
-            <div className="text-center lg:text-right">
-              <h1 className="text-display lg:text-[9rem] leading-none font-light lg:font-normal">{firstName}</h1>
-            </div>
-          )}
-
-          <div className={`flex flex-col items-center ${isEditing ? "lg:col-span-3" : ""}`}>
-            <img
-              src={personalInfo.avatar}
-              alt={personalInfo.name}
-              className="w-full max-w-[52rem] h-auto aspect-[52/60] object-cover rounded-t-[160px]"
-            />
+        <h1 className="max-w-4xl text-5xl font-semibold leading-[1.1] tracking-tight text-slate-900 md:text-6xl lg:text-7xl">
+          <EditableText contentKey="personalInfo.heroHeadline" fallback={personalInfo.heroHeadline} label="Hero headline" />
+        </h1>
+        <div className="max-w-2xl text-lg leading-relaxed text-slate-600 md:text-xl">
+          <EditableText contentKey="personalInfo.heroSummary" fallback={personalInfo.heroSummary} multiline label="Hero summary" />
+        </div>
+      </div>
+      <div className="grid grid-cols-2 gap-4 border-t border-slate-200 pt-8 md:grid-cols-3 md:gap-6">
+        {stats.map((stat, index) => (
+          <div key={`${stat.label}-${index}`} className="stat-card flex min-h-40 flex-col justify-center rounded-2xl border border-slate-100 bg-slate-50 p-5">
+            <p className="text-3xl font-bold text-slate-900 md:text-4xl"><EditableText contentKey={`stats.${index}.value`} fallback={stat.value} label="Statistic value" /></p>
+            <p className="mt-1 text-sm font-semibold text-slate-700"><EditableText contentKey={`stats.${index}.label`} fallback={stat.label} label="Statistic label" /></p>
+            <p className="mt-1 text-xs text-slate-500"><EditableText contentKey={`stats.${index}.detail`} fallback={stat.detail} label="Statistic detail" /></p>
           </div>
-
-          {!isEditing && (
-            <div className="text-center lg:text-left">
-              <h1 className="text-display lg:text-[9rem] leading-none font-light lg:font-normal">{lastName}</h1>
-            </div>
-          )}
-        </div>
-        
-        <div className="text-center mt-10 md:mt-14">
-          <h2 className="text-[2.5rem] md:text-[3.5rem] lg:text-[4rem] leading-none font-light tracking-tight">
-            <EditableText contentKey="labels.headerLocation" fallback="New Orleans, Louisiana" label="Location" />
-          </h2>
-        </div>
-
-        <div className="text-center mt-8 md:mt-10">
-          <p className="text-small">{currentYear}</p>
+        ))}
+      </div>
+      <div className="max-w-3xl border-l-2 border-slate-200 pl-5">
+        <p className="mb-2 text-xs font-semibold uppercase tracking-[.18em] text-slate-500"><EditableText contentKey="labels.aboutEyebrow" fallback="ABOUT ME" label="About section label" /></p>
+        <div className="whitespace-pre-line text-sm leading-relaxed text-slate-600 md:text-base">
+          {isEditing ? <EditableText contentKey="personalInfo.bio" fallback={personalInfo.bio} multiline label="Biography" /> : personalInfo.bio}
         </div>
       </div>
     </section>

@@ -12,6 +12,15 @@ export interface PersonalInfo {
   avatar: string;
   bio: string;
   skills: string;
+  positioningTag: string;
+  heroHeadline: string;
+  heroSummary: string;
+}
+
+export interface Stat {
+  value: string;
+  label: string;
+  detail: string;
 }
 
 export interface Experience {

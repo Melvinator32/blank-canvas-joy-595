@@ -11,43 +11,37 @@ export default function PhotoGallerySection() {
   const photos = content.photos;
 
   return (
-    <section id="photos" className="px-8 md:px-16 lg:px-24 py-20 md:py-24">
-      <div className="max-w-7xl mx-auto">
-        <div className="md:sticky md:top-32 mb-10 md:mb-16">
-          <h2 className="text-section">
+    <section id="photos" className="scroll-mt-24 space-y-12">
+        <div className="flex items-center justify-between border-b border-stone-800 pb-4">
+          <h2 className="text-3xl font-semibold text-stone-100">
             <EditableText contentKey="labels.photoTitle" fallback="In Focus" label="Photo gallery title" />
           </h2>
         </div>
-        <div className="columns-2 md:columns-3 gap-3 md:gap-4 [column-fill:balance]">
+        <div className="columns-1 gap-6 space-y-6 md:columns-2 lg:columns-3">
           {photos.map((photo, index) => (
             <figure
               key={photo.src}
-              className="group relative mb-3 md:mb-4 break-inside-avoid overflow-hidden border border-foreground/15"
+              className="group relative break-inside-avoid overflow-hidden rounded-2xl border border-stone-800 bg-stone-900"
             >
               <img
                 src={photo.src}
                 alt={photo.alt}
                 loading="lazy"
-                className="w-full h-auto block transition-transform duration-500 group-hover:scale-[1.03]"
+                className="block w-full transition-transform duration-500 group-hover:scale-[1.03]"
                 onError={(event) => {
                   event.currentTarget.classList.add("hidden");
                   event.currentTarget.nextElementSibling?.classList.remove("hidden");
                 }}
               />
-              <div className="hidden aspect-[4/3] w-full items-center justify-center bg-secondary p-6 text-center">
-                <span className="text-small leading-tight">
-                  <EditableText contentKey={`photos.${index}.caption`} fallback={photo.caption} label="Photo caption" />
-                </span>
-              </div>
-              <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-3 md:p-4">
-                <span className="text-tiny text-white/90 leading-tight">
+              <div className={`photo-placeholder pattern-${(index % 6) + 1} hidden aspect-[4/5] w-full`} aria-hidden="true" />
+              <figcaption className="absolute inset-x-0 bottom-0 translate-y-2 bg-gradient-to-t from-black/90 via-black/60 to-transparent p-5 pt-12 transition-transform duration-300 group-hover:translate-y-0">
+                <span className="block text-sm font-medium leading-tight text-stone-200">
                   <EditableText contentKey={`photos.${index}.caption`} fallback={photo.caption} label="Photo caption" />
                 </span>
               </figcaption>
             </figure>
           ))}
         </div>
-      </div>
     </section>
   );
 }

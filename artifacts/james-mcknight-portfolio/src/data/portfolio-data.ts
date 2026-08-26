@@ -14,6 +14,7 @@ import type {
   Interest,
   SideVenture,
   Photo,
+  Stat,
 } from "@/types/portfolio";
 
 import headshot from "@/assets/headshot.png.asset.json";
@@ -40,7 +41,19 @@ export const personalInfo: PersonalInfo = {
   avatar: headshot.url,
   bio: "I'm a corporate development analyst focused on turning complex commercial and financial questions into clear investment decisions. I own the DCF and corporate development models used to evaluate opportunities across IMTT's terminal network — from $50K facility upgrades to $150MM strategic initiatives — work that has supported 25+ deal closures and $500MM+ of capital deployment.\n\nBefore IMTT, I built project finance models for decarbonization projects representing $8B+ of combined capex at Fidelis New Energy, and led a $9MM grant application for CO2 transportation and storage that saved the company $400K+ in consulting fees.\n\nI like the parts of finance that touch operations: pricing strategy grounded in real market analysis, underwriting assumptions that hold up, and the tooling that makes a team faster — including the CRM platform I selected, implemented, and administer for 20 daily users. Outside of work you'll find me traveling, golfing, backpacking, fly fishing, or at a live show.",
   skills: "Financial Modeling, DCF Valuation, Project Finance, Business Development, Market Research & Intelligence, Investment Analysis, Executive Presentations, Process Improvement, Excel, Macabacus, Capital IQ, Bloomberg, Vortexa, Tableau, Python, PowerPoint, Microsoft Project",
+  positioningTag: "Corporate Development & Finance",
+  heroHeadline: "Turning complex commercial data into clear investment decisions.",
+  heroSummary: "I specialize in building rigorous financial models that drive strategy. Currently evaluating opportunities across IMTT's terminal network — spanning $50K facility upgrades to $150MM strategic initiatives.",
 };
+
+export const stats: Stat[] = [
+  { value: "$500MM+", label: "Capital Deployed", detail: "Across IMTT network" },
+  { value: "25+", label: "Deal Closures", detail: "Supported by modeling" },
+  { value: "$12MM", label: "Incremental EBITDA", detail: "Generated via pricing analysis" },
+  { value: "$8B+", label: "Capex Supported", detail: "In decarbonization projects" },
+  { value: "$125MM+", label: "Grant Awards", detail: "Supported federal applications" },
+  { value: "$400K+", label: "Consulting Fees Saved", detail: "Through internal coordination" },
+];
 
 export const experience: Experience[] = [
   {
