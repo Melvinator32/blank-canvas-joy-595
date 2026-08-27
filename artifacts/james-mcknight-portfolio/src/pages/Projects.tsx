@@ -1,10 +1,11 @@
-import { icons } from "lucide-react";
+import { ExternalLink, icons } from "lucide-react";
 import Layout from "@/components/Layout";
 import Navigation from "@/components/Navigation";
 import EditableText from "@/components/EditableText";
 import { useContentEditor } from "@/components/ContentEditorProvider";
 
 function withBasePath(path: string) {
+  if (/^https?:\/\//i.test(path)) return path;
   return `${import.meta.env.BASE_URL.replace(/\/$/, "")}${path}`;
 }
 
@@ -36,7 +37,7 @@ export default function Projects() {
                   ]
                 : undefined;
               const media = (
-                <div className="aspect-[4/3] w-full overflow-hidden border border-foreground/15 group-hover:border-foreground/40 transition-colors">
+                <div className="group/preview relative aspect-[4/3] w-full overflow-hidden border border-foreground/15 transition-colors group-hover:border-foreground/40">
                   {project.thumbnail ? (
                     <>
                       <img
@@ -63,6 +64,12 @@ export default function Projects() {
                         <EditableText contentKey={`projects.${index}.name`} fallback={project.name} label="Project name" />
                       </span>
                     </div>
+                  )}
+                  {project.demoUrl && !isEditing && (
+                    <span className="pointer-events-none absolute inset-x-0 bottom-0 flex items-center justify-center gap-2 bg-foreground/85 px-4 py-3 text-small text-background transition-colors duration-300 group-hover:bg-foreground">
+                      <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                      Open live demo
+                    </span>
                   )}
                 </div>
               );
@@ -124,8 +131,8 @@ export default function Projects() {
                       href={withBasePath(project.demoUrl)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block"
-                      aria-label={`Open ${project.name} demo`}
+                      className="demo-preview-link block"
+                      aria-label={`Open ${project.name} live demo in a new tab`}
                     >
                       {media}
                     </a>

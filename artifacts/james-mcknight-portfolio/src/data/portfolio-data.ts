@@ -18,11 +18,11 @@ import type {
 } from "@/types/portfolio";
 
 import headshotPhoto from "@/assets/headshot-photo.png";
-import weirwoodThumb from "@/assets/weirwood.jpg.asset.json";
-import rewardsThumb from "@/assets/rewards-ledger.jpg.asset.json";
-import blackjackThumb from "@/assets/blackjack-trainer.jpg.asset.json";
-import zenThumb from "@/assets/zen-garden.jpg.asset.json";
-import radioThumb from "@/assets/radio-station.jpg.asset.json";
+import projectWeirwoodPreview from "@/assets/project-weirwood-preview.jpg";
+import projectRewardsPreview from "@/assets/project-rewards-preview.jpg";
+import projectBlackjackPreview from "@/assets/project-blackjack-preview.jpg";
+import projectZenPreview from "@/assets/project-zen-preview.jpg";
+import projectRadioPreview from "@/assets/project-radio-preview.jpg";
 import travelMountain from "@/assets/travel-mountain.jpg.asset.json";
 import lsuFootball from "@/assets/lsu-football.jpg.asset.json";
 import jazzFestPhoto from "@/assets/photo-jazzfest.jpeg";
@@ -174,7 +174,7 @@ export const projects: Project[] = [
     techStack: ["App Design", "State Management", "Productivity UX"],
     demoUrl: "/demos/radio-station.html",
     walkthroughUrl: "/demos/radio-station-walkthrough.html",
-    thumbnail: radioThumb.url,
+    thumbnail: projectRadioPreview,
     status: "active",
   },
   {
@@ -186,7 +186,7 @@ export const projects: Project[] = [
     techStack: ["Data Visualization", "Market Intelligence", "Dashboards"],
     demoUrl: "/demos/weirwood.html",
     walkthroughUrl: "/demos/Weirwood_Walkthrough.pdf",
-    thumbnail: weirwoodThumb.url,
+    thumbnail: projectWeirwoodPreview,
     status: "active",
   },
   {
@@ -197,7 +197,7 @@ export const projects: Project[] = [
       "A personal spend and rewards ledger that ingests statement exports, categorizes transactions, and tracks points earn rates and card-level value across time.",
     techStack: ["Spend Analytics", "XLSX Parsing", "Dashboards"],
     demoUrl: "/demos/rewards-ledger.html",
-    thumbnail: rewardsThumb.url,
+    thumbnail: projectRewardsPreview,
     status: "active",
   },
   {
@@ -208,7 +208,7 @@ export const projects: Project[] = [
       "A basic-strategy and counting trainer that deals real shoes, grades every decision against optimal play, and tracks accuracy over sessions.",
     techStack: ["Game Logic", "Probability", "PWA"],
     demoUrl: "/demos/blackjack-trainer.html",
-    thumbnail: blackjackThumb.url,
+    thumbnail: projectBlackjackPreview,
     status: "active",
   },
   {
@@ -219,7 +219,7 @@ export const projects: Project[] = [
       "A canvas-based zen garden sandbox — rake patterns into sand, place stones and plants, and pan or zoom around the composition.",
     techStack: ["Canvas", "Generative Art", "Touch UX"],
     demoUrl: "/demos/zen-garden.html",
-    thumbnail: zenThumb.url,
+    thumbnail: projectZenPreview,
     status: "active",
   },
   {

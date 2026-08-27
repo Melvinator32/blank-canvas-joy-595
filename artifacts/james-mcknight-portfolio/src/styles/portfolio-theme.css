@@ -20,6 +20,7 @@
 .timeline-dot { position: absolute; left: 0; top: .35rem; width: 1rem; height: 1rem; border-radius: 50%; background-color: var(--prof-accent); border: 3px solid var(--prof-bg); }
 .stat-card { transition: transform .3s ease, box-shadow .3s ease; }
 .stat-card:hover { transform: translateY(-4px); box-shadow: 0 10px 25px -5px rgb(0 0 0 / .1), 0 8px 10px -6px rgb(0 0 0 / .1); }
+.demo-preview-link:focus-visible { outline: 3px solid currentColor; outline-offset: 4px; }
 .monogram-bg { background: linear-gradient(135deg, #1b3226 0%, #0e1c15 100%); }
 .photo-placeholder { background-size: cover; background-position: center; position: relative; overflow: hidden; }
 .pattern-1 { background: radial-gradient(circle at 0% 0%, #3d5c48 0%, transparent 50%), linear-gradient(135deg, #12211a 0%, #1b3226 100%); }
