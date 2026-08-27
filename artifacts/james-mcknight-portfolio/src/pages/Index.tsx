@@ -24,9 +24,9 @@ export default function Index() {
         <div className="pers-theme min-h-screen px-6 py-24 md:px-16">
           <div className="mx-auto max-w-4xl space-y-32">
             <div className="mx-auto mb-16 max-w-2xl space-y-4 text-center">
-              <span className="inline-block rounded-full bg-stone-800 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-amber-500">Beyond the Models</span>
-              <h2 className="text-4xl font-semibold text-stone-100 md:text-5xl">The Personal Register</h2>
-              <p className="text-lg text-stone-400">Finance is what I do, but it&apos;s not all of who I am. From the Wind River Range to the jazz clubs of New Orleans.</p>
+              <span className="inline-block rounded-full bg-[var(--pers-border)] px-3 py-1 text-xs font-semibold uppercase tracking-wider text-[var(--pers-accent)]">Beyond the Models</span>
+              <h2 className="text-4xl font-semibold text-[var(--pers-text)] md:text-5xl">The Personal Register</h2>
+              <p className="text-lg text-[var(--pers-muted)]">Finance is what I do, but it&apos;s not all of who I am. From the Wind River Range to the jazz clubs of New Orleans.</p>
             </div>
             <InterestsSection />
             <PhotoGallerySection />

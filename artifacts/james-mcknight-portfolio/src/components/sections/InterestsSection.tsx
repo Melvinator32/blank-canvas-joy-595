@@ -13,8 +13,8 @@ export default function InterestsSection() {
   const interests = content.interests;
 
   return (
-    <section id="interests" className="scroll-mt-24 rounded-3xl border border-stone-800 bg-stone-900 p-8 md:p-12">
-      <h2 className="mb-8 text-3xl font-semibold text-stone-100"><EditableText contentKey="labels.sectionInterests" fallback="Interests" label="Interests section title" /> &amp; Pursuits</h2>
+    <section id="interests" className="scroll-mt-24 rounded-3xl border border-[var(--pers-border)] bg-[var(--pers-surface)] p-8 md:p-12">
+      <h2 className="mb-8 text-3xl font-semibold text-[var(--pers-text)]"><EditableText contentKey="labels.sectionInterests" fallback="Interests" label="Interests section title" /> &amp; Pursuits</h2>
       <div className="grid gap-x-12 md:grid-cols-2">
         {[interests.slice(0, Math.ceil(interests.length / 2)), interests.slice(Math.ceil(interests.length / 2))].map((column, columnIndex) => (
           <div key={columnIndex} className="space-y-0">
@@ -49,19 +49,19 @@ function InterestNode({ node, depth, contentKey }: { node: Interest; depth: numb
   const indent = depth === 1 ? "pl-4" : depth > 1 ? "pl-8" : "";
   const nameClass =
     depth === 0
-      ? "text-lg font-medium text-stone-200"
+      ? "text-lg font-medium text-[var(--pers-text-2)]"
       : depth === 1
-      ? "text-base font-medium text-stone-300"
-      : "text-sm text-stone-400";
+      ? "text-base font-medium text-[var(--pers-text-3)]"
+      : "text-sm text-[var(--pers-muted)]";
 
   if (isEditing) {
     return (
-      <div className={`border-b border-dashed border-stone-800 last:border-0 ${indent}`}>
+      <div className={`border-b border-dashed border-[var(--pers-border)] last:border-0 ${indent}`}>
         <h3 className={`py-2 ${nameClass}`}>
           <EditableText contentKey={`${contentKey}.name`} fallback={node.name} label="Interest name" />
         </h3>
         {hasDescription && (
-          <div className="pb-3 text-sm leading-relaxed text-stone-400">
+          <div className="pb-3 text-sm leading-relaxed text-[var(--pers-muted)]">
             <EditableText
               contentKey={`${contentKey}.description`}
               fallback={node.description ?? ""}
@@ -88,27 +88,27 @@ function InterestNode({ node, depth, contentKey }: { node: Interest; depth: numb
 
   if (!collapsible) {
     return (
-      <div className={`border-b border-dashed border-stone-800 last:border-0 ${indent}`}>
+      <div className={`border-b border-dashed border-[var(--pers-border)] last:border-0 ${indent}`}>
         <p className={`py-2 ${nameClass}`}>{node.name}</p>
       </div>
     );
   }
 
   return (
-    <div className={`border-b border-dashed border-stone-800 last:border-0 ${indent}`}>
+    <div className={`border-b border-dashed border-[var(--pers-border)] last:border-0 ${indent}`}>
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
-        className="group flex w-full items-center justify-between gap-3 py-3 text-left transition-colors hover:text-amber-500"
+        className="group flex w-full items-center justify-between gap-3 py-3 text-left transition-colors hover:text-[var(--pers-accent)]"
       >
         <h3 className={nameClass}>{node.name}</h3>
-        <span className="shrink-0 text-sm text-stone-500">{open ? "−" : "+"}</span>
+        <span className="shrink-0 text-sm text-[var(--pers-muted-2)]">{open ? "−" : "+"}</span>
       </button>
       {open && (
         <div className="space-y-1 pb-3">
           {paragraphs.map((para, i) => (
-            <p key={i} className="text-sm leading-relaxed text-stone-400">
+            <p key={i} className="text-sm leading-relaxed text-[var(--pers-muted)]">
               {para}
             </p>
           ))}

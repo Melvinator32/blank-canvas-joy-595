@@ -36,6 +36,8 @@ import alpineCowPhoto from "@/assets/photo-alpine-cow.jpeg";
 import winterBridgePhoto from "@/assets/photo-winter-bridge.jpeg";
 import duckHuntingPhoto from "@/assets/photo-duck-hunting.jpeg";
 import groupPhoto from "@/assets/photo-group.jpeg";
+import homeOfficePhoto from "@/assets/photo-home-office.jpeg";
+import jazzArtPhoto from "@/assets/photo-jazz-art.jpeg";
 
 // ===== Portfolio Data =====
 
@@ -383,6 +385,16 @@ export const photos: Photo[] = [
     src: melvinBedPhoto,
     alt: "A dachshund mix sitting alert in his dog bed at home",
     caption: "Melvin, on duty",
+  },
+  {
+    src: homeOfficePhoto,
+    alt: "A home office corner with a standing desk, three monitors, house plants, and a framed concert poster on the wall",
+    caption: "Home office, with the collection on the wall",
+  },
+  {
+    src: jazzArtPhoto,
+    alt: "An ink illustration of a trumpet player painted over sheet music, signed Pazos 2026",
+    caption: "Jazz artwork by Pazos, part of the collection",
   },
 ];
 

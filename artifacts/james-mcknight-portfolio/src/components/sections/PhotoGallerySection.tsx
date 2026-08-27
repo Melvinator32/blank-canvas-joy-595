@@ -12,8 +12,8 @@ export default function PhotoGallerySection() {
 
   return (
     <section id="photos" className="scroll-mt-24 space-y-12">
-        <div className="flex items-center justify-between border-b border-stone-800 pb-4">
-          <h2 className="text-3xl font-semibold text-stone-100">
+        <div className="flex items-center justify-between border-b border-[var(--pers-border)] pb-4">
+          <h2 className="text-3xl font-semibold text-[var(--pers-text)]">
             <EditableText contentKey="labels.photoTitle" fallback="In Focus" label="Photo gallery title" />
           </h2>
         </div>
@@ -21,7 +21,7 @@ export default function PhotoGallerySection() {
           {photos.map((photo, index) => (
             <figure
               key={photo.src}
-              className="group relative break-inside-avoid overflow-hidden rounded-2xl border border-stone-800 bg-stone-900"
+              className="group relative break-inside-avoid overflow-hidden rounded-2xl border border-[var(--pers-border)] bg-[var(--pers-surface)]"
             >
               <img
                 src={photo.src}

@@ -1,6 +1,9 @@
 :root {
   --prof-bg: #ffffff; --prof-surface: #f8fafc; --prof-text: #0f172a; --prof-muted: #64748b; --prof-border: #e2e8f0; --prof-accent: #2563eb;
-  --pers-bg: #1c1917; --pers-surface: #292524; --pers-text: #fafaf9; --pers-muted: #a8a29e; --pers-border: #44403c; --pers-accent: #d97706;
+  /* Backcountry palette: deep forest green base, burnt-orange accent (fly fishing / backpacking) */
+  --pers-bg: #12211a; --pers-surface: #1b3226; --pers-text: #f3efe4; --pers-text-2: #dbe6dc; --pers-text-3: #b9c8bb;
+  --pers-muted: #93a896; --pers-muted-2: #6c8272; --pers-border: #2f4a3a; --pers-border-strong: #3d5c48;
+  --pers-accent: #c2551f; --pers-accent-strong: #a8451a; --pers-accent-foreground: #fff6ee;
 }
 .portfolio-home { font-family: 'Plus Jakarta Sans', sans-serif; }
 .portfolio-home h1, .portfolio-home h2, .portfolio-home h3, .portfolio-home h4 { font-family: 'Playfair Display', serif; }
@@ -17,11 +20,11 @@
 .timeline-dot { position: absolute; left: 0; top: .35rem; width: 1rem; height: 1rem; border-radius: 50%; background-color: var(--prof-accent); border: 3px solid var(--prof-bg); }
 .stat-card { transition: transform .3s ease, box-shadow .3s ease; }
 .stat-card:hover { transform: translateY(-4px); box-shadow: 0 10px 25px -5px rgb(0 0 0 / .1), 0 8px 10px -6px rgb(0 0 0 / .1); }
-.monogram-bg { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); }
+.monogram-bg { background: linear-gradient(135deg, #1b3226 0%, #0e1c15 100%); }
 .photo-placeholder { background-size: cover; background-position: center; position: relative; overflow: hidden; }
-.pattern-1 { background: radial-gradient(circle at 0% 0%, #3f3f46 0%, transparent 50%), linear-gradient(135deg, #1c1917 0%, #292524 100%); }
-.pattern-2 { background: linear-gradient(45deg, #292524 25%, transparent 25%, transparent 75%, #292524 75%, #292524), linear-gradient(45deg, #292524 25%, transparent 25%, transparent 75%, #292524 75%, #292524) 20px 20px, #1c1917; background-size: 40px 40px; }
-.pattern-3 { background: repeating-linear-gradient(45deg, #292524, #292524 10px, #1c1917 10px, #1c1917 20px); }
-.pattern-4 { background: radial-gradient(circle, #3f3f46 10%, transparent 10%), radial-gradient(circle, #3f3f46 10%, transparent 10%) 20px 20px, #1c1917; background-size: 40px 40px; }
-.pattern-5 { background: linear-gradient(135deg, #44403c 25%, transparent 25%), linear-gradient(225deg, #44403c 25%, transparent 25%), linear-gradient(45deg, #44403c 25%, transparent 25%), linear-gradient(315deg, #44403c 25%, #1c1917 25%); background-position: 20px 0, 20px 0, 0 0, 0 0; background-size: 40px 40px; }
-.pattern-6 { background: repeating-radial-gradient(circle, #292524, #292524 10px, #1c1917 10px, #1c1917 20px); }
+.pattern-1 { background: radial-gradient(circle at 0% 0%, #3d5c48 0%, transparent 50%), linear-gradient(135deg, #12211a 0%, #1b3226 100%); }
+.pattern-2 { background: linear-gradient(45deg, #1b3226 25%, transparent 25%, transparent 75%, #1b3226 75%, #1b3226), linear-gradient(45deg, #1b3226 25%, transparent 25%, transparent 75%, #1b3226 75%, #1b3226) 20px 20px, #12211a; background-size: 40px 40px; }
+.pattern-3 { background: repeating-linear-gradient(45deg, #1b3226, #1b3226 10px, #12211a 10px, #12211a 20px); }
+.pattern-4 { background: radial-gradient(circle, #3d5c48 10%, transparent 10%), radial-gradient(circle, #3d5c48 10%, transparent 10%) 20px 20px, #12211a; background-size: 40px 40px; }
+.pattern-5 { background: linear-gradient(135deg, #2f4a3a 25%, transparent 25%), linear-gradient(225deg, #2f4a3a 25%, transparent 25%), linear-gradient(45deg, #2f4a3a 25%, transparent 25%), linear-gradient(315deg, #2f4a3a 25%, #12211a 25%); background-position: 20px 0, 20px 0, 0 0, 0 0; background-size: 40px 40px; }
+.pattern-6 { background: repeating-radial-gradient(circle, #1b3226, #1b3226 10px, #12211a 10px, #12211a 20px); }
