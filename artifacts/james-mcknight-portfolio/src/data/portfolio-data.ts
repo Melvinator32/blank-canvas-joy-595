@@ -24,15 +24,18 @@ import blackjackThumb from "@/assets/blackjack-trainer.jpg.asset.json";
 import zenThumb from "@/assets/zen-garden.jpg.asset.json";
 import radioThumb from "@/assets/radio-station.jpg.asset.json";
 import travelMountain from "@/assets/travel-mountain.jpg.asset.json";
-import huntingMarsh from "@/assets/hunting-marsh.jpg.asset.json";
 import lsuFootball from "@/assets/lsu-football.jpg.asset.json";
-import winterBridge from "@/assets/winter-bridge.jpg.asset.json";
 import jazzFestPhoto from "@/assets/photo-jazzfest.jpeg";
 import flyFishingPhoto from "@/assets/photo-flyfishing.jpeg";
 import familyPhoto from "@/assets/photo-family.jpeg";
 import melvinBlanketPhoto from "@/assets/photo-melvin-blanket.jpeg";
 import melvinRunningPhoto from "@/assets/photo-melvin-running.jpeg";
 import melvinBedPhoto from "@/assets/photo-melvin-bed.jpeg";
+import golfPhoto from "@/assets/photo-golf.jpeg";
+import alpineCowPhoto from "@/assets/photo-alpine-cow.jpeg";
+import winterBridgePhoto from "@/assets/photo-winter-bridge.jpeg";
+import duckHuntingPhoto from "@/assets/photo-duck-hunting.jpeg";
+import groupPhoto from "@/assets/photo-group.jpeg";
 
 // ===== Portfolio Data =====
 
@@ -322,8 +325,8 @@ export const photos: Photo[] = [
     caption: "Alpine travel — Matterhorn region",
   },
   {
-    src: huntingMarsh.url,
-    alt: "Two people in camouflage in a boat among tall reeds at sunrise",
+    src: duckHuntingPhoto,
+    alt: "Two men in a duck blind boat among tall marsh reeds, one holding a shotgun",
     caption: "Duck hunting in the marsh",
   },
   {
@@ -332,9 +335,24 @@ export const photos: Photo[] = [
     caption: "LSU football — Saturday nights in Death Valley",
   },
   {
-    src: winterBridge.url,
-    alt: "A couple sitting on a bridge railing over water with snow-dusted evergreen forest behind",
+    src: winterBridgePhoto,
+    alt: "A couple sitting on a bridge railing over a creek with snow-dusted evergreen forest behind",
     caption: "Winter outing",
+  },
+  {
+    src: golfPhoto,
+    alt: "A golfer carrying his bag along a winding fairway through dune grass",
+    caption: "Golf, links-style",
+  },
+  {
+    src: alpineCowPhoto,
+    alt: "James walking alongside a cow in an alpine meadow with a mountain hut in the background",
+    caption: "An unexpected trail companion in the Alps",
+  },
+  {
+    src: groupPhoto,
+    alt: "A group of nine friends and family dressed up for a holiday gathering in front of a house",
+    caption: "Holiday gathering",
   },
   {
     src: jazzFestPhoto,
