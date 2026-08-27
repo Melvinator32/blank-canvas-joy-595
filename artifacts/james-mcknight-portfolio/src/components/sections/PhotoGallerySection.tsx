@@ -34,11 +34,6 @@ export default function PhotoGallerySection() {
                 }}
               />
               <div className={`photo-placeholder pattern-${(index % 6) + 1} hidden aspect-[4/5] w-full`} aria-hidden="true" />
-              <figcaption className="absolute inset-x-0 bottom-0 translate-y-2 bg-gradient-to-t from-black/90 via-black/60 to-transparent p-5 pt-12 transition-transform duration-300 group-hover:translate-y-0">
-                <span className="block text-sm font-medium leading-tight text-stone-200">
-                  <EditableText contentKey={`photos.${index}.caption`} fallback={photo.caption} label="Photo caption" />
-                </span>
-              </figcaption>
             </figure>
           ))}
         </div>
