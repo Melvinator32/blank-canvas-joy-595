@@ -129,6 +129,7 @@ function isValidContent(value: unknown): value is PortfolioContent {
         isString(item.startDate) &&
         (item.endDate === null || isString(item.endDate)) &&
         isString(item.description) &&
+        isStringArray(item.highlights) &&
         typeof item.current === "boolean",
     );
   const hasVentures =

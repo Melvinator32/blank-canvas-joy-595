@@ -30,7 +30,10 @@ export interface Experience {
   location: string;
   startDate: string;
   endDate: string | null;
+  /** short, high-level summary shown by default */
   description: string;
+  /** detailed bullet points revealed behind a "Show details" toggle */
+  highlights: string[];
   media?: string;
   current: boolean;
   /** connector between role and company, defaults to "at" */
