@@ -30,7 +30,7 @@ export default function InterestsSection() {
 }
 
 /**
- * A recursive node. It is collapsible when it has a description or children;
+ * A recursive node. It is collapsible when it has a description, children, or photos;
  * otherwise (leaf name only) it renders as a plain, non-collapsible line.
  */
 function InterestNode({ node, depth, contentKey }: { node: Interest; depth: number; contentKey: string }) {
@@ -39,7 +39,8 @@ function InterestNode({ node, depth, contentKey }: { node: Interest; depth: numb
 
   const hasChildren = !!node.children && node.children.length > 0;
   const hasDescription = !!node.description;
-  const collapsible = hasChildren || hasDescription;
+  const hasPhotos = !!node.photos && node.photos.length > 0;
+  const collapsible = hasChildren || hasDescription || hasPhotos;
 
   const paragraphs = (node.description ?? "")
     .split("\n\n")
@@ -82,6 +83,7 @@ function InterestNode({ node, depth, contentKey }: { node: Interest; depth: numb
             ))}
           </div>
         )}
+        {hasPhotos && <InterestPhotos photos={node.photos!} />}
       </div>
     );
   }
@@ -119,8 +121,24 @@ function InterestNode({ node, depth, contentKey }: { node: Interest; depth: numb
               ))}
             </div>
           )}
+          {hasPhotos && <InterestPhotos photos={node.photos!} />}
         </div>
       )}
+    </div>
+  );
+}
+
+function InterestPhotos({ photos }: { photos: NonNullable<Interest["photos"]> }) {
+  return (
+    <div className="grid max-w-xl grid-cols-2 gap-3 pb-4 pt-1">
+      {photos.map((photo) => (
+        <img
+          key={photo.src}
+          src={photo.src}
+          alt={photo.alt}
+          className="h-36 w-full rounded-xl border border-[var(--pers-border)] object-cover shadow-sm"
+        />
+      ))}
     </div>
   );
 }

@@ -84,6 +84,8 @@ export interface Interest {
   description?: string;
   /** nested sub-interests, rendered as an indented list */
   children?: Interest[];
+  /** photos shown as small thumbnails inside the expanded interest */
+  photos?: Photo[];
 }
 
 export interface SideVenture {

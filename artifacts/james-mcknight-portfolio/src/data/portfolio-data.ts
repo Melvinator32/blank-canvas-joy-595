@@ -295,7 +295,16 @@ export const interests: Interest[] = [
           { name: "Dredge" },
         ],
       },
-      { name: "Collecting concert posters and other music-related art" },
+      {
+        name: "Collecting concert posters and other music-related art",
+        photos: [
+          {
+            src: jazzArtPhoto,
+            alt: "An ink illustration of a trumpet player painted over sheet music, signed Pazos 2026",
+            caption: "A recent pickup — jazz trumpeter by Pazos",
+          },
+        ],
+      },
       { name: "Longboarding" },
       { name: "Testing different AI tools" },
       {
@@ -303,7 +312,16 @@ export const interests: Interest[] = [
         description:
           "Currently 100+ and counting — and yes, I shockingly use most of them in a given year.",
       },
-      { name: "Houseplants" },
+      {
+        name: "Houseplants",
+        photos: [
+          {
+            src: homeOfficePhoto,
+            alt: "A home office corner with a standing desk, three monitors, and house plants on the desk and credenza",
+            caption: "A few of the plants, holding down the home office",
+          },
+        ],
+      },
       { name: "Reading" },
       { name: "Training my dachshund" },
       {
