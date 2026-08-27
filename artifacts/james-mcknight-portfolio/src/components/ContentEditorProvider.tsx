@@ -186,6 +186,20 @@ function isValidContent(value: unknown): value is PortfolioContent {
   );
 }
 
+// Keep saved copy edits while adding photos introduced after the last local save.
+function restoreInterestPhotos(saved: Interest[], defaults: Interest[]): Interest[] {
+  return saved.map((interest, index) => {
+    const original = defaults.find((item) => item.name === interest.name) ?? defaults[index];
+    return {
+      ...interest,
+      photos: interest.photos ?? original?.photos,
+      ...(interest.children && {
+        children: restoreInterestPhotos(interest.children, original?.children ?? []),
+      }),
+    };
+  });
+}
+
 function getStoredContent(): PortfolioContent {
   if (typeof window === "undefined") return cloneContent(defaultContent);
 
@@ -194,7 +208,9 @@ function getStoredContent(): PortfolioContent {
     if (!saved) return cloneContent(defaultContent);
 
     const parsed = JSON.parse(saved) as unknown;
-    return isValidContent(parsed) ? parsed : cloneContent(defaultContent);
+    return isValidContent(parsed)
+      ? { ...parsed, interests: restoreInterestPhotos(parsed.interests, defaultContent.interests) }
+      : cloneContent(defaultContent);
   } catch {
     try {
       window.localStorage.removeItem(STORAGE_KEY);

@@ -242,102 +242,6 @@ export const projects: Project[] = [
   },
 ];
 
-export const interests: Interest[] = [
-  {
-    name: "Travel",
-    description:
-      "I love planning trips around new places, good food, and the perfect mix of adventure and relaxation. Recent highlights include Costa Rica, Belize, and Mexico City.",
-  },
-  {
-    name: "Golf",
-    description:
-      "I have played since I was 5 when my grandfather first snuck me onto the local range against the rules after getting tired of chasing my erratic shots around the yard. I eventually played for my high school team. Now I enjoy weekend rounds, post-work (and the occasional pre-work) range sessions, and a perpetual mission to get back to my high school form and break par for the first time!",
-  },
-  {
-    name: "Backpacking",
-    description:
-      "Multi-day trips in the mountains are a special escape for me, a habit picked up as a student doing overnight trips in Rocky Mountain National Park in Colorado, the Wind River Range in Wyoming, and Pisgah National Forest in North Carolina in high school.\n\nIn college I had the privilege of backpacking through the French Alps around Chamonix and Zermatt. Post-grad, I led trips with Moondance backpacking through the Slovenian Alps. I have also done multiple trips in the Uintas in Utah and recently bagged my first 14'er in Colorado (Mt. Democrat). Up next on my backpacking bucket list are Alaska, Maine (Appalachian Trail), Zion/Canyonlands, Patagonia, and Glacier National Park.",
-  },
-  {
-    name: "Sports",
-    description:
-      "Football teams: Tennessee Titans, New Orleans Saints, Tulane, Vanderbilt. (Don't hold it against me for having two college teams and two NFL teams. The only way the Titans and Saints become a problem is if they meet in the Super Bowl — and I think we all know the odds of that. Same goes for Tulane and Vanderbilt meeting in the CFP…)\n\nBasketball: New Orleans Pelicans, Vanderbilt, Tulane\n\nHockey: Nashville Predators\n\nI also enjoy keeping up with F1 and most PGA Tour events. One of my annual highlights is getting to go to the Zurich Classic in New Orleans and watch players play what was my “home” course for several years.",
-  },
-  {
-    name: "Fly Fishing",
-    description:
-      "There is something healing about nothing but the sound of cold trickling streams early in the morning with a gentle fog slowly lifting off at the crack of dawn. I fell in love with fishing at 5 or 6 when my grandfather started taking me to a bamboo-poles-only trout farm.\n\nFast forward 5 years, my dad finally let me start messing around with his fly rod on a trip in North Carolina. I waded in the river until I was about knee deep and caught my first fish with him — a mighty 3\" rainbow trout, and I never looked back. My love of fly fishing has taken me and my dad on countless unforgettable trips and adventures. I used to tie all of my own flies in high school, and still enjoy sitting down at my work bench for a quiet evening when I return home to channel my creative side for my next adventure.",
-  },
-  {
-    name: "Live Music",
-    description:
-      "I am obsessed with music, although I do not play any instruments myself. I can talk your ear off about any genre, as virtually every one has been my favorite at some point in the last 10 years. Right now, my Jazz playlists own most of my attention.\n\nNew Orleans makes this an easy one to dive into — I am at as many shows and festivals as possible whenever they come through. At any given moment, I have tickets, or at least plans, for my next 3–5 shows. My ultimate favorite band is the Grateful Dead, and it has probably been several years since I went more than a day without listening to them or learning about their famous lore. If you look closely at my vibe coding portfolio page, you will see lots of easter egg references to the Dead…",
-  },
-  {
-    name: "My Dog: Melvin",
-    description:
-      "I adopted Melvin in May of 2025. He is an undisclosed Dachshund mix (I think he is 75% Dachshund, 25% Beagle). He loves long walks, being my office-chair backrest during weekend work sessions, and burrowing under the covers for naps — preferably with me or my girlfriend.",
-  },
-  {
-    name: "My Family",
-    description:
-      "My parents split time between Nashville and Cashiers, North Carolina, where they bought what will ultimately be their retirement oasis. My dad works in sales for Rich's Foods, and my mom runs Sixth Street Creative, a consultancy firm for both residential and commercial art using local artists in Nashville.\n\nI have two younger sisters, Walker and Caroline. Walker is two years younger than me and currently works for ADP in New York. Caroline is two years younger than Walker and works for Naomi's Village in Austin.",
-  },
-  {
-    name: "Micro hobbies",
-    children: [
-      {
-        name: "Indie video games",
-        children: [
-          { name: "Hades" },
-          { name: "Outer Wilds" },
-          { name: "Balatro" },
-          { name: "Dredge" },
-        ],
-      },
-      {
-        name: "Collecting concert posters and other music-related art",
-        photos: [
-          {
-            src: jazzArtPhoto,
-            alt: "An ink illustration of a trumpet player painted over sheet music, signed Pazos 2026",
-            caption: "A recent pickup — jazz trumpeter by Pazos",
-          },
-        ],
-      },
-      { name: "Longboarding" },
-      { name: "Testing different AI tools" },
-      {
-        name: "Creating playlists for myself and friends",
-        description:
-          "Currently 100+ and counting — and yes, I shockingly use most of them in a given year.",
-      },
-      {
-        name: "Houseplants",
-        photos: [
-          {
-            src: homeOfficePhoto,
-            alt: "A home office corner with a standing desk, three monitors, and house plants on the desk and credenza",
-            caption: "A few of the plants, holding down the home office",
-          },
-        ],
-      },
-      { name: "Reading" },
-      { name: "Training my dachshund" },
-      {
-        name: "Learning how to do new things",
-        description:
-          "This year was vibe code, surf, drive a boat, and longboard. I'm thinking about learning how to play a synthesizer as my next mini adventure…",
-      },
-      {
-        name: "Hot Sauces",
-        description:
-          "I typically have a dozen in my fridge at any given time. Right now my favorites are Marie Sharpe's Habanero, Yellowbird Serrano, and Peruana Aji Yellow. I also love making my own habanero sauce.",
-      },
-    ],
-  },
-];
-
 export const photos: Photo[] = [
   {
     src: travelMountain.url,
@@ -413,6 +317,110 @@ export const photos: Photo[] = [
     src: jazzArtPhoto,
     alt: "An ink illustration of a trumpet player painted over sheet music, signed Pazos 2026",
     caption: "Jazz artwork by Pazos, part of the collection",
+  },
+];
+
+export const interests: Interest[] = [
+  {
+    name: "Travel",
+    photos: photos.filter((photo) => [winterBridgePhoto].includes(photo.src)),
+    description:
+      "I love planning trips around new places, good food, and the perfect mix of adventure and relaxation. Recent highlights include Costa Rica, Belize, and Mexico City.",
+  },
+  {
+    name: "Golf",
+    photos: photos.filter((photo) => [golfPhoto].includes(photo.src)),
+    description:
+      "I have played since I was 5 when my grandfather first snuck me onto the local range against the rules after getting tired of chasing my erratic shots around the yard. I eventually played for my high school team. Now I enjoy weekend rounds, post-work (and the occasional pre-work) range sessions, and a perpetual mission to get back to my high school form and break par for the first time!",
+  },
+  {
+    name: "Backpacking",
+    photos: photos.filter((photo) => [travelMountain.url, alpineCowPhoto].includes(photo.src)),
+    description:
+      "Multi-day trips in the mountains are a special escape for me, a habit picked up as a student doing overnight trips in Rocky Mountain National Park in Colorado, the Wind River Range in Wyoming, and Pisgah National Forest in North Carolina in high school.\n\nIn college I had the privilege of backpacking through the French Alps around Chamonix and Zermatt. Post-grad, I led trips with Moondance backpacking through the Slovenian Alps. I have also done multiple trips in the Uintas in Utah and recently bagged my first 14'er in Colorado (Mt. Democrat). Up next on my backpacking bucket list are Alaska, Maine (Appalachian Trail), Zion/Canyonlands, Patagonia, and Glacier National Park.",
+  },
+  {
+    name: "Sports",
+    photos: photos.filter((photo) => [lsuFootball.url].includes(photo.src)),
+    description:
+      "Football teams: Tennessee Titans, New Orleans Saints, Tulane, Vanderbilt. (Don't hold it against me for having two college teams and two NFL teams. The only way the Titans and Saints become a problem is if they meet in the Super Bowl — and I think we all know the odds of that. Same goes for Tulane and Vanderbilt meeting in the CFP…)\n\nBasketball: New Orleans Pelicans, Vanderbilt, Tulane\n\nHockey: Nashville Predators\n\nI also enjoy keeping up with F1 and most PGA Tour events. One of my annual highlights is getting to go to the Zurich Classic in New Orleans and watch players play what was my “home” course for several years.",
+  },
+  {
+    name: "Fly Fishing",
+    photos: photos.filter((photo) => [flyFishingPhoto].includes(photo.src)),
+    description:
+      "There is something healing about nothing but the sound of cold trickling streams early in the morning with a gentle fog slowly lifting off at the crack of dawn. I fell in love with fishing at 5 or 6 when my grandfather started taking me to a bamboo-poles-only trout farm.\n\nFast forward 5 years, my dad finally let me start messing around with his fly rod on a trip in North Carolina. I waded in the river until I was about knee deep and caught my first fish with him — a mighty 3\" rainbow trout, and I never looked back. My love of fly fishing has taken me and my dad on countless unforgettable trips and adventures. I used to tie all of my own flies in high school, and still enjoy sitting down at my work bench for a quiet evening when I return home to channel my creative side for my next adventure.",
+  },
+  {
+    name: "Live Music",
+    photos: photos.filter((photo) => [jazzFestPhoto].includes(photo.src)),
+    description:
+      "I am obsessed with music, although I do not play any instruments myself. I can talk your ear off about any genre, as virtually every one has been my favorite at some point in the last 10 years. Right now, my Jazz playlists own most of my attention.\n\nNew Orleans makes this an easy one to dive into — I am at as many shows and festivals as possible whenever they come through. At any given moment, I have tickets, or at least plans, for my next 3–5 shows. My ultimate favorite band is the Grateful Dead, and it has probably been several years since I went more than a day without listening to them or learning about their famous lore. If you look closely at my vibe coding portfolio page, you will see lots of easter egg references to the Dead…",
+  },
+  {
+    name: "My Dog: Melvin",
+    photos: photos.filter((photo) => [melvinBlanketPhoto, melvinRunningPhoto, melvinBedPhoto].includes(photo.src)),
+    description:
+      "I adopted Melvin in May of 2025. He is an undisclosed Dachshund mix (I think he is 75% Dachshund, 25% Beagle). He loves long walks, being my office-chair backrest during weekend work sessions, and burrowing under the covers for naps — preferably with me or my girlfriend.",
+  },
+  {
+    name: "My Family",
+    photos: photos.filter((photo) => [familyPhoto, groupPhoto].includes(photo.src)),
+    description:
+      "My parents split time between Nashville and Cashiers, North Carolina, where they bought what will ultimately be their retirement oasis. My dad works in sales for Rich's Foods, and my mom runs Sixth Street Creative, a consultancy firm for both residential and commercial art using local artists in Nashville.\n\nI have two younger sisters, Walker and Caroline. Walker is two years younger than me and currently works for ADP in New York. Caroline is two years younger than Walker and works for Naomi's Village in Austin.",
+  },
+  {
+    name: "Micro hobbies",
+    children: [
+      {
+        name: "Indie video games",
+        children: [
+          { name: "Hades" },
+          { name: "Outer Wilds" },
+          { name: "Balatro" },
+          { name: "Dredge" },
+        ],
+      },
+      {
+        name: "Collecting concert posters and other music-related art",
+        photos: [
+          {
+            src: jazzArtPhoto,
+            alt: "An ink illustration of a trumpet player painted over sheet music, signed Pazos 2026",
+            caption: "A recent pickup — jazz trumpeter by Pazos",
+          },
+        ],
+      },
+      { name: "Longboarding" },
+      { name: "Testing different AI tools" },
+      {
+        name: "Creating playlists for myself and friends",
+        description:
+          "Currently 100+ and counting — and yes, I shockingly use most of them in a given year.",
+      },
+      {
+        name: "Houseplants",
+        photos: [
+          {
+            src: homeOfficePhoto,
+            alt: "A home office corner with a standing desk, three monitors, and house plants on the desk and credenza",
+            caption: "A few of the plants, holding down the home office",
+          },
+        ],
+      },
+      { name: "Reading" },
+      { name: "Training my dachshund" },
+      {
+        name: "Learning how to do new things",
+        description:
+          "This year was vibe code, surf, drive a boat, and longboard. I'm thinking about learning how to play a synthesizer as my next mini adventure…",
+      },
+      {
+        name: "Hot Sauces",
+        description:
+          "I typically have a dozen in my fridge at any given time. Right now my favorites are Marie Sharpe's Habanero, Yellowbird Serrano, and Peruana Aji Yellow. I also love making my own habanero sauce.",
+      },
+    ],
   },
 ];
 
