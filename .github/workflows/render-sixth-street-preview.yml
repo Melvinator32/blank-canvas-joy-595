@@ -25,7 +25,7 @@ jobs:
         run: |
           set -euo pipefail
           corepack enable
-          pnpm install --no-frozen-lockfile
+          pnpm install --no-frozen-lockfile --allow-build=esbuild
           pnpm --filter @workspace/sixth-street-creative build
 
       - name: Start preview server
