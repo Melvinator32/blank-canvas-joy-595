@@ -1,4 +1,4 @@
-import { ArrowRight, Instagram, Mail, MapPin } from 'lucide-react';
+import { ArrowRight, Mail, MapPin } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 type Page = 'home' | 'portfolio';
@@ -109,7 +109,6 @@ function Footer() {
         <div className="footer-meta">
           <span><MapPin size={14} /> Nashville, Tennessee</span>
           <a href="mailto:rowanne@sixthstreetcreative.com"><Mail size={14} /> Email</a>
-          <a href="#" aria-label="Instagram"><Instagram size={14} /> Instagram</a>
         </div>
       </div>
     </footer>
@@ -265,7 +264,7 @@ export default function App() {
   const page = useHashPage();
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    window.scrollTo({ top: 0, behavior: 'auto' });
   }, [page]);
 
   return (
