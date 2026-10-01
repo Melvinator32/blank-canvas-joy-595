@@ -1,6 +1,7 @@
 import { ArrowDown, ArrowRight, ArrowUp, Mail, MapPin, Pencil, Plus, Save, Trash2, X } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 import MediumsSection from './MediumsSection';
+import './photo.css';
 
 type Page = 'home' | 'portfolio';
 type ArtistGroup = { id: string; title: string; artists: string[] };
