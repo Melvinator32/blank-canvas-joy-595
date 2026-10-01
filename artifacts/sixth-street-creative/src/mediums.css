@@ -1,0 +1,121 @@
+.mediums-section {
+  padding: clamp(72px, 9vw, 130px) clamp(22px, 6vw, 96px);
+  background: #292D28;
+  color: #E1E2D8;
+}
+
+.mediums-heading {
+  display: grid;
+  grid-template-columns: 1.35fr .65fr;
+  gap: clamp(35px, 7vw, 110px);
+  align-items: end;
+  margin-bottom: 64px;
+}
+
+.mediums-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: .18em;
+  font-size: 11px;
+  font-weight: 600;
+  color: #A69C89;
+}
+
+.mediums-heading h2 {
+  margin: 14px 0 0;
+  font: 500 clamp(48px, 6vw, 88px)/.94 'Playfair Display', serif;
+  letter-spacing: -.045em;
+}
+
+.mediums-heading > p {
+  margin: 0;
+  color: rgba(225, 226, 216, .72);
+  font-size: clamp(16px, 1.4vw, 20px);
+  line-height: 1.55;
+}
+
+.mediums-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.medium-card {
+  min-height: 460px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.medium-visual {
+  position: relative;
+  height: 225px;
+  overflow: hidden;
+  margin-bottom: 24px;
+  background: rgba(241, 240, 233, .14);
+}
+
+.medium-shape {
+  position: absolute;
+  inset: 0;
+}
+
+.medium-card.murals { background: #59251F; }
+.medium-card.paintings { background: #6F8F7A; }
+.medium-card.wallpaper { background: #806A27; }
+
+.medium-card.murals .medium-shape {
+  background:
+    linear-gradient(135deg, transparent 0 20%, rgba(225,226,216,.55) 20% 35%, transparent 35% 52%, rgba(181,82,60,.7) 52% 69%, transparent 69%),
+    linear-gradient(35deg, rgba(166,156,137,.35), transparent);
+}
+
+.medium-card.paintings .medium-shape {
+  background:
+    radial-gradient(circle at 32% 38%, rgba(89,37,31,.72) 0 16%, transparent 17%),
+    radial-gradient(circle at 70% 65%, rgba(225,226,216,.6) 0 22%, transparent 23%),
+    linear-gradient(120deg, rgba(119,120,90,.5), transparent 65%);
+}
+
+.medium-card.wallpaper .medium-shape {
+  background:
+    repeating-linear-gradient(45deg, rgba(225,226,216,.35) 0 18px, transparent 18px 36px),
+    repeating-linear-gradient(-45deg, rgba(181,82,60,.3) 0 16px, transparent 16px 32px);
+}
+
+.medium-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 18px;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .16em;
+  color: rgba(241,240,233,.7);
+}
+
+.medium-card h3 {
+  margin: 0 0 14px;
+  font: 500 clamp(38px, 4vw, 60px)/.95 'Playfair Display', serif;
+  letter-spacing: -.035em;
+}
+
+.medium-card p {
+  margin: auto 0 0;
+  max-width: 390px;
+  color: rgba(241,240,233,.78);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+@media (max-width: 850px) {
+  .mediums-heading,
+  .mediums-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .medium-card {
+    min-height: 380px;
+  }
+}
