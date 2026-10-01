@@ -67,3 +67,5 @@ jobs:
           fi
           git commit -m 'Copy images from existing Sixth Street Creative site'
           git push origin HEAD:sixth-street-creative
+
+# Registered on main; this branch update triggers the one-time import.
