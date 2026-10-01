@@ -3,7 +3,7 @@ import { useEffect, useMemo, useState } from 'react';
 import MediumsSection from './MediumsSection';
 import './photo.css';
 
-type Page = 'home' | 'portfolio';
+type Page = 'home' | 'about' | 'portfolio';
 type ArtistGroup = { id: string; title: string; artists: string[] };
 
 type PortfolioCategory = {
@@ -21,7 +21,7 @@ const journey = [
     number: '01',
     name: 'Rowanne Designs',
     label: 'The foundation',
-    description: 'An early design practice rooted in the belief that art should feel personal, lived-in, and inseparable from the spaces around it.',
+    description: 'A jewelry design business where Rowanne first developed her eye for materials, composition, craftsmanship, and creating pieces with a distinct point of view.',
   },
   {
     number: '02',
@@ -83,7 +83,11 @@ const defaultArtistGroups: ArtistGroup[] = [
 const ARTIST_STORAGE_KEY = 'sixth-street-creative-artist-groups';
 
 function useHashPage() {
-  const getPage = (): Page => (window.location.hash === '#/portfolio' ? 'portfolio' : 'home');
+  const getPage = (): Page => {
+    if (window.location.hash === '#/portfolio') return 'portfolio';
+    if (window.location.hash === '#/about') return 'about';
+    return 'home';
+  };
   const [page, setPage] = useState<Page>(getPage);
 
   useEffect(() => {
@@ -110,6 +114,7 @@ function Navigation({ page }: { page: Page }) {
       <BrandMark />
       <nav className="nav-links" aria-label="Primary navigation">
         <a className={page === 'home' ? 'active' : ''} href="#/">Studio</a>
+        <a className={page === 'about' ? 'active' : ''} href="#/about">About Me</a>
         <a className={page === 'portfolio' ? 'active' : ''} href="#/portfolio">Portfolio</a>
         <a href="#mediums">Mediums</a>
         <a href="#artists">Artists</a>
@@ -254,29 +259,6 @@ function HomePage({ artistGroups, isEditing, onArtistGroupsChange }: { artistGro
           </div>
         </section>
 
-        <section className="journey shell-section" id="journey">
-          <div className="section-heading-row">
-            <div>
-              <div className="eyebrow">Creative Journey</div>
-              <h2>Three chapters.<br />One point of view.</h2>
-            </div>
-            <p className="section-intro">Sixth Street Creative is the latest expression of a creative practice shaped over time by design, artists, and the relationships between them.</p>
-          </div>
-
-          <div className="journey-list">
-            {journey.map((item) => (
-              <article className="journey-item" key={item.name}>
-                <div className="journey-number">{item.number}</div>
-                <div>
-                  <div className="journey-label">{item.label}</div>
-                  <h3>{item.name}</h3>
-                </div>
-                <p>{item.description}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
         <MediumsSection />
         <ArtistSection groups={artistGroups} isEditing={isEditing} onChange={onArtistGroupsChange} />
 
@@ -296,6 +278,46 @@ function HomePage({ artistGroups, isEditing, onArtistGroupsChange }: { artistGro
                 <strong>{category.name}</strong>
                 <ArrowRight size={20} />
               </a>
+            ))}
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </>
+  );
+}
+
+function AboutPage() {
+  return (
+    <>
+      <main>
+        <section className="portfolio-hero shell-section about-hero">
+          <div className="eyebrow">About Me</div>
+          <div className="portfolio-title-row">
+            <h1>A creative practice<br /><em>built over time.</em></h1>
+            <p>Sixth Street Creative grew from Rowanne's path through jewelry design, artist relationships, curation, and a lasting belief that art should make a space feel more personal.</p>
+          </div>
+        </section>
+
+        <section className="journey shell-section" id="journey">
+          <div className="section-heading-row">
+            <div>
+              <div className="eyebrow">Creative Journey</div>
+              <h2>Three chapters.<br />One point of view.</h2>
+            </div>
+            <p className="section-intro">The studio today is shaped by years of making, curating, connecting artists with clients, and building creative relationships.</p>
+          </div>
+
+          <div className="journey-list">
+            {journey.map((item) => (
+              <article className="journey-item" key={item.name}>
+                <div className="journey-number">{item.number}</div>
+                <div>
+                  <div className="journey-label">{item.label}</div>
+                  <h3>{item.name}</h3>
+                </div>
+                <p>{item.description}</p>
+              </article>
             ))}
           </div>
         </section>
@@ -400,6 +422,8 @@ export default function App() {
       <Navigation page={page} />
       {page === 'portfolio' ? (
         <PortfolioPage />
+      ) : page === 'about' ? (
+        <AboutPage />
       ) : (
         <HomePage
           artistGroups={isEditing ? draftArtistGroups : savedArtistGroups}
