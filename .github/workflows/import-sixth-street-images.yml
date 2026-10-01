@@ -19,62 +19,131 @@ jobs:
         with:
           ref: sixth-street-creative
 
-      - name: Scrape and copy current-site images
+      - name: Capture images through a real browser
         shell: bash
         run: |
           set -euo pipefail
-          ROOT="artifacts/sixth-street-creative/public/images"
+          ROOT="$GITHUB_WORKSPACE/artifacts/sixth-street-creative/public/images"
           mkdir -p "$ROOT/portfolio"
+          CHROME_BIN="$(command -v google-chrome || command -v chromium || command -v chromium-browser)"
+          export ROOT CHROME_BIN
 
-          curl -L --fail --compressed -A 'Mozilla/5.0' \
-            'https://www.sixthstreetcreative.com/' -o /tmp/ssc.html
+          TMP="$(mktemp -d)"
+          cd "$TMP"
+          npm init -y >/dev/null 2>&1
+          npm install --silent puppeteer-core sharp
 
-          python3 - <<'PY' > /tmp/ssc-image-urls.txt
-          import html, re
-          text = open('/tmp/ssc.html', encoding='utf-8').read()
-          text = html.unescape(text)
-          text = text.replace('\\/', '/').replace('\\u003d', '=').replace('\\u0026', '&')
-          urls = re.findall(r'https://[^"\'<>\\s]*googleusercontent\.com/[^"\'<>\\s]+', text)
-          seen = []
-          for url in urls:
-              url = url.rstrip('\\')
-              if url not in seen:
-                  seen.append(url)
-          print(f'Found {len(seen)} Google-hosted image URLs', file=__import__('sys').stderr)
-          for url in seen[:20]:
-              print(url, file=__import__('sys').stderr)
-          if len(seen) < 13:
-              raise SystemExit(f'Expected at least 13 images, found {len(seen)}')
-          print('\n'.join(seen[:13]))
-          PY
+          cat > capture.cjs <<'NODE'
+          const puppeteer = require('puppeteer-core');
+          const sharp = require('sharp');
+          const fs = require('fs');
+          const path = require('path');
 
-          mapfile -t URLS < /tmp/ssc-image-urls.txt
-          NAMES=(
-            'hero.jpg'
-            'portfolio/residential-01.jpg'
-            'portfolio/residential-02.jpg'
-            'portfolio/residential-03.jpg'
-            'portfolio/residential-04.jpg'
-            'portfolio/hospitality-01.jpg'
-            'portfolio/hospitality-02.jpg'
-            'portfolio/hospitality-03.jpg'
-            'portfolio/hospitality-04.jpg'
-            'portfolio/commercial-01.jpg'
-            'portfolio/commercial-02.jpg'
-            'portfolio/commercial-03.jpg'
-            'portfolio/commercial-04.jpg'
-          )
+          (async () => {
+            const root = process.env.ROOT;
+            const browser = await puppeteer.launch({
+              executablePath: process.env.CHROME_BIN,
+              headless: true,
+              args: ['--no-sandbox', '--disable-dev-shm-usage'],
+            });
+            const page = await browser.newPage();
+            await page.setViewport({ width: 1440, height: 1000 });
+            await page.setExtraHTTPHeaders({
+              'Accept-Language': 'en-US,en;q=0.9',
+            });
 
-          for i in "${!NAMES[@]}"; do
-            curl -L --fail --compressed --retry 3 --retry-delay 2 \
-              -A 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/140 Safari/537.36' \
-              -e 'https://www.sixthstreetcreative.com/' \
-              -H 'Accept: image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8' \
-              -H 'Accept-Language: en-US,en;q=0.9' \
-              "${URLS[$i]}" -o "$ROOT/${NAMES[$i]}"
-            test -s "$ROOT/${NAMES[$i]}"
-          done
+            const bodies = new Map();
+            const types = new Map();
+            page.on('response', async (response) => {
+              const url = response.url();
+              const type = response.headers()['content-type'] || '';
+              if (!url.includes('googleusercontent.com') || !type.startsWith('image/')) return;
+              try {
+                const body = await response.buffer();
+                if (body.length > 5000 && !bodies.has(url)) {
+                  bodies.set(url, body);
+                  types.set(url, type);
+                }
+              } catch {}
+            });
 
+            await page.goto('https://www.sixthstreetcreative.com/', {
+              waitUntil: 'networkidle2',
+              timeout: 90000,
+            });
+
+            await page.evaluate(async () => {
+              const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+              for (let y = 0; y < document.body.scrollHeight; y += 650) {
+                window.scrollTo(0, y);
+                await sleep(350);
+              }
+              window.scrollTo(0, document.body.scrollHeight);
+              await sleep(1500);
+            });
+
+            const domUrls = await page.evaluate(() =>
+              [...new Set(Array.from(document.images)
+                .map((img) => img.currentSrc || img.src)
+                .filter((url) => url.includes('googleusercontent.com')))]
+            );
+
+            const responseUrls = [...bodies.keys()];
+            const canonical = (url) => url.replace(/=w\d+.*$/, '').replace(/=s\d+.*$/, '');
+            const ordered = [];
+            const used = new Set();
+
+            for (const domUrl of domUrls) {
+              const exact = bodies.has(domUrl) ? domUrl : responseUrls.find((url) => canonical(url) === canonical(domUrl));
+              if (exact && !used.has(exact)) {
+                ordered.push(exact);
+                used.add(exact);
+              }
+            }
+            for (const url of responseUrls) {
+              if (!used.has(url)) {
+                ordered.push(url);
+                used.add(url);
+              }
+            }
+
+            console.log(`Captured ${responseUrls.length} image responses; ${domUrls.length} image URLs in DOM.`);
+            ordered.slice(0, 20).forEach((url, i) => console.log(`${i + 1}. ${types.get(url)} ${url}`));
+
+            if (ordered.length < 13) {
+              throw new Error(`Expected at least 13 usable images, captured ${ordered.length}`);
+            }
+
+            const names = [
+              'hero.jpg',
+              'portfolio/residential-01.jpg',
+              'portfolio/residential-02.jpg',
+              'portfolio/residential-03.jpg',
+              'portfolio/residential-04.jpg',
+              'portfolio/hospitality-01.jpg',
+              'portfolio/hospitality-02.jpg',
+              'portfolio/hospitality-03.jpg',
+              'portfolio/hospitality-04.jpg',
+              'portfolio/commercial-01.jpg',
+              'portfolio/commercial-02.jpg',
+              'portfolio/commercial-03.jpg',
+              'portfolio/commercial-04.jpg',
+            ];
+
+            for (let i = 0; i < names.length; i++) {
+              const out = path.join(root, names[i]);
+              fs.mkdirSync(path.dirname(out), { recursive: true });
+              await sharp(bodies.get(ordered[i])).jpeg({ quality: 92, mozjpeg: true }).toFile(out);
+            }
+
+            await browser.close();
+          })().catch((error) => {
+            console.error(error);
+            process.exit(1);
+          });
+          NODE
+
+          node capture.cjs
           file "$ROOT"/hero.jpg "$ROOT"/portfolio/*.jpg
 
       - name: Commit copied images
