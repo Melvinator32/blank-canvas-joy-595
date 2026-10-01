@@ -32,13 +32,17 @@ jobs:
           python3 - <<'PY' > /tmp/ssc-image-urls.txt
           import html, re
           text = open('/tmp/ssc.html', encoding='utf-8').read()
-          text = html.unescape(text).replace('\\u003d', '=').replace('\\u0026', '&')
-          urls = re.findall(r'https://lh7-us\.googleusercontent\.com/[^"\'<>\\s]+', text)
+          text = html.unescape(text)
+          text = text.replace('\\/', '/').replace('\\u003d', '=').replace('\\u0026', '&')
+          urls = re.findall(r'https://[^"\'<>\\s]*googleusercontent\.com/[^"\'<>\\s]+', text)
           seen = []
           for url in urls:
               url = url.rstrip('\\')
               if url not in seen:
                   seen.append(url)
+          print(f'Found {len(seen)} Google-hosted image URLs', file=__import__('sys').stderr)
+          for url in seen[:20]:
+              print(url, file=__import__('sys').stderr)
           if len(seen) < 13:
               raise SystemExit(f'Expected at least 13 images, found {len(seen)}')
           print('\n'.join(seen[:13]))
