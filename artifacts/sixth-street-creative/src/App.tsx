@@ -5,6 +5,16 @@ import MediumsSection from './MediumsSection';
 type Page = 'home' | 'portfolio';
 type ArtistGroup = { id: string; title: string; artists: string[] };
 
+type PortfolioCategory = {
+  name: string;
+  number: string;
+  summary: string;
+  tone: string;
+  images: string[];
+};
+
+const currentSiteHero = 'https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72vwJPk626fabhMN_P20wmdUQvAUzmOgj0O7_0ANY2dCv8fVzIs5rQDsEIqzRnE2csJNmD0Ni7BnhOTtY5lFGLdA1d7M0os8qK1AeIAIumZLsyUNEsd59Av7b-sV9mwLgWpcvNfghVlxjgk5rT_kK0gKh6MtxFjt067eO7ueGm50cq9iJHWlAcDr6VTziZqME6oUWv-wkDU0AAduqyA7z2xZgpS2GvSXCp8G31sV=w1280';
+
 const journey = [
   {
     number: '01',
@@ -26,24 +36,42 @@ const journey = [
   },
 ];
 
-const portfolioCategories = [
+const portfolioCategories: PortfolioCategory[] = [
   {
     name: 'Residential',
     number: '01',
     summary: 'Original art and considered placement for homes that feel collected rather than decorated.',
     tone: 'jade',
+    images: [
+      'https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72tUIjdmhHwQeeI5ElVKxUKeWqQ0Ujz9dINdEu0bJsiOwkAvehH0NNH6-AHIOtUkcHdQkftAxmBnvaAjeR4XWMkUsmfmeF6xrh24Nz2YzbrdsJqs2h24fETdB3YS0hzZYIXF90zEOii2_HgozOhOYkn3NxjSu5NOeRdsXK4K7RIBodfaboOw7XI4fhSPGUhzcFKXFoeDIin0HTHWrT-f5Ay9re7gfGZrPYSot0kU_rQ=w1280',
+      'https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72uBk3CGDuuLvXXQzjQMuEQZna9SrOcAESIfejWetM9SxZZG2Def2Ru0zCeNVS3FZYVACPRcu1d5tDzOCzBqvLXzdIVOfSsEvApxPFpmySWjLCEryKcf2C98d8rCD2WFLiDiQYqBSjk4aJFVUk_sGMBYEdiLAM05Yig5ZBvjlO5JkOhuFXFQw2ohyXyxS1VLhnQPbg_bts2p06sM4qfc9Kcx6TQL8cU0xrIMS1JQ=w1280',
+      'https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72sBgVWqJkltrSmNooO_PsBndr0J4eojj49B6-RUf11EJdi2kCGvtNbEROoYAH0IsPaCAihIGq3CHDf1Cvp2c-fACMkdwcXGfCiqfvJ_0wsWziaH_KlkpY0_At2yCT34fQiDVJL0H2rl_btB96Ujo8BbpOYbHiF-ho0gNzbc-K42BudAc_RevjxxUMGa1DogZnP9UjW3poZ4NVyh2CRACLig0zcHyBeYRR1B6mUT=w1280',
+      'https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72vDR07RI8LuqWERe5lJoVS2NBKuuJ620ru0g20YPClDUrOzfeZRpXAaKTLbS3I7BuDJpsW-Tl3kU9GsuX5tYCg0hDmTjtXXVt1SoPUbrww0B3-z89T9YAWUUdk49_XLEw4Tq_fUn-thbRZv7j-cBeHOeBw8SnyEPbUPR-6dhJprGsZs5_YQUTDAeKaIIFFWCXGdLS0OkVo1Jxj9G4CdAEmGUSqj5Aos4ST6YBLl=w1280',
+    ],
   },
   {
     name: 'Hospitality',
     number: '02',
     summary: 'Art programs and creative direction that give hotels, restaurants, and gathering spaces a memorable sense of place.',
     tone: 'clay',
+    images: [
+      'https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72u6pU7Ba5WF7IoKvhWwHAoB6LV2bw5cIRf2tYU1ah6qLRYL0AodYRoFWKBA0r4YJa6gvtC18QrWxaSc0oqX4u1sWHKKSk3hS_eZxHTzI9vUlsTOIT4xGAHrgS1VEjCxObIojImhjv6dovZPyKIiDOaxcySznDrNvAU1fZsoK_HcUlfkTv_HchpNKoSDK47pplAla4WDhNPYp_23n2Vzt4_o--FhR0l7Nl3DMQ=w1280',
+      'https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72tIcaoGXk86GvH_EMPZ47gIwK3YCSj9d6SqyAOLpxycKii2nvkc3tSmYw_G75CXXGWJktCENpigNd53Z8f3KjUlDGAkk3qUcUUh16IKt83Peh_3MUz27nuX2QgFVLWS7Dmx-uHhMIfpS0AmiR8xdr5NlS8kR1M8Z5cw_HRK8wh4a0lBXeeVVShAxzdiDz7scr_AqJDx4b3_R_8DMS2PZiU9XBvQMgOggw1qrpLhAEk=w1280',
+      'https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72tQT9161fyg_bTY98g99gX-mdxw4WBqdbJ48WM7tE9sj0XtuGrtt3QTVSTJFf1gphq_iLl59XPAbxFVQVR95o1tjxTzZfzUgiTbLV-I6TeWguZ-myAhZWk2f_iq1AqG621NUgJ3CeuH12Hx23JkopILA57kGGK1fxMVzlhK2Izipi7KTDR3zHTCUStNp2HGpgNTsoO5pa43XJlW-JWJHb3k3Sr5PYbHqCQ3YV10=w1280',
+      'https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72tvwuKH7fHiuOXJLA7yyuzh5bOnh8t211NKpwBVSdbsC3gbZxAVYHNRF81zfkqtaDK2y-vxqyXxLBg-xOA6omzgZJFDPpWWJtaJxCT_4Yh0-X-5bTFUDKfDd9tjwK43YlUg7E_ezkIvPQzse1hCHNcJPDPC-Cv9VlVBqTAeMrspJGRW6uRPOygVJsIjTJdNEbYw6R3zB88TOUgrBoJEw3IkZm78VFMClkD0DTzQmRA=w1280',
+    ],
   },
   {
     name: 'Commercial',
     number: '03',
     summary: 'Art consulting for workplaces and public-facing environments where brand, culture, and human experience meet.',
     tone: 'kelp',
+    images: [
+      'https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72vkObtuOf25nneXOw0bARIRRXSf2eglMOzvYUP30kywBI0DIkpaUqulKujUfH9fpPZrmDKIuzpxKXS-eN6WLA9rvGLOTt-McLmloJ7NH5Em92CKh3kGWGZFY_ZJ_33xjM9zZF-FVjTu08VZjKbcbGzQZCAjJKMUfsEJUBWALWw2Krz8Y3hooEhrQCS6WCQBzvxcmDrcbZ5SBSCbPY-qfwcBRllDVdgi4tURdEc9AbQ=w1280',
+      'https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72vn-KycmOQ8LqmOeN_txCpvfEIV72z020c0Szpfd40sl5INtzAnUKlt0vExGgoOgci9a3GPH4LXK7WnpvAvC6XJnHNWOuU7Z2PcNhgi9uV4D6NjETorkmXwBdHYNNdFoVt87mXyHd01gMIfXSouuL8iao3gooIe4BLuZbKTH-cEvYH6Bup07W18ZJq-o9OaedRThZioVCF3U_xmOd4wPXivuzTtVHp43gViMKhd8fs=w1280',
+      'https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72uPSYNeDUKSzVCH3siUYZYb8JKOdQHS3cFIej9AF7HgnFOGyAe-9TGZe6q2Qyxzh8XNHZCfGAETgooJNlAr9FzLJNyqee4aYjH4ZnPfcYw2PbDg8yQmeaeE7qfqreGHTsDoljG_oPYwmUydnYio6UvOz7nJaI3_41WXuRkIlOh23G6Tyanalxfi_1nLCnUv9dpDcAaiMvGRRHQH-MY5ivnkZOvaVzUml_iw78kbWu8=w1280',
+      'https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72vDLUjVz1Ccyhdt9ViiajBYW2hDYS7uvXcY01uunQkBRBFAgJArUnPpjWmsWIJ2K5UfvHBbPeLUVq_8Qd06QhYJSiF52Kow6Vs82gRxn_Y4CBRMEHu_d2S-iHa4vIDnLzUFqAOYaOiboxk4s58CkOSrCGOu_ssdkLtZHd17XNKi4avD1c1LlIl1iC9HasK0H5c6gGABgIeMeRfMWjX6nlGmbgj-F46sYSqr9SOP9vU=w1280',
+    ],
   },
 ];
 
@@ -210,10 +238,8 @@ function HomePage({ artistGroups, isEditing, onArtistGroupsChange }: { artistGro
               <a className="button-link" href="#/portfolio">View the portfolio <ArrowRight size={18} /></a>
             </div>
           </div>
-          <div className="hero-canvas" aria-label="Decorative studio color composition">
-            <div className="canvas-block block-oxblood" />
-            <div className="canvas-block block-jade" />
-            <div className="canvas-block block-driftwood" />
+          <div className="hero-photo-wrap">
+            <img className="hero-photo" src={currentSiteHero} alt="Sixth Street Creative project from the current website" />
             <div className="canvas-note"><span>EST.</span><strong>SSC</strong><span>NASHVILLE</span></div>
           </div>
         </section>
@@ -264,7 +290,7 @@ function HomePage({ artistGroups, isEditing, onArtistGroupsChange }: { artistGro
           </div>
           <div className="category-strip">
             {portfolioCategories.map((category) => (
-              <a className={`category-card ${category.tone}`} href="#/portfolio" key={category.name}>
+              <a className={`category-card category-card-photo ${category.tone}`} href="#/portfolio" key={category.name} style={{ backgroundImage: `linear-gradient(180deg, rgba(41,45,40,.05), rgba(41,45,40,.72)), url(${category.images[0]})` }}>
                 <span>{category.number}</span>
                 <strong>{category.name}</strong>
                 <ArrowRight size={20} />
@@ -291,11 +317,15 @@ function PortfolioPage() {
         </section>
 
         <section className="portfolio-categories">
-          {portfolioCategories.map((category, index) => (
+          {portfolioCategories.map((category) => (
             <article className={`portfolio-row ${category.tone}`} key={category.name}>
               <div className="portfolio-row-meta"><span>{category.number}</span><span>Portfolio category</span></div>
               <div className="portfolio-row-copy"><h2>{category.name}</h2><p>{category.summary}</p></div>
-              <div className="portfolio-art" aria-hidden="true"><div className={`art-shape art-shape-${index + 1}`} /><span>Project imagery</span></div>
+              <div className="portfolio-image-grid">
+                {category.images.map((image, index) => (
+                  <img key={image} src={image} loading="lazy" alt={`${category.name} project ${index + 1} from the current Sixth Street Creative website`} />
+                ))}
+              </div>
             </article>
           ))}
         </section>
@@ -376,7 +406,14 @@ export default function App() {
           onArtistGroupsChange={setDraftArtistGroups}
         />
       )}
-      {page === 'home' && <EditToolbar isEditing={isEditing} hasChanges={hasArtistChanges} onToggle={toggleEditMode} onSave={saveArtists} />}
+      {page === 'home' && (
+        <EditToolbar
+          isEditing={isEditing}
+          hasChanges={hasArtistChanges}
+          onToggle={toggleEditMode}
+          onSave={saveArtists}
+        />
+      )}
     </div>
   );
 }
