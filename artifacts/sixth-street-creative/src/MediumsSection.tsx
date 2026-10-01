@@ -1,3 +1,5 @@
+import './mediums.css';
+
 const mediums = [
   {
     number: '01',
