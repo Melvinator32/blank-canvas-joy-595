@@ -1,7 +1,12 @@
-import { ArrowRight, Mail, MapPin } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { ArrowDown, ArrowRight, ArrowUp, Mail, MapPin, Pencil, Plus, Save, Trash2, X } from 'lucide-react';
+import { useEffect, useMemo, useState } from 'react';
 
 type Page = 'home' | 'portfolio';
+type ArtistGroup = {
+  id: string;
+  title: string;
+  artists: string[];
+};
 
 const journey = [
   {
@@ -48,6 +53,16 @@ const portfolioCategories = [
   },
 ];
 
+const defaultArtistGroups: ArtistGroup[] = [
+  {
+    id: 'featured-artists',
+    title: 'Featured Artists',
+    artists: [],
+  },
+];
+
+const ARTIST_STORAGE_KEY = 'sixth-street-creative-artist-groups';
+
 function useHashPage() {
   const getPage = (): Page => (window.location.hash === '#/portfolio' ? 'portfolio' : 'home');
   const [page, setPage] = useState<Page>(getPage);
@@ -81,6 +96,7 @@ function Navigation({ page }: { page: Page }) {
         <a className={page === 'portfolio' ? 'active' : ''} href="#/portfolio">
           Portfolio
         </a>
+        <a href="#artists">Artists</a>
         <a href="#contact">Contact</a>
       </nav>
     </header>
@@ -115,7 +131,144 @@ function Footer() {
   );
 }
 
-function HomePage() {
+function ArtistSection({
+  groups,
+  isEditing,
+  onChange,
+}: {
+  groups: ArtistGroup[];
+  isEditing: boolean;
+  onChange: (groups: ArtistGroup[]) => void;
+}) {
+  const updateGroup = (id: string, patch: Partial<ArtistGroup>) => {
+    onChange(groups.map((group) => (group.id === id ? { ...group, ...patch } : group)));
+  };
+
+  const addGroup = () => {
+    const id = `artist-group-${Date.now()}`;
+    onChange([...groups, { id, title: 'New Artist Section', artists: [] }]);
+  };
+
+  const removeGroup = (id: string) => {
+    onChange(groups.filter((group) => group.id !== id));
+  };
+
+  const moveGroup = (index: number, direction: -1 | 1) => {
+    const next = [...groups];
+    const target = index + direction;
+    if (target < 0 || target >= next.length) return;
+    [next[index], next[target]] = [next[target], next[index]];
+    onChange(next);
+  };
+
+  const addArtist = (group: ArtistGroup) => {
+    updateGroup(group.id, { artists: [...group.artists, 'New Artist'] });
+  };
+
+  const updateArtist = (group: ArtistGroup, artistIndex: number, value: string) => {
+    const artists = [...group.artists];
+    artists[artistIndex] = value;
+    updateGroup(group.id, { artists });
+  };
+
+  const removeArtist = (group: ArtistGroup, artistIndex: number) => {
+    updateGroup(group.id, { artists: group.artists.filter((_, index) => index !== artistIndex) });
+  };
+
+  return (
+    <section className="artists-section shell-section" id="artists">
+      <div className="section-heading-row artists-heading">
+        <div>
+          <div className="eyebrow">Artists We’ve Worked With</div>
+          <h2>Built through<br />creative relationships.</h2>
+        </div>
+        <p className="section-intro">
+          A growing register of artists Sixth Street Creative has collaborated with, sourced from, represented, or placed in projects.
+        </p>
+      </div>
+
+      <div className="artist-groups">
+        {groups.map((group, groupIndex) => (
+          <article className="artist-group" key={group.id}>
+            <div className="artist-group-header">
+              {isEditing ? (
+                <input
+                  className="artist-title-input"
+                  value={group.title}
+                  onChange={(event) => updateGroup(group.id, { title: event.target.value })}
+                  aria-label="Artist section title"
+                />
+              ) : (
+                <h3>{group.title}</h3>
+              )}
+
+              {isEditing && (
+                <div className="artist-group-actions">
+                  <button type="button" onClick={() => moveGroup(groupIndex, -1)} disabled={groupIndex === 0} aria-label="Move section up">
+                    <ArrowUp size={16} />
+                  </button>
+                  <button type="button" onClick={() => moveGroup(groupIndex, 1)} disabled={groupIndex === groups.length - 1} aria-label="Move section down">
+                    <ArrowDown size={16} />
+                  </button>
+                  <button type="button" onClick={() => removeGroup(group.id)} aria-label="Remove section">
+                    <Trash2 size={16} />
+                  </button>
+                </div>
+              )}
+            </div>
+
+            <div className="artist-name-grid">
+              {group.artists.map((artist, artistIndex) => (
+                <div className="artist-name" key={`${group.id}-${artistIndex}`}>
+                  {isEditing ? (
+                    <>
+                      <input
+                        value={artist}
+                        onChange={(event) => updateArtist(group, artistIndex, event.target.value)}
+                        aria-label={`Artist ${artistIndex + 1}`}
+                      />
+                      <button type="button" onClick={() => removeArtist(group, artistIndex)} aria-label={`Remove ${artist}`}>
+                        <X size={14} />
+                      </button>
+                    </>
+                  ) : (
+                    <span>{artist}</span>
+                  )}
+                </div>
+              ))}
+
+              {!isEditing && group.artists.length === 0 && (
+                <p className="artist-empty">Artist names will appear here.</p>
+              )}
+
+              {isEditing && (
+                <button className="add-artist-button" type="button" onClick={() => addArtist(group)}>
+                  <Plus size={15} /> Add artist
+                </button>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+
+      {isEditing && (
+        <button className="add-group-button" type="button" onClick={addGroup}>
+          <Plus size={17} /> Add artist section
+        </button>
+      )}
+    </section>
+  );
+}
+
+function HomePage({
+  artistGroups,
+  isEditing,
+  onArtistGroupsChange,
+}: {
+  artistGroups: ArtistGroup[];
+  isEditing: boolean;
+  onArtistGroupsChange: (groups: ArtistGroup[]) => void;
+}) {
   return (
     <>
       <main>
@@ -184,6 +337,8 @@ function HomePage() {
             ))}
           </div>
         </section>
+
+        <ArtistSection groups={artistGroups} isEditing={isEditing} onChange={onArtistGroupsChange} />
 
         <section className="portfolio-tease driftwood-section">
           <div className="section-number">02 / Selected work</div>
@@ -260,17 +415,93 @@ function PortfolioPage() {
   );
 }
 
+function EditToolbar({
+  isEditing,
+  hasChanges,
+  onToggle,
+  onSave,
+}: {
+  isEditing: boolean;
+  hasChanges: boolean;
+  onToggle: () => void;
+  onSave: () => void;
+}) {
+  return (
+    <div className="edit-toolbar">
+      {isEditing && (
+        <button className="edit-save" type="button" onClick={onSave} disabled={!hasChanges}>
+          <Save size={15} /> Save artists
+        </button>
+      )}
+      <button className="edit-toggle" type="button" onClick={onToggle}>
+        {isEditing ? <X size={15} /> : <Pencil size={15} />}
+        {isEditing ? 'Exit edit mode' : 'Edit artists'}
+      </button>
+    </div>
+  );
+}
+
 export default function App() {
   const page = useHashPage();
+  const [isEditing, setIsEditing] = useState(false);
+  const [savedArtistGroups, setSavedArtistGroups] = useState<ArtistGroup[]>(defaultArtistGroups);
+  const [draftArtistGroups, setDraftArtistGroups] = useState<ArtistGroup[]>(defaultArtistGroups);
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'auto' });
-  }, [page]);
+    try {
+      const stored = window.localStorage.getItem(ARTIST_STORAGE_KEY);
+      if (!stored) return;
+      const parsed = JSON.parse(stored) as ArtistGroup[];
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        setSavedArtistGroups(parsed);
+        setDraftArtistGroups(parsed);
+      }
+    } catch {
+      // Fall back to the default artist structure if browser storage is unavailable or invalid.
+    }
+  }, []);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    setIsEditing(false);
+    setDraftArtistGroups(savedArtistGroups);
+  }, [page, savedArtistGroups]);
+
+  const hasArtistChanges = useMemo(
+    () => JSON.stringify(savedArtistGroups) !== JSON.stringify(draftArtistGroups),
+    [savedArtistGroups, draftArtistGroups],
+  );
+
+  const saveArtists = () => {
+    setSavedArtistGroups(draftArtistGroups);
+    window.localStorage.setItem(ARTIST_STORAGE_KEY, JSON.stringify(draftArtistGroups));
+  };
+
+  const toggleEditMode = () => {
+    if (isEditing) setDraftArtistGroups(savedArtistGroups);
+    setIsEditing((value) => !value);
+  };
 
   return (
     <div className="site-shell">
       <Navigation page={page} />
-      {page === 'portfolio' ? <PortfolioPage /> : <HomePage />}
+      {page === 'portfolio' ? (
+        <PortfolioPage />
+      ) : (
+        <HomePage
+          artistGroups={isEditing ? draftArtistGroups : savedArtistGroups}
+          isEditing={isEditing}
+          onArtistGroupsChange={setDraftArtistGroups}
+        />
+      )}
+      {page === 'home' && (
+        <EditToolbar
+          isEditing={isEditing}
+          hasChanges={hasArtistChanges}
+          onToggle={toggleEditMode}
+          onSave={saveArtists}
+        />
+      )}
     </div>
   );
 }
