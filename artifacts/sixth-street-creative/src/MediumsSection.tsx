@@ -29,11 +29,10 @@ export default function MediumsSection() {
     <section className="mediums-section" id="mediums">
       <div className="mediums-heading">
         <div>
-          <div className="mediums-eyebrow">Mediums</div>
-          <h2>Different surfaces.<br />One creative point of view.</h2>
+          <div className="mediums-eyebrow">Mediums Sixth Street Specializes in</div>
         </div>
         <p>
-          From original paintings to large-scale murals and expressive wallcoverings, the medium changes with the space and the story it needs to tell.
+          From original paintings to large-scale murals and expressive wallcoverings, I embrace bold expression to bring your space—and your vision—to life.
         </p>
       </div>
 
