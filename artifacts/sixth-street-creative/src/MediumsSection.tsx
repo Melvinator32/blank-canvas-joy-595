@@ -2,7 +2,6 @@ import './mediums.css';
 
 const mediums = [
   {
-    number: '01',
     name: 'Murals',
     description: 'Site-specific work that turns walls and architectural surfaces into memorable visual moments.',
     className: 'medium-card murals',
@@ -10,7 +9,6 @@ const mediums = [
     alt: 'Colorful Sixth Street Creative mural beside a pool',
   },
   {
-    number: '02',
     name: 'Paintings',
     description: 'Original works selected and placed to bring personality, tension, color, and story into a space.',
     className: 'medium-card paintings',
@@ -18,7 +16,6 @@ const mediums = [
     alt: 'Curated paintings arranged on a green wall',
   },
   {
-    number: '03',
     name: 'Wallpaper',
     description: 'Pattern, illustration, and custom wallcoverings that make the surface itself part of the art program.',
     className: 'medium-card wallpaper',
@@ -47,7 +44,6 @@ export default function MediumsSection() {
               <img src={medium.image} alt={medium.alt} loading="lazy" />
             </div>
             <div className="medium-meta">
-              <span>{medium.number}</span>
               <span>Medium</span>
             </div>
             <h3>{medium.name}</h3>
