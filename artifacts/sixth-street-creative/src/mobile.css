@@ -1,0 +1,268 @@
+@media (max-width: 850px) {
+  .journey-number {
+    display: none;
+  }
+
+  .journey-item {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 28px 48px;
+  }
+
+  .journey-item p {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 620px) {
+  .site-header {
+    align-items: center;
+    gap: 18px;
+    padding: 15px 20px;
+  }
+
+  .brand {
+    flex: 0 0 auto;
+  }
+
+  .brand-sixth {
+    font-size: 10px;
+  }
+
+  .brand-creative {
+    font-size: 21px;
+  }
+
+  .nav-links {
+    width: auto;
+    max-width: 62vw;
+    gap: 18px;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .nav-links::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-links a:first-child,
+  .nav-links a:nth-child(4),
+  .nav-links a:nth-child(5) {
+    display: none;
+  }
+
+  .shell-section,
+  .slate-section,
+  .driftwood-section,
+  .mediums-section {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .shell-section,
+  .slate-section,
+  .driftwood-section {
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+
+  .portfolio-hero {
+    padding-top: 68px;
+    padding-bottom: 54px;
+  }
+
+  .hero {
+    gap: 34px;
+  }
+
+  .hero-grid {
+    gap: 26px;
+  }
+
+  .hero h1,
+  .portfolio-hero h1 {
+    font-size: clamp(46px, 13vw, 60px);
+    line-height: .91;
+    letter-spacing: -.045em;
+  }
+
+  .hero-aside p,
+  .section-intro,
+  .portfolio-title-row > p {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+
+  .hero-photo-wrap,
+  .hero-photo {
+    min-height: 255px;
+  }
+
+  .canvas-note {
+    width: 90px;
+    height: 90px;
+    right: 12px;
+    bottom: 12px;
+  }
+
+  .canvas-note strong {
+    font-size: 24px;
+  }
+
+  .section-heading-row {
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+
+  .section-heading-row h2,
+  .tease-grid h2,
+  .portfolio-note h2,
+  .mediums-heading h2 {
+    font-size: 43px;
+    line-height: .98;
+  }
+
+  .statement {
+    gap: 28px;
+  }
+
+  .statement-copy {
+    font-size: 42px;
+    line-height: 1;
+  }
+
+  .statement-detail {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin-top: 28px;
+  }
+
+  .statement-detail span {
+    width: 52px;
+    margin-top: 0;
+  }
+
+  .journey-list {
+    margin-top: 4px;
+  }
+
+  .journey-item {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: 30px 0 32px;
+  }
+
+  .journey-item > div:not(.journey-number) {
+    min-width: 0;
+  }
+
+  .journey-label {
+    margin-bottom: 10px;
+    font-size: 10px;
+  }
+
+  .journey-item h3 {
+    margin: 0 0 20px;
+    max-width: 100%;
+    font-size: 42px;
+    line-height: 1;
+    letter-spacing: -.035em;
+  }
+
+  .journey-item p {
+    grid-column: 1;
+    max-width: none;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .tease-grid {
+    gap: 24px;
+    margin: 16px 0 42px;
+  }
+
+  .category-card {
+    min-height: 150px;
+    padding: 20px;
+  }
+
+  .portfolio-row {
+    gap: 24px;
+    padding: 46px 20px;
+  }
+
+  .portfolio-row-meta {
+    font-size: 10px;
+  }
+
+  .portfolio-row-copy h2 {
+    margin-bottom: 14px;
+    font-size: 50px;
+    line-height: .95;
+  }
+
+  .portfolio-row-copy p {
+    margin-bottom: 0;
+    font-size: 15px;
+  }
+
+  .portfolio-note {
+    gap: 22px;
+  }
+
+  .mediums-section {
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+
+  .mediums-heading {
+    gap: 24px;
+    margin-bottom: 38px;
+  }
+
+  .medium-card {
+    min-height: auto;
+    padding: 14px 14px 24px;
+  }
+
+  .medium-visual {
+    height: auto;
+    aspect-ratio: 4 / 3;
+    margin-bottom: 20px;
+  }
+
+  .medium-card h3 {
+    font-size: 39px;
+  }
+
+  .medium-card p {
+    margin-top: 18px;
+  }
+
+  .artists-heading {
+    margin-bottom: 38px;
+  }
+
+  .artist-group {
+    padding: 28px 0 34px;
+  }
+
+  .footer {
+    padding: 58px 20px 26px;
+  }
+
+  .footer-kicker {
+    margin-bottom: 28px;
+  }
+
+  .footer h2 {
+    font-size: 46px;
+    line-height: .94;
+  }
+
+  .footer-bottom {
+    margin-top: 48px;
+  }
+}
