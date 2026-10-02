@@ -13,6 +13,11 @@ function SiteRoot() {
         heroTitle.innerHTML = 'Creating spaces that feel<br /><em>like an extension of you.</em>';
       }
 
+      const journeyHeading = document.querySelector('.journey .section-heading-row > div');
+      if (journeyHeading && journeyHeading.textContent?.trim() !== 'Creative Journey') {
+        journeyHeading.innerHTML = '<h2>Creative Journey</h2>';
+      }
+
       document.querySelectorAll('.section-number, .journey-number').forEach((element) => element.remove());
 
       document.querySelectorAll('.category-card > span:first-child').forEach((element) => element.remove());
