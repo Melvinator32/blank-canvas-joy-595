@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import './index.css';
 import './artists.css';
+import './mobile.css';
 
 function SiteRoot() {
   useEffect(() => {
