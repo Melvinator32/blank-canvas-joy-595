@@ -238,7 +238,7 @@ function HomePage({ artistGroups, isEditing, onArtistGroupsChange }: { artistGro
         <section className="hero shell-section">
           <div className="eyebrow">Art consulting · Creative collaborations</div>
           <div className="hero-grid">
-            <h1>Art with a<br /><em>sense of place.</em></h1>
+            <h1>Creating spaces that feel<br /><em>like an extension of you.</em></h1>
             <div className="hero-aside">
               <p>Sixth Street Creative brings art, interiors, and people together — building collections and creative moments that feel personal, layered, and entirely at home.</p>
               <a className="button-link" href="#/portfolio">View the portfolio <ArrowRight size={18} /></a>
@@ -251,8 +251,8 @@ function HomePage({ artistGroups, isEditing, onArtistGroupsChange }: { artistGro
         </section>
 
         <section className="statement slate-section">
-          <div className="section-number">01 / Approach</div>
-          <p className="statement-copy">We believe the best spaces don’t look <em>finished.</em> They look <em>collected.</em></p>
+          <div className="section-number">Approach</div>
+          <p className="statement-copy">Making your space feel layered and <em>unmistakably you.</em></p>
           <div className="statement-detail">
             <span />
             <p>Art should create a little tension, a little curiosity, and a reason to look twice. We pair a curator’s eye with a collaborator’s flexibility to help each project find its own visual language.</p>
@@ -263,7 +263,7 @@ function HomePage({ artistGroups, isEditing, onArtistGroupsChange }: { artistGro
         <ArtistSection groups={artistGroups} isEditing={isEditing} onChange={onArtistGroupsChange} />
 
         <section className="portfolio-tease driftwood-section">
-          <div className="section-number">02 / Selected work</div>
+          <div className="section-number">Selected work</div>
           <div className="tease-grid">
             <h2>Spaces are the canvas.</h2>
             <div>
@@ -274,7 +274,6 @@ function HomePage({ artistGroups, isEditing, onArtistGroupsChange }: { artistGro
           <div className="category-strip">
             {portfolioCategories.map((category) => (
               <a className={`category-card category-card-photo ${category.tone}`} href="#/portfolio" key={category.name} style={{ backgroundImage: `linear-gradient(180deg, rgba(41,45,40,.05), rgba(41,45,40,.72)), url(${category.images[0]})` }}>
-                <span>{category.number}</span>
                 <strong>{category.name}</strong>
                 <ArrowRight size={20} />
               </a>
@@ -311,7 +310,7 @@ function AboutPage() {
           <div className="journey-list">
             {journey.map((item) => (
               <article className="journey-item" key={item.name}>
-                <div className="journey-number">{item.number}</div>
+                <div className="journey-number" aria-hidden="true" />
                 <div>
                   <div className="journey-label">{item.label}</div>
                   <h3>{item.name}</h3>
@@ -342,7 +341,7 @@ function PortfolioPage() {
         <section className="portfolio-categories">
           {portfolioCategories.map((category) => (
             <article className={`portfolio-row ${category.tone}`} key={category.name}>
-              <div className="portfolio-row-meta"><span>{category.number}</span><span>Portfolio category</span></div>
+              <div className="portfolio-row-meta"><span>Portfolio category</span></div>
               <div className="portfolio-row-copy"><h2>{category.name}</h2><p>{category.summary}</p></div>
               <div className="portfolio-image-grid">
                 {category.images.map((image, index) => (
