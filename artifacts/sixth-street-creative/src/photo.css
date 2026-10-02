@@ -60,6 +60,39 @@
   display: none;
 }
 
+/* Keep the editorial labels while removing all visible section numbering. */
+.statement .section-number,
+.portfolio-tease .section-number {
+  font-size: 0;
+}
+
+.statement .section-number::after,
+.portfolio-tease .section-number::after {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .18em;
+  font-weight: 600;
+}
+
+.statement .section-number::after {
+  content: 'Approach';
+}
+
+.portfolio-tease .section-number::after {
+  content: 'Selected work';
+}
+
+.medium-meta span:first-child,
+.category-card > span:first-child,
+.portfolio-row-meta span:first-child,
+.journey-number {
+  display: none;
+}
+
+.journey-item {
+  grid-template-columns: 1fr 1fr;
+}
+
 @media (max-width: 850px) {
   .portfolio-image-grid {
     min-height: auto;
@@ -74,6 +107,14 @@
 
   .portfolio-image-grid img:nth-child(4) {
     display: block;
+  }
+
+  .journey-item {
+    grid-template-columns: 1fr;
+  }
+
+  .journey-item p {
+    grid-column: 1;
   }
 }
 
