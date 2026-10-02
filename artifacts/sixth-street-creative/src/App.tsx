@@ -1,7 +1,6 @@
-import { ArrowDown, ArrowRight, ArrowUp, Mail, MapPin, Pencil, Plus, Save, Trash2, X } from 'lucide-react';
+import { ArrowDown, ArrowRight, ArrowUp, Mail, MapPin, Menu, Pencil, Plus, Save, Trash2, X } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 import MediumsSection from './MediumsSection';
-import './photo.css';
 
 type Page = 'home' | 'about' | 'portfolio';
 type ArtistGroup = { id: string; title: string; artists: string[] };
@@ -109,10 +108,16 @@ function BrandMark() {
 }
 
 function Navigation({ page }: { page: Page }) {
+  const [menuOpen, setMenuOpen] = useState(false);
+  useEffect(() => { setMenuOpen(false); }, [page]);
+
   return (
     <header className="site-header">
       <BrandMark />
-      <nav className="nav-links" aria-label="Primary navigation">
+      <button className="nav-toggle" type="button" aria-label={menuOpen ? 'Close navigation' : 'Open navigation'} aria-expanded={menuOpen} aria-controls="primary-navigation" onClick={() => setMenuOpen((open) => !open)}>
+        {menuOpen ? <X size={22} /> : <Menu size={22} />}
+      </button>
+      <nav id="primary-navigation" className={`nav-links${menuOpen ? ' is-open' : ''}`} aria-label="Primary navigation" onClick={() => setMenuOpen(false)}>
         <a className={page === 'home' ? 'active' : ''} href="#/">Studio</a>
         <a className={page === 'about' ? 'active' : ''} href="#/about">About Me</a>
         <a className={page === 'portfolio' ? 'active' : ''} href="#/portfolio">Portfolio</a>
@@ -251,7 +256,6 @@ function HomePage({ artistGroups, isEditing, onArtistGroupsChange }: { artistGro
         </section>
 
         <section className="statement slate-section">
-          <div className="section-number">Approach</div>
           <p className="statement-copy">Making your space feel layered and <em>unmistakably you.</em></p>
           <div className="statement-detail">
             <span />
@@ -263,7 +267,6 @@ function HomePage({ artistGroups, isEditing, onArtistGroupsChange }: { artistGro
         <ArtistSection groups={artistGroups} isEditing={isEditing} onChange={onArtistGroupsChange} />
 
         <section className="portfolio-tease driftwood-section">
-          <div className="section-number">Selected work</div>
           <div className="tease-grid">
             <h2>Spaces are the canvas.</h2>
             <div>
@@ -301,8 +304,7 @@ function AboutPage() {
         <section className="journey shell-section" id="journey">
           <div className="section-heading-row">
             <div>
-              <div className="eyebrow">Creative Journey</div>
-              <h2>Three chapters.<br />One point of view.</h2>
+              <h2>Creative Journey</h2>
             </div>
             <p className="section-intro">The studio today is shaped by years of making, curating, connecting artists with clients, and building creative relationships.</p>
           </div>
@@ -310,7 +312,6 @@ function AboutPage() {
           <div className="journey-list">
             {journey.map((item) => (
               <article className="journey-item" key={item.name}>
-                <div className="journey-number" aria-hidden="true" />
                 <div>
                   <div className="journey-label">{item.label}</div>
                   <h3>{item.name}</h3>
@@ -341,7 +342,6 @@ function PortfolioPage() {
         <section className="portfolio-categories">
           {portfolioCategories.map((category) => (
             <article className={`portfolio-row ${category.tone}`} key={category.name}>
-              <div className="portfolio-row-meta"><span>Portfolio category</span></div>
               <div className="portfolio-row-copy"><h2>{category.name}</h2><p>{category.summary}</p></div>
               <div className="portfolio-image-grid">
                 {category.images.map((image, index) => (
@@ -396,7 +396,11 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    const section = ['#mediums', '#artists', '#contact'].includes(window.location.hash)
+      ? document.getElementById(window.location.hash.slice(1))
+      : null;
+    if (section) section.scrollIntoView();
+    else window.scrollTo({ top: 0, behavior: 'instant' });
     setIsEditing(false);
     setDraftArtistGroups(savedArtistGroups);
   }, [page, savedArtistGroups]);

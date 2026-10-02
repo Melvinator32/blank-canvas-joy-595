@@ -38,12 +38,12 @@
   }
 
   .journey-item {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: 28px 48px;
+    grid-template-columns: 1fr;
+    gap: 24px;
   }
 
   .journey-item p {
-    grid-column: auto;
+    grid-column: 1;
   }
 }
 
@@ -300,4 +300,87 @@
   .footer-bottom {
     margin-top: 48px;
   }
+}
+
+/* Shared layout rules, loaded after all section styles. */
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 110px; }
+.site-shell { overflow: visible; }
+img { max-width: 100%; }
+.hero-grid > *, .section-heading-row > *, .portfolio-title-row > *,
+.tease-grid > *, .footer-grid > *, .portfolio-row > *,
+.journey-item > *, .mediums-grid > *, .portfolio-note > * { min-width: 0; }
+h1, h2, h3 { overflow-wrap: anywhere; }
+.journey-item {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+  gap: clamp(28px, 5vw, 80px);
+}
+.journey-item p { grid-column: auto; }
+.journey-item h3 { line-height: 1.15; }
+.footer-copy .text-link { overflow-wrap: anywhere; }
+.text-link svg, .button-link svg { flex-shrink: 0; }
+.nav-toggle { display: none; }
+a:focus-visible, button:focus-visible { outline: 2px solid currentColor; outline-offset: 5px; }
+.hero { min-height: calc(100svh - 77px); }
+.edit-toolbar { bottom: max(22px, env(safe-area-inset-bottom)); }
+.artist-name input { min-width: 0; font-size: 16px; }
+.artist-name button, .artist-group-actions button { flex-shrink: 0; min-width: 44px; min-height: 44px; }
+
+/* Tablets (including iPad portrait and landscape): give text room to breathe. */
+@media (min-width: 621px) and (max-width: 1180px) {
+  .hero-grid, .portfolio-title-row, .section-heading-row,
+  .tease-grid, .footer-grid, .mediums-heading { grid-template-columns: 1fr; gap: 32px; }
+  .hero-aside, .section-intro, .portfolio-title-row > p,
+  .mediums-heading > p { max-width: 680px; }
+  .hero { min-height: auto; }
+  .mediums-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .medium-card { min-height: 440px; }
+  .medium-visual { height: auto; aspect-ratio: 4 / 3; }
+  .medium-card h3 { font-size: clamp(36px, 4.5vw, 48px); }
+  .category-strip { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .category-card { min-height: 210px; padding: 18px; }
+  .category-card strong { font-size: clamp(25px, 3.2vw, 36px); }
+  .portfolio-row { grid-template-columns: 1fr; gap: 30px; }
+  .portfolio-image-grid { min-height: 0; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(180px, 28vw)); }
+  .portfolio-image-grid img, .portfolio-image-grid img:first-child { grid-row: auto; min-height: 0; }
+  .portfolio-image-grid img:nth-child(4) { display: block; }
+  .portfolio-note { grid-template-columns: 1fr; gap: 24px; }
+  .journey-item { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 36px; }
+  .journey-item h3 { font-size: clamp(28px, 3.8vw, 42px); }
+}
+
+/* Phone and compact-tablet navigation: every destination stays available. */
+@media (max-width: 900px) {
+  .site-header { flex-wrap: wrap; gap: 0; padding: 16px clamp(20px, 4vw, 40px); }
+  .nav-toggle { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid var(--line); background: transparent; color: var(--slate); cursor: pointer; }
+  .nav-links { display: none; width: 100%; max-width: none; overflow: visible; white-space: normal; font-size: 15px; gap: 4px 24px; padding-top: 16px; }
+  .nav-links.is-open { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .nav-links a, .nav-links a:first-child, .nav-links a:nth-child(4), .nav-links a:nth-child(5) { display: block; min-height: 44px; padding: 12px 0; }
+}
+
+/* Phones: stack content and use image proportions that fit a narrow screen. */
+@media (max-width: 620px) {
+  .hero { min-height: auto; }
+  .journey-item { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .journey-item p { grid-column: 1; }
+  .journey-item h3 { font-size: clamp(30px, 8.5vw, 42px); margin-bottom: 20px; line-height: 1.1; }
+  .mediums-grid, .category-strip { grid-template-columns: minmax(0, 1fr); }
+  .mediums-heading { grid-template-columns: minmax(0, 1fr); }
+  .portfolio-image-grid { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; min-height: 0; }
+  .portfolio-image-grid img, .portfolio-image-grid img:first-child { height: auto; aspect-ratio: 4 / 3; min-height: 0; grid-row: auto; }
+  .portfolio-image-grid img:nth-child(4) { display: block; }
+  .footer-copy .text-link { font-size: 11px; letter-spacing: .03em; }
+  .footer { padding-bottom: calc(90px + env(safe-area-inset-bottom)); }
+  .edit-toolbar { bottom: max(14px, env(safe-area-inset-bottom)); }
+  .edit-toolbar button { min-height: 44px; }
+}
+
+@media (max-width: 380px) {
+  .section-heading-row h2, .tease-grid h2, .portfolio-note h2,
+  .statement-copy, .footer h2 { font-size: 36px; }
+  .portfolio-row-copy h2 { font-size: 42px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; }
 }

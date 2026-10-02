@@ -1,4 +1,3 @@
-import './mediums.css';
 
 const mediums = [
   {
@@ -41,9 +40,6 @@ export default function MediumsSection() {
           <article className={medium.className} key={medium.name}>
             <div className="medium-visual">
               <img src={medium.image} alt={medium.alt} loading="lazy" />
-            </div>
-            <div className="medium-meta">
-              <span>Medium</span>
             </div>
             <h3>{medium.name}</h3>
             <p>{medium.description}</p>

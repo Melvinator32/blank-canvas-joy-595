@@ -1,47 +1,14 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import './index.css';
+import './mediums.css';
+import './photo.css';
 import './artists.css';
 import './mobile.css';
 
-function SiteRoot() {
-  useEffect(() => {
-    const applyCopyAndCleanups = () => {
-      const heroTitle = document.querySelector('.hero h1');
-      if (heroTitle && heroTitle.textContent?.trim() !== 'Creating spaces that feel like an extension of you.') {
-        heroTitle.innerHTML = 'Creating spaces that feel<br /><em>like an extension of you.</em>';
-      }
-
-      const journeyHeading = document.querySelector('.journey .section-heading-row > div');
-      if (journeyHeading && journeyHeading.textContent?.trim() !== 'Creative Journey') {
-        journeyHeading.innerHTML = '<h2>Creative Journey</h2>';
-      }
-
-      document.querySelectorAll('.section-number, .journey-number').forEach((element) => element.remove());
-
-      document.querySelectorAll('.category-card > span:first-child').forEach((element) => element.remove());
-      document.querySelectorAll('.portfolio-row-meta > span:first-child').forEach((element) => element.remove());
-      document.querySelectorAll('.medium-meta > span:first-child').forEach((element) => element.remove());
-    };
-
-    applyCopyAndCleanups();
-
-    const observer = new MutationObserver(applyCopyAndCleanups);
-    observer.observe(document.body, { childList: true, subtree: true });
-    window.addEventListener('hashchange', applyCopyAndCleanups);
-
-    return () => {
-      observer.disconnect();
-      window.removeEventListener('hashchange', applyCopyAndCleanups);
-    };
-  }, []);
-
-  return <App />;
-}
-
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <SiteRoot />
+    <App />
   </React.StrictMode>,
 );

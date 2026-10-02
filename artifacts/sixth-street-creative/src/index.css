@@ -84,7 +84,7 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 500; }
 .section-heading-row h2, .tease-grid h2, .portfolio-note h2 { margin: 14px 0 0; font-size: clamp(48px, 6vw, 88px); line-height: .94; letter-spacing: -.045em; }
 .section-intro { margin: 0; }
 .journey-list { border-top: 1px solid var(--line); }
-.journey-item { display: grid; grid-template-columns: 70px 1fr 1fr; gap: clamp(20px, 4vw, 60px); padding: 34px 0; border-bottom: 1px solid var(--line); align-items: start; }
+.journey-item { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(20px, 4vw, 60px); padding: 34px 0; border-bottom: 1px solid var(--line); align-items: start; }
 .journey-number { font: italic 500 22px/1 'Playfair Display', serif; color: var(--oxblood); }
 .journey-label { color: var(--storm); margin-bottom: 8px; }
 .journey-item h3 { margin: 0; font-size: clamp(28px, 3vw, 45px); letter-spacing: -.025em; }
@@ -107,7 +107,7 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 500; }
 .portfolio-title-row { display: grid; grid-template-columns: 1.45fr .55fr; gap: clamp(40px, 8vw, 120px); align-items: end; }
 .portfolio-title-row > p { margin-bottom: 4px; }
 .portfolio-categories { background: var(--slate); }
-.portfolio-row { min-height: 520px; display: grid; grid-template-columns: .42fr 1fr 1fr; gap: 40px; padding: clamp(35px, 5vw, 70px) clamp(22px, 6vw, 96px); color: var(--paper); border-bottom: 1px solid rgba(255,255,255,.22); }
+.portfolio-row { min-height: 520px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 40px; padding: clamp(35px, 5vw, 70px) clamp(22px, 6vw, 96px); color: var(--paper); border-bottom: 1px solid rgba(255,255,255,.22); }
 .portfolio-row-meta { display: flex; flex-direction: column; justify-content: space-between; font-size: 11px; text-transform: uppercase; letter-spacing: .14em; }
 .portfolio-row-copy { align-self: center; }
 .portfolio-row-copy h2 { margin: 0 0 20px; font-size: clamp(50px, 7vw, 105px); line-height: .9; letter-spacing: -.055em; }
