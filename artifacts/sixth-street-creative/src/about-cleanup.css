@@ -1,0 +1,10 @@
+.about-hero > .eyebrow,
+.about-hero .portfolio-title-row > p,
+.journey .section-heading-row > .section-intro {
+  display: none;
+}
+
+.about-hero .portfolio-title-row,
+.journey .section-heading-row {
+  grid-template-columns: 1fr;
+}
