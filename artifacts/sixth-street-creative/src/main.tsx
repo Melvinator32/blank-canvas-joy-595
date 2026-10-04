@@ -6,6 +6,7 @@ import './mediums.css';
 import './photo.css';
 import './artists.css';
 import './mobile.css';
+import './about-cleanup.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
