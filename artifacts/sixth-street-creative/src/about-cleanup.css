@@ -8,3 +8,19 @@
 .journey .section-heading-row {
   grid-template-columns: 1fr;
 }
+
+.journey-logo {
+  display: block;
+  width: clamp(140px, 16vw, 200px);
+  max-width: 100%;
+  height: auto;
+  margin-top: 24px;
+  object-fit: contain;
+}
+
+@media (max-width: 620px) {
+  .journey-logo {
+    width: 150px;
+    margin: 0 0 24px;
+  }
+}

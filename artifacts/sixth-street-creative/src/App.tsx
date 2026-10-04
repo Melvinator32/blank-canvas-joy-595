@@ -25,6 +25,7 @@ const journey = [
   {
     number: '02',
     name: 'Nashville Artist Collective',
+    logo: '/images/nashville-logo.webp',
     label: 'The community',
     description: 'A chapter shaped by artists, relationships, and curation — connecting original work with people and places in a thoughtful way.',
   },
@@ -315,6 +316,9 @@ function AboutPage() {
                 <div>
                   <div className="journey-label">{item.label}</div>
                   <h3>{item.name}</h3>
+                  {item.logo && (
+                    <img className="journey-logo" src={item.logo} alt="Nashville Artist Collective logo" width={1080} height={1080} loading="lazy" />
+                  )}
                 </div>
                 <p>{item.description}</p>
               </article>
