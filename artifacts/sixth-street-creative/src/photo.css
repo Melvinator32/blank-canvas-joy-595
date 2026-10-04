@@ -16,21 +16,9 @@
 
 .category-card-photo {
   background-color: var(--slate);
-  background-size: 100% 100%, contain !important;
+  background-size: 100% 100%, cover !important;
   background-position: center, center !important;
   background-repeat: no-repeat, no-repeat !important;
-}
-
-.category-card-photo.jade {
-  background-image: linear-gradient(180deg, rgba(41,45,40,.02), rgba(41,45,40,.74)), url('/images/portfolio/residential-feature.webp') !important;
-}
-
-.category-card-photo.clay {
-  background-image: linear-gradient(180deg, rgba(41,45,40,.02), rgba(41,45,40,.74)), url('/images/portfolio/hospitality-feature.jpg') !important;
-}
-
-.category-card-photo.kelp {
-  background-image: linear-gradient(180deg, rgba(41,45,40,.02), rgba(41,45,40,.74)), url('/images/portfolio/commercial-feature.webp') !important;
 }
 
 .portfolio-image-grid {
