@@ -7,7 +7,8 @@
     "dev": "vite --host 0.0.0.0",
     "build": "vite build",
     "serve": "vite preview --host 0.0.0.0",
-    "typecheck": "tsc -p tsconfig.json --noEmit"
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test:editor": "node tests/editor-check.cjs"
   },
   "dependencies": {
     "lucide-react": "^0.545.0",
@@ -21,6 +22,7 @@
     "@vitejs/plugin-react": "^5.0.4",
     "tailwindcss": "^4.1.14",
     "typescript": "~5.9.3",
-    "vite": "^7.3.2"
+    "vite": "^7.3.2",
+    "playwright": "1.62.1"
   }
 }

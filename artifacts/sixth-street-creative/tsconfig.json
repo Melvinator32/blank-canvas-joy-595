@@ -4,6 +4,7 @@
   "exclude": ["node_modules", "dist"],
   "compilerOptions": {
     "noEmit": true,
+    "resolveJsonModule": true,
     "jsx": "react-jsx",
     "lib": ["esnext", "dom", "dom.iterable"],
     "moduleResolution": "bundler",

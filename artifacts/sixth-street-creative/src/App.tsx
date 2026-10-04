@@ -1,159 +1,47 @@
-import { ArrowDown, ArrowRight, ArrowUp, Mail, MapPin, Menu, Pencil, Plus, Save, Trash2, X } from 'lucide-react';
-import { useEffect, useMemo, useState } from 'react';
+import { ArrowDown, ArrowRight, ArrowUp, Mail, MapPin, Menu, Plus, Trash2, X } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import MediumsSection from './MediumsSection';
+import { EditableImage, EditableText, Gallery, useSiteEditor } from './SiteEditor';
+import type { ArtistGroup } from './content';
 
 type Page = 'home' | 'about' | 'portfolio';
-type ArtistGroup = { id: string; title: string; artists: string[] };
-
-type PortfolioCategory = {
-  name: string;
-  number: string;
-  summary: string;
-  tone: string;
-  images: string[];
-};
-
-const currentSiteHero = '/images/hero.jpg';
-
-const journey = [
-  {
-    number: '01',
-    name: 'Rowanne Designs',
-    label: 'The foundation',
-    description: 'A jewelry design business where Rowanne first developed her eye for materials, composition, craftsmanship, and creating pieces with a distinct point of view.',
-  },
-  {
-    number: '02',
-    name: 'Nashville Artist Collective',
-    logo: '/images/nashville-logo.webp',
-    label: 'The community',
-    description: 'A chapter shaped by artists, relationships, and curation — connecting original work with people and places in a thoughtful way.',
-  },
-  {
-    number: '03',
-    name: 'Sixth Street Creative',
-    label: 'The studio today',
-    description: 'Art consulting and creative collaboration brought together under one studio, with an instinct for the unexpected and a point of view that stays personal.',
-  },
-];
-
-const portfolioCategories: PortfolioCategory[] = [
-  {
-    name: 'Residential',
-    number: '01',
-    summary: 'Original art and considered placement for homes that feel collected rather than decorated.',
-    tone: 'jade',
-    images: [
-      '/images/portfolio/residential-01.jpg',
-      '/images/portfolio/residential-02.jpg',
-      '/images/portfolio/residential-03.jpg',
-      '/images/portfolio/residential-04.jpg',
-    ],
-  },
-  {
-    name: 'Hospitality',
-    number: '02',
-    summary: 'Art programs and creative direction that give hotels, restaurants, and gathering spaces a memorable sense of place.',
-    tone: 'clay',
-    images: [
-      '/images/portfolio/hospitality-01.jpg',
-      '/images/portfolio/hospitality-02.jpg',
-      '/images/portfolio/hospitality-03.jpg',
-      '/images/portfolio/hospitality-04.jpg',
-    ],
-  },
-  {
-    name: 'Commercial',
-    number: '03',
-    summary: 'Art consulting for workplaces and public-facing environments where brand, culture, and human experience meet.',
-    tone: 'kelp',
-    images: [
-      '/images/portfolio/commercial-01.jpg',
-      '/images/portfolio/commercial-02.jpg',
-      '/images/portfolio/commercial-03.jpg',
-      '/images/portfolio/commercial-04.jpg',
-    ],
-  },
-];
-
-const defaultArtistGroups: ArtistGroup[] = [
-  { id: 'featured-artists', title: 'Featured Artists', artists: [] },
-];
-
-const ARTIST_STORAGE_KEY = 'sixth-street-creative-artist-groups';
+const categories = [{ id: 'residential', tone: 'jade' }, { id: 'hospitality', tone: 'clay' }, { id: 'commercial', tone: 'kelp' }];
+const journey = ['rowanne', 'collective', 'studio'];
 
 function useHashPage() {
-  const getPage = (): Page => {
-    if (window.location.hash === '#/portfolio') return 'portfolio';
-    if (window.location.hash === '#/about') return 'about';
-    return 'home';
-  };
+  const getPage = (): Page => window.location.hash === '#/portfolio' ? 'portfolio' : window.location.hash === '#/about' ? 'about' : 'home';
   const [page, setPage] = useState<Page>(getPage);
-
-  useEffect(() => {
-    const onHashChange = () => setPage(getPage());
-    window.addEventListener('hashchange', onHashChange);
-    return () => window.removeEventListener('hashchange', onHashChange);
-  }, []);
-
+  useEffect(() => { const change = () => setPage(getPage()); window.addEventListener('hashchange', change); return () => window.removeEventListener('hashchange', change); }, []);
   return page;
 }
-
-function BrandMark() {
-  return (
-    <a className="brand" href="#/" aria-label="Sixth Street Creative home">
-      <span className="brand-sixth">SIXTH STREET</span>
-      <span className="brand-creative">CREATIVE</span>
-    </a>
-  );
-}
-
 function Navigation({ page }: { page: Page }) {
   const [menuOpen, setMenuOpen] = useState(false);
   useEffect(() => { setMenuOpen(false); }, [page]);
-
-  return (
-    <header className="site-header">
-      <BrandMark />
-      <button className="nav-toggle" type="button" aria-label={menuOpen ? 'Close navigation' : 'Open navigation'} aria-expanded={menuOpen} aria-controls="primary-navigation" onClick={() => setMenuOpen((open) => !open)}>
-        {menuOpen ? <X size={22} /> : <Menu size={22} />}
-      </button>
-      <nav id="primary-navigation" className={`nav-links${menuOpen ? ' is-open' : ''}`} aria-label="Primary navigation" onClick={() => setMenuOpen(false)}>
-        <a className={page === 'home' ? 'active' : ''} href="#/">Studio</a>
-        <a className={page === 'about' ? 'active' : ''} href="#/about">About Me</a>
-        <a className={page === 'portfolio' ? 'active' : ''} href="#/portfolio">Portfolio</a>
-        <a href="#mediums">Mediums</a>
-        <a href="#artists">Artists</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </header>
-  );
+  return <header className="site-header">
+    <a className="brand" href="#/" aria-label="Sixth Street Creative home"><span className="brand-sixth"><EditableText id="brand.top" /></span><span className="brand-creative"><EditableText id="brand.bottom" /></span></a>
+    <button className="nav-toggle" type="button" aria-label={menuOpen ? 'Close navigation' : 'Open navigation'} aria-expanded={menuOpen} aria-controls="primary-navigation" onClick={() => setMenuOpen(open => !open)}>{menuOpen ? <X size={22} /> : <Menu size={22} />}</button>
+    <nav id="primary-navigation" className={`nav-links${menuOpen ? ' is-open' : ''}`} aria-label="Primary navigation" onClick={() => setMenuOpen(false)}>
+      <a className={page === 'home' ? 'active' : ''} href="#/"><EditableText id="nav.home" /></a>
+      <a className={page === 'about' ? 'active' : ''} href="#/about"><EditableText id="nav.about" /></a>
+      <a className={page === 'portfolio' ? 'active' : ''} href="#/portfolio"><EditableText id="nav.portfolio" /></a>
+      <a href="#mediums"><EditableText id="nav.mediums" /></a>
+      <a href="#artists"><EditableText id="nav.artists" /></a>
+      <a href="#contact"><EditableText id="nav.contact" /></a>
+    </nav>
+  </header>;
 }
-
 function Footer() {
-  return (
-    <footer id="contact" className="footer">
-      <div className="footer-kicker">Start a conversation</div>
-      <div className="footer-grid">
-        <div><h2>Have a space,<br />an idea, or both?</h2></div>
-        <div className="footer-copy">
-          <p>Sixth Street Creative works with clients, designers, architects, artists, and brands to create spaces with a point of view.</p>
-          <a className="text-link" href="mailto:rowanne@sixthstreetcreative.com">
-            rowanne@sixthstreetcreative.com <ArrowRight size={17} />
-          </a>
-        </div>
-      </div>
-      <div className="footer-bottom">
-        <span>© {new Date().getFullYear()} Sixth Street Creative</span>
-        <div className="footer-meta">
-          <span><MapPin size={14} /> Nashville, Tennessee</span>
-          <a href="mailto:rowanne@sixthstreetcreative.com"><Mail size={14} /> Email</a>
-        </div>
-      </div>
-    </footer>
-  );
+  const { text } = useSiteEditor();
+  const email = `mailto:${text('footer.email').trim()}`;
+  return <footer id="contact" className="footer">
+    <div className="footer-kicker"><EditableText id="footer.eyebrow" /></div>
+    <div className="footer-grid">
+      <div><h2><EditableText id="footer.title" /></h2></div>
+      <div className="footer-copy"><p><EditableText id="footer.copy" /></p><a className="text-link" href={email}><EditableText id="footer.email" label="contact email" /><ArrowRight size={17} /></a></div>
+    </div>
+    <div className="footer-bottom"><span>© {new Date().getFullYear()} <EditableText id="footer.copyright" /></span><div className="footer-meta"><span><MapPin size={14} /><EditableText id="footer.location" /></span><a href={email}><Mail size={14} /><EditableText id="footer.emailLabel" /></a></div></div>
+  </footer>;
 }
-
 function ArtistSection({ groups, isEditing, onChange }: { groups: ArtistGroup[]; isEditing: boolean; onChange: (groups: ArtistGroup[]) => void }) {
   const updateGroup = (id: string, patch: Partial<ArtistGroup>) => {
     onChange(groups.map((group) => (group.id === id ? { ...group, ...patch } : group)));
@@ -186,10 +74,10 @@ function ArtistSection({ groups, isEditing, onChange }: { groups: ArtistGroup[];
     <section className="artists-section shell-section" id="artists">
       <div className="section-heading-row artists-heading">
         <div>
-          <div className="eyebrow">Artists We’ve Worked With</div>
-          <h2>Built through<br />creative relationships.</h2>
+          <div className="eyebrow"><EditableText id="artists.eyebrow" /></div>
+          <h2><EditableText id="artists.title" /></h2>
         </div>
-        <p className="section-intro">A growing register of artists Sixth Street Creative has collaborated with, sourced from, represented, or placed in projects.</p>
+        <p className="section-intro"><EditableText id="artists.intro" /></p>
       </div>
 
       <div className="artist-groups">
@@ -237,215 +125,46 @@ function ArtistSection({ groups, isEditing, onChange }: { groups: ArtistGroup[];
   );
 }
 
-function HomePage({ artistGroups, isEditing, onArtistGroupsChange }: { artistGroups: ArtistGroup[]; isEditing: boolean; onArtistGroupsChange: (groups: ArtistGroup[]) => void }) {
-  return (
-    <>
-      <main>
-        <section className="hero shell-section">
-          <div className="eyebrow">Art consulting · Creative collaborations</div>
-          <div className="hero-grid">
-            <h1>Creating spaces that feel<br /><em>like an extension of you.</em></h1>
-            <div className="hero-aside">
-              <p>Sixth Street Creative brings art, interiors, and people together — building collections and creative moments that feel personal, layered, and entirely at home.</p>
-              <a className="button-link" href="#/portfolio">View the portfolio <ArrowRight size={18} /></a>
-            </div>
-          </div>
-          <div className="hero-photo-wrap">
-            <img className="hero-photo" src={currentSiteHero} alt="Sixth Street Creative project from the current website" />
-            <div className="canvas-note"><span>EST.</span><strong>SSC</strong><span>NASHVILLE</span></div>
-          </div>
-        </section>
-
-        <section className="statement slate-section">
-          <p className="statement-copy">Making your space feel layered and <em>unmistakably you.</em></p>
-          <div className="statement-detail">
-            <span />
-            <p>Art should create a little tension, a little curiosity, and a reason to look twice. We pair a curator’s eye with a collaborator’s flexibility to help each project find its own visual language.</p>
-          </div>
-        </section>
-
-        <MediumsSection />
-        <ArtistSection groups={artistGroups} isEditing={isEditing} onChange={onArtistGroupsChange} />
-
-        <section className="portfolio-tease driftwood-section">
-          <div className="tease-grid">
-            <h2>Spaces are the canvas.</h2>
-            <div>
-              <p>Explore residential, hospitality, and commercial projects through a dedicated portfolio built to let the work lead.</p>
-              <a className="text-link dark" href="#/portfolio">Enter the portfolio <ArrowRight size={17} /></a>
-            </div>
-          </div>
-          <div className="category-strip">
-            {portfolioCategories.map((category) => (
-              <a className={`category-card category-card-photo ${category.tone}`} href="#/portfolio" key={category.name} style={{ backgroundImage: `linear-gradient(180deg, rgba(41,45,40,.05), rgba(41,45,40,.72)), url(${category.images[0]})` }}>
-                <strong>{category.name}</strong>
-                <ArrowRight size={20} />
-              </a>
-            ))}
-          </div>
-        </section>
-      </main>
-      <Footer />
-    </>
-  );
+function HomePage() {
+  const editor = useSiteEditor();
+  return <main>
+    <section className="hero shell-section">
+      <div className="eyebrow"><EditableText id="home.eyebrow" /></div>
+      <div className="hero-grid"><h1><EditableText id="home.title" /><br /><em><EditableText id="home.titleEm" /></em></h1><div className="hero-aside"><p><EditableText id="home.intro" /></p><a className="button-link" href="#/portfolio"><EditableText id="home.cta" /><ArrowRight size={18} /></a></div></div>
+      <div className="hero-photo-wrap"><EditableImage id="home.hero" className="hero-photo-frame" imageClassName="hero-photo" eager /><div className="canvas-note"><span><EditableText id="home.stampTop" /></span><strong><EditableText id="home.stamp" /></strong><span><EditableText id="home.stampBottom" /></span></div></div>
+    </section>
+    <section className="statement slate-section"><p className="statement-copy"><EditableText id="approach.title" /> <em><EditableText id="approach.titleEm" /></em></p><div className="statement-detail"><span /><p><EditableText id="approach.copy" /></p></div></section>
+    <MediumsSection />
+    <ArtistSection groups={editor.content.artistGroups} isEditing={editor.active} onChange={groups => editor.update(draft => { draft.artistGroups = groups; })} />
+    <section className="portfolio-tease driftwood-section">
+      <div className="tease-grid"><h2><EditableText id="work.title" /></h2><div><p><EditableText id="work.intro" /></p><a className="text-link dark" href="#/portfolio"><EditableText id="work.cta" /><ArrowRight size={17} /></a></div></div>
+      <div className="category-strip">{categories.map(category => <div className="category-card-shell" key={category.id}>
+        <a className={`category-card category-card-photo ${category.tone}`} href="#/portfolio" style={{ backgroundImage: `linear-gradient(180deg, rgba(41,45,40,.05), rgba(41,45,40,.72)), url(${JSON.stringify(editor.image(`cover.${category.id}`).src)})` }}><strong><EditableText id={`portfolio.${category.id}.name`} /></strong><ArrowRight size={20} /></a>
+        {editor.active && <button className="image-edit-button" type="button" onClick={() => editor.editImage(`cover.${category.id}`)}>Change cover photo</button>}
+      </div>)}</div>
+    </section>
+  </main>;
 }
-
 function AboutPage() {
-  return (
-    <>
-      <main>
-        <section className="portfolio-hero shell-section about-hero">
-          <div className="eyebrow">About Me</div>
-          <div className="portfolio-title-row">
-            <h1>A creative practice<br /><em>built over time.</em></h1>
-            <p>Sixth Street Creative grew from Rowanne's path through jewelry design, artist relationships, curation, and a lasting belief that art should make a space feel more personal.</p>
-          </div>
-        </section>
-
-        <section className="journey shell-section" id="journey">
-          <div className="section-heading-row">
-            <div>
-              <h2>Creative Journey</h2>
-            </div>
-            <p className="section-intro">The studio today is shaped by years of making, curating, connecting artists with clients, and building creative relationships.</p>
-          </div>
-
-          <div className="journey-list">
-            {journey.map((item) => (
-              <article className="journey-item" key={item.name}>
-                <div>
-                  <div className="journey-label">{item.label}</div>
-                  <h3>{item.name}</h3>
-                  {item.logo && (
-                    <img className="journey-logo" src={item.logo} alt="Nashville Artist Collective logo" width={1080} height={1080} loading="lazy" />
-                  )}
-                </div>
-                <p>{item.description}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-      </main>
-      <Footer />
-    </>
-  );
+  return <main>
+    <section className="portfolio-hero shell-section about-hero"><div className="eyebrow"><EditableText id="about.eyebrow" /></div><div className="portfolio-title-row"><h1><EditableText id="about.title" /><br /><em><EditableText id="about.titleEm" /></em></h1><p><EditableText id="about.intro" /></p></div></section>
+    <section className="journey shell-section" id="journey"><div className="section-heading-row"><div><h2><EditableText id="journey.title" /></h2></div><p className="section-intro"><EditableText id="journey.intro" /></p></div>
+      <div className="journey-list">{journey.map(id => <article className="journey-item" key={id}><div><div className="journey-label"><EditableText id={`journey.${id}.label`} /></div><h3><EditableText id={`journey.${id}.name`} /></h3>{id === 'collective' && <EditableImage id="journey.collective.logo" className="journey-logo" optional />}</div><p><EditableText id={`journey.${id}.copy`} /></p></article>)}</div>
+    </section>
+  </main>;
 }
-
 function PortfolioPage() {
-  return (
-    <>
-      <main>
-        <section className="portfolio-hero shell-section">
-          <div className="eyebrow">Portfolio</div>
-          <div className="portfolio-title-row">
-            <h1>Work with<br /><em>something to say.</em></h1>
-            <p>Art consulting and creative collaborations across residential, hospitality, and commercial environments.</p>
-          </div>
-        </section>
-
-        <section className="portfolio-categories">
-          {portfolioCategories.map((category) => (
-            <article className={`portfolio-row ${category.tone}`} key={category.name}>
-              <div className="portfolio-row-copy"><h2>{category.name}</h2><p>{category.summary}</p></div>
-              <div className="portfolio-image-grid">
-                {category.images.map((image, index) => (
-                  <img key={image} src={image} loading="lazy" alt={`${category.name} project ${index + 1} from the current Sixth Street Creative website`} />
-                ))}
-              </div>
-            </article>
-          ))}
-        </section>
-
-        <section className="portfolio-note shell-section">
-          <span className="eyebrow">The next layer</span>
-          <h2>Built to grow with the work.</h2>
-          <p>Each category is structured to become a full project gallery with individual case studies, project photography, artist details, and notes on the creative process.</p>
-        </section>
-      </main>
-      <Footer />
-    </>
-  );
+  return <main>
+    <section className="portfolio-hero shell-section"><div className="eyebrow"><EditableText id="portfolio.eyebrow" /></div><div className="portfolio-title-row"><h1><EditableText id="portfolio.title" /><br /><em><EditableText id="portfolio.titleEm" /></em></h1><p><EditableText id="portfolio.intro" /></p></div></section>
+    <section className="portfolio-categories">{categories.map(category => <article className={`portfolio-row ${category.tone}`} key={category.id}><div className="portfolio-row-copy"><h2><EditableText id={`portfolio.${category.id}.name`} /></h2><p><EditableText id={`portfolio.${category.id}.copy`} /></p></div><Gallery category={category.id} /></article>)}</section>
+    <section className="portfolio-note shell-section"><span className="eyebrow"><EditableText id="portfolio.noteEyebrow" /></span><h2><EditableText id="portfolio.noteTitle" /></h2><p><EditableText id="portfolio.noteCopy" /></p></section>
+  </main>;
 }
-
-function EditToolbar({ isEditing, hasChanges, onToggle, onSave }: { isEditing: boolean; hasChanges: boolean; onToggle: () => void; onSave: () => void }) {
-  return (
-    <div className="edit-toolbar">
-      {isEditing && <button className="edit-save" type="button" onClick={onSave} disabled={!hasChanges}><Save size={15} /> Save artists</button>}
-      <button className="edit-toggle" type="button" onClick={onToggle}>
-        {isEditing ? <X size={15} /> : <Pencil size={15} />}
-        {isEditing ? 'Exit edit mode' : 'Edit artists'}
-      </button>
-    </div>
-  );
-}
-
 export default function App() {
   const page = useHashPage();
-  const [isEditing, setIsEditing] = useState(false);
-  const [savedArtistGroups, setSavedArtistGroups] = useState<ArtistGroup[]>(defaultArtistGroups);
-  const [draftArtistGroups, setDraftArtistGroups] = useState<ArtistGroup[]>(defaultArtistGroups);
-
   useEffect(() => {
-    try {
-      const stored = window.localStorage.getItem(ARTIST_STORAGE_KEY);
-      if (!stored) return;
-      const parsed = JSON.parse(stored) as ArtistGroup[];
-      if (Array.isArray(parsed) && parsed.length > 0) {
-        setSavedArtistGroups(parsed);
-        setDraftArtistGroups(parsed);
-      }
-    } catch {
-      // Use defaults if browser storage is unavailable or invalid.
-    }
-  }, []);
-
-  useEffect(() => {
-    const section = ['#mediums', '#artists', '#contact'].includes(window.location.hash)
-      ? document.getElementById(window.location.hash.slice(1))
-      : null;
-    if (section) section.scrollIntoView();
-    else window.scrollTo({ top: 0, behavior: 'instant' });
-    setIsEditing(false);
-    setDraftArtistGroups(savedArtistGroups);
-  }, [page, savedArtistGroups]);
-
-  const hasArtistChanges = useMemo(
-    () => JSON.stringify(savedArtistGroups) !== JSON.stringify(draftArtistGroups),
-    [savedArtistGroups, draftArtistGroups],
-  );
-
-  const saveArtists = () => {
-    setSavedArtistGroups(draftArtistGroups);
-    window.localStorage.setItem(ARTIST_STORAGE_KEY, JSON.stringify(draftArtistGroups));
-  };
-
-  const toggleEditMode = () => {
-    if (isEditing) setDraftArtistGroups(savedArtistGroups);
-    setIsEditing((value) => !value);
-  };
-
-  return (
-    <div className="site-shell">
-      <Navigation page={page} />
-      {page === 'portfolio' ? (
-        <PortfolioPage />
-      ) : page === 'about' ? (
-        <AboutPage />
-      ) : (
-        <HomePage
-          artistGroups={isEditing ? draftArtistGroups : savedArtistGroups}
-          isEditing={isEditing}
-          onArtistGroupsChange={setDraftArtistGroups}
-        />
-      )}
-      {page === 'home' && (
-        <EditToolbar
-          isEditing={isEditing}
-          hasChanges={hasArtistChanges}
-          onToggle={toggleEditMode}
-          onSave={saveArtists}
-        />
-      )}
-    </div>
-  );
+    const section = ['#mediums', '#artists', '#contact'].includes(window.location.hash) ? document.getElementById(window.location.hash.slice(1)) : null;
+    if (section) section.scrollIntoView(); else window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [page]);
+  return <div className="site-shell"><Navigation page={page} />{page === 'portfolio' ? <PortfolioPage /> : page === 'about' ? <AboutPage /> : <HomePage />}<Footer /></div>;
 }
