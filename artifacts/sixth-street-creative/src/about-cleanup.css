@@ -109,3 +109,15 @@
     grid-column: 2;
   }
 }
+
+.site-header .brand .studio-logo {
+  width: 96px;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+  .site-header .brand .studio-logo {
+    width: 72px;
+  }
+}

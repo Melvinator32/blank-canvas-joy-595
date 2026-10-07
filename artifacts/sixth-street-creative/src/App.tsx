@@ -18,7 +18,7 @@ function Navigation({ page }: { page: Page }) {
   const [menuOpen, setMenuOpen] = useState(false);
   useEffect(() => { setMenuOpen(false); }, [page]);
   return <header className="site-header">
-    <a className="brand" href="#/" aria-label="Sixth Street Creative home"><span className="brand-sixth"><EditableText id="brand.top" /></span><span className="brand-creative"><EditableText id="brand.bottom" /></span></a>
+    <a className="brand" href="#/" aria-label="Sixth Street Creative home"><StudioLogo /></a>
     <button className="nav-toggle" type="button" aria-label={menuOpen ? 'Close navigation' : 'Open navigation'} aria-expanded={menuOpen} aria-controls="primary-navigation" onClick={() => setMenuOpen(open => !open)}>{menuOpen ? <X size={22} /> : <Menu size={22} />}</button>
     <nav id="primary-navigation" className={`nav-links${menuOpen ? ' is-open' : ''}`} aria-label="Primary navigation" onClick={() => setMenuOpen(false)}>
       <a className={page === 'home' ? 'active' : ''} href="#/"><EditableText id="nav.home" /></a>
@@ -133,7 +133,6 @@ function HomePage() {
   const editor = useSiteEditor();
   return <main>
     <section className="hero shell-section">
-      <StudioLogo />
       <div className="eyebrow"><EditableText id="home.eyebrow" /></div>
       <div className="hero-grid"><h1><EditableText id="home.title" /><br /><em><EditableText id="home.titleEm" /></em></h1><div className="hero-aside"><p><EditableText id="home.intro" /></p><a className="button-link" href="#/portfolio"><EditableText id="home.cta" /><ArrowRight size={18} /></a></div></div>
       <div className="hero-photo-wrap"><EditableImage id="home.hero" className="hero-photo-frame" imageClassName="hero-photo" eager /><div className="canvas-note"><span><EditableText id="home.stampTop" /></span><strong><EditableText id="home.stamp" /></strong><span><EditableText id="home.stampBottom" /></span></div></div>
@@ -152,9 +151,9 @@ function HomePage() {
 }
 function AboutPage() {
   return <main>
-    <section className="portfolio-hero shell-section about-hero"><StudioLogo /><div className="eyebrow"><EditableText id="about.eyebrow" /></div><div className="portfolio-title-row"><h1><EditableText id="about.title" /><br /><em><EditableText id="about.titleEm" /></em></h1><p><EditableText id="about.intro" /></p><EditableImage id="about.headshot" className="about-headshot" eager /></div></section>
+    <section className="portfolio-hero shell-section about-hero"><div className="eyebrow"><EditableText id="about.eyebrow" /></div><div className="portfolio-title-row"><h1><EditableText id="about.title" /><br /><em><EditableText id="about.titleEm" /></em></h1><p><EditableText id="about.intro" /></p><EditableImage id="about.headshot" className="about-headshot" eager /></div></section>
     <section className="journey shell-section" id="journey"><div className="section-heading-row"><div><h2><EditableText id="journey.title" /></h2></div><p className="section-intro"><EditableText id="journey.intro" /></p></div>
-      <div className="journey-list">{journey.map(id => <article className={`journey-item${id !== 'rowanne' ? ' has-logo' : ''}`} key={id}>{id === 'collective' && <EditableImage id="journey.collective.logo" className="journey-icon" optional />}{id === 'studio' && <StudioLogo className="journey-icon" />}<div><div className="journey-label"><EditableText id={`journey.${id}.label`} /></div><h3><EditableText id={`journey.${id}.name`} /></h3></div><p><EditableText id={`journey.${id}.copy`} /></p></article>)}</div>
+      <div className="journey-list">{journey.map(id => <article className={`journey-item${id === 'collective' ? ' has-logo' : ''}`} key={id}>{id === 'collective' && <EditableImage id="journey.collective.logo" className="journey-icon" optional />}<div><div className="journey-label"><EditableText id={`journey.${id}.label`} /></div><h3><EditableText id={`journey.${id}.name`} /></h3></div><p><EditableText id={`journey.${id}.copy`} /></p></article>)}</div>
     </section>
   </main>;
 }
