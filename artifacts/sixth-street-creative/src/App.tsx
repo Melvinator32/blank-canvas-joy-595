@@ -80,6 +80,8 @@ function ArtistSection({ groups, isEditing, onChange }: { groups: ArtistGroup[];
         <p className="section-intro"><EditableText id="artists.intro" /></p>
       </div>
 
+      <a className="text-link artist-collective-link" href="https://nashville.artistcollectives.org/pages/about-nashville-artist-collective" target="_blank" rel="noopener noreferrer">Nashville Artist Collective<ArrowRight size={17} /></a>
+
       <div className="artist-groups">
         {groups.map((group, groupIndex) => (
           <article className="artist-group" key={group.id}>

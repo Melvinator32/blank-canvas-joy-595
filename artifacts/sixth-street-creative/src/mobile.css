@@ -177,7 +177,7 @@
     margin-top: 28px;
   }
 
-  .statement-detail span {
+  .statement-detail > span {
     width: 52px;
     margin-top: 0;
   }
