@@ -129,9 +129,13 @@
     line-height: 1.55;
   }
 
-  .hero-photo-wrap,
+  .hero-photo-wrap {
+    height: 128px;
+    min-height: 0;
+  }
+
   .hero-photo {
-    min-height: 255px;
+    min-height: 0;
   }
 
   .canvas-note {
