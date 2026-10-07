@@ -125,8 +125,8 @@ function ArtistSection({ groups, isEditing, onChange }: { groups: ArtistGroup[];
   );
 }
 
-function StudioLogo() {
-  return <div className="studio-logo"><img src="/images/sixth-street-logo.jpeg" alt="Sixth Street Creative logo with a green and cream geometric pattern" width={1152} height={1536} decoding="async" /></div>;
+function StudioLogo({ className = '' }: { className?: string }) {
+  return <div className={`studio-logo ${className}`}><img src="/images/sixth-street-logo.jpeg" alt="Sixth Street Creative logo with a green and cream geometric pattern" width={1152} height={1536} decoding="async" /></div>;
 }
 
 function HomePage() {
@@ -154,7 +154,7 @@ function AboutPage() {
   return <main>
     <section className="portfolio-hero shell-section about-hero"><StudioLogo /><div className="eyebrow"><EditableText id="about.eyebrow" /></div><div className="portfolio-title-row"><h1><EditableText id="about.title" /><br /><em><EditableText id="about.titleEm" /></em></h1><p><EditableText id="about.intro" /></p><EditableImage id="about.headshot" className="about-headshot" eager /></div></section>
     <section className="journey shell-section" id="journey"><div className="section-heading-row"><div><h2><EditableText id="journey.title" /></h2></div><p className="section-intro"><EditableText id="journey.intro" /></p></div>
-      <div className="journey-list">{journey.map(id => <article className="journey-item" key={id}><div><div className="journey-label"><EditableText id={`journey.${id}.label`} /></div><h3><EditableText id={`journey.${id}.name`} /></h3>{id === 'collective' && <EditableImage id="journey.collective.logo" className="journey-logo" optional />}</div><p><EditableText id={`journey.${id}.copy`} /></p></article>)}</div>
+      <div className="journey-list">{journey.map(id => <article className={`journey-item${id !== 'rowanne' ? ' has-logo' : ''}`} key={id}>{id === 'collective' && <EditableImage id="journey.collective.logo" className="journey-icon" optional />}{id === 'studio' && <StudioLogo className="journey-icon" />}<div><div className="journey-label"><EditableText id={`journey.${id}.label`} /></div><h3><EditableText id={`journey.${id}.name`} /></h3></div><p><EditableText id={`journey.${id}.copy`} /></p></article>)}</div>
     </section>
   </main>;
 }
