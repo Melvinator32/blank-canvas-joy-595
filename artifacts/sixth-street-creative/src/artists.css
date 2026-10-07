@@ -1,0 +1,206 @@
+.artists-section {
+  border-top: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.artists-heading {
+  margin-bottom: 54px;
+}
+
+.artist-groups {
+  border-top: 1px solid var(--line);
+}
+
+.artist-group {
+  padding: 34px 0 42px;
+  border-bottom: 1px solid var(--line);
+}
+
+.artist-group-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 26px;
+}
+
+.artist-group h3,
+.artist-title-input {
+  margin: 0;
+  font: 500 clamp(28px, 3vw, 46px)/1.05 'Playfair Display', serif;
+  letter-spacing: -.025em;
+}
+
+.artist-title-input {
+  width: min(100%, 580px);
+  padding: 8px 10px;
+  border: 1px solid var(--driftwood);
+  border-radius: 2px;
+  color: var(--slate);
+  background: var(--shell);
+}
+
+.artist-name-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px 22px;
+}
+
+.artist-name {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid var(--line);
+}
+
+.artist-name span {
+  font-size: 15px;
+}
+
+.artist-name input {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  padding: 10px 0;
+  background: transparent;
+  color: var(--slate);
+  font: inherit;
+}
+
+.artist-name button,
+.artist-group-actions button {
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--slate);
+  background: transparent;
+  cursor: pointer;
+}
+
+.artist-name button:hover,
+.artist-group-actions button:hover {
+  background: var(--shell);
+}
+
+.artist-group-actions {
+  display: flex;
+  gap: 7px;
+}
+
+.artist-group-actions button:disabled {
+  opacity: .3;
+  cursor: default;
+}
+
+.artist-empty {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: var(--storm);
+  font-style: italic;
+  font-family: 'Playfair Display', serif;
+}
+
+.add-artist-button,
+.add-group-button {
+  border: 1px dashed var(--driftwood);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 16px;
+  color: var(--storm);
+  background: transparent;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.add-artist-button:hover,
+.add-group-button:hover {
+  color: var(--slate);
+  border-color: var(--slate);
+  background: var(--shell);
+}
+
+.add-group-button {
+  margin-top: 28px;
+}
+
+.edit-toolbar {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 50;
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  border: 1px solid rgba(225, 226, 216, .22);
+  border-radius: 999px;
+  background: var(--slate);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, .22);
+}
+
+.edit-toolbar button {
+  border: 0;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .05em;
+  cursor: pointer;
+}
+
+.edit-toggle {
+  color: var(--slate);
+  background: var(--shell);
+}
+
+.edit-save {
+  color: var(--paper);
+  background: var(--jade);
+}
+
+.edit-save:disabled {
+  opacity: .4;
+  cursor: default;
+}
+
+@media (max-width: 850px) {
+  .artist-name-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .artist-name-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .artist-group-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .edit-toolbar {
+    left: 14px;
+    right: 14px;
+    bottom: 14px;
+    justify-content: flex-end;
+  }
+
+  .edit-toolbar button {
+    flex: 1;
+    justify-content: center;
+  }
+}

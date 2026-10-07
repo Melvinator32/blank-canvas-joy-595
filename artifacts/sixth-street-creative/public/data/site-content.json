@@ -1,0 +1,186 @@
+{
+  "version": 1,
+  "text": {
+    "brand.top": "SIXTH STREET",
+    "brand.bottom": "CREATIVE",
+    "nav.home": "Studio",
+    "nav.about": "About Me",
+    "nav.portfolio": "Portfolio",
+    "nav.mediums": "Mediums",
+    "nav.artists": "Artists",
+    "nav.contact": "Contact",
+    "home.eyebrow": "Art consulting · Creative collaborations",
+    "home.title": "Creating spaces that feel",
+    "home.titleEm": "like an extension of you.",
+    "home.intro": "Sixth Street Creative brings art, interiors, and people together — building collections and creative moments that feel personal, layered, and entirely at home.",
+    "home.cta": "View the portfolio",
+    "home.stampTop": "EST.",
+    "home.stamp": "SSC",
+    "home.stampBottom": "NASHVILLE",
+    "approach.title": "Making your space feel layered and",
+    "approach.titleEm": "unmistakably you.",
+    "approach.copy": "Art should create a little tension, a little curiosity, and a reason to look twice. We pair a curator’s eye with a collaborator’s flexibility to help each project find its own visual language.",
+    "mediums.eyebrow": "Mediums Sixth Street Specializes in",
+    "mediums.intro": "From original paintings to large-scale murals and expressive wallcoverings, I embrace bold expression to bring your space—and your vision—to life.",
+    "medium.murals.name": "Murals",
+    "medium.murals.copy": "Site-specific work that turns walls and architectural surfaces into memorable visual moments.",
+    "medium.paintings.name": "Paintings",
+    "medium.paintings.copy": "Original works selected and placed to bring personality, tension, color, and story into a space.",
+    "medium.wallpaper.name": "Wallpaper",
+    "medium.wallpaper.copy": "Pattern, illustration, and custom wallcoverings that make the surface itself part of the art program.",
+    "artists.eyebrow": "Artists We’ve Worked With",
+    "artists.title": "Built through\ncreative relationships.",
+    "artists.intro": "A growing register of artists Sixth Street Creative has collaborated with, sourced from, represented, or placed in projects.",
+    "work.title": "Spaces are the canvas.",
+    "work.intro": "Explore residential, hospitality, and commercial projects through a dedicated portfolio built to let the work lead.",
+    "work.cta": "Enter the portfolio",
+    "about.eyebrow": "About Me",
+    "about.title": "A creative practice",
+    "about.titleEm": "built over time.",
+    "about.intro": "Sixth Street Creative grew from Rowanne's path through jewelry design, artist relationships, curation, and a lasting belief that art should make a space feel more personal.",
+    "journey.title": "Creative Journey",
+    "journey.intro": "The studio today is shaped by years of making, curating, connecting artists with clients, and building creative relationships.",
+    "journey.rowanne.name": "Rowanne Designs",
+    "journey.rowanne.label": "The foundation",
+    "journey.rowanne.copy": "A jewelry design business where Rowanne first developed her eye for materials, composition, craftsmanship, and creating pieces with a distinct point of view.",
+    "journey.collective.name": "Nashville Artist Collective",
+    "journey.collective.label": "The community",
+    "journey.collective.copy": "A chapter shaped by artists, relationships, and curation — connecting original work with people and places in a thoughtful way.",
+    "journey.studio.name": "Sixth Street Creative",
+    "journey.studio.label": "The studio today",
+    "journey.studio.copy": "Art consulting and creative collaboration brought together under one studio, with an instinct for the unexpected and a point of view that stays personal.",
+    "portfolio.eyebrow": "Portfolio",
+    "portfolio.title": "Work with",
+    "portfolio.titleEm": "something to say.",
+    "portfolio.intro": "Art consulting and creative collaborations across residential, hospitality, and commercial environments.",
+    "portfolio.residential.name": "Residential",
+    "portfolio.residential.copy": "Original art and considered placement for homes that feel collected rather than decorated.",
+    "portfolio.hospitality.name": "Hospitality",
+    "portfolio.hospitality.copy": "Art programs and creative direction that give hotels, restaurants, and gathering spaces a memorable sense of place.",
+    "portfolio.commercial.name": "Commercial",
+    "portfolio.commercial.copy": "Art consulting for workplaces and public-facing environments where brand, culture, and human experience meet.",
+    "portfolio.noteEyebrow": "The next layer",
+    "portfolio.noteTitle": "Built to grow with the work.",
+    "portfolio.noteCopy": "Each category is structured to become a full project gallery with individual case studies, project photography, artist details, and notes on the creative process.",
+    "footer.eyebrow": "Start a conversation",
+    "footer.title": "Have a space,\nan idea, or both?",
+    "footer.copy": "Sixth Street Creative works with clients, designers, architects, artists, and brands to create spaces with a point of view.",
+    "footer.email": "rowanne@sixthstreetcreative.com",
+    "footer.location": "Nashville, Tennessee",
+    "footer.copyright": "Sixth Street Creative",
+    "footer.emailLabel": "Email"
+  },
+  "images": {
+    "home.hero": {
+      "src": "/images/hero.jpg",
+      "alt": "Sixth Street Creative project"
+    },
+    "medium.murals": {
+      "src": "/images/portfolio/commercial-01.jpg",
+      "alt": "Colorful Sixth Street Creative mural beside a pool"
+    },
+    "medium.paintings": {
+      "src": "/images/portfolio/residential-01.jpg",
+      "alt": "Curated paintings arranged in a collected interior"
+    },
+    "medium.wallpaper": {
+      "src": "/images/portfolio/hospitality-01.jpg",
+      "alt": "Expressive wall treatment in a Sixth Street Creative interior"
+    },
+    "journey.collective.logo": {
+      "src": "/images/nashville-logo.webp",
+      "alt": "Nashville Artist Collective logo"
+    },
+    "gallery.residential.1": {
+      "src": "/images/portfolio/residential-01.jpg",
+      "alt": "Residential project 1"
+    },
+    "gallery.residential.2": {
+      "src": "/images/portfolio/residential-02.jpg",
+      "alt": "Residential project 2"
+    },
+    "gallery.residential.3": {
+      "src": "/images/portfolio/residential-03.jpg",
+      "alt": "Residential project 3"
+    },
+    "gallery.residential.4": {
+      "src": "/images/portfolio/residential-04.jpg",
+      "alt": "Residential project 4"
+    },
+    "cover.residential": {
+      "src": "/images/portfolio/residential-01.jpg",
+      "alt": "Residential portfolio"
+    },
+    "gallery.hospitality.1": {
+      "src": "/images/portfolio/hospitality-01.jpg",
+      "alt": "Hospitality project 1"
+    },
+    "gallery.hospitality.2": {
+      "src": "/images/portfolio/hospitality-02.jpg",
+      "alt": "Hospitality project 2"
+    },
+    "gallery.hospitality.3": {
+      "src": "/images/portfolio/hospitality-03.jpg",
+      "alt": "Hospitality project 3"
+    },
+    "gallery.hospitality.4": {
+      "src": "/images/portfolio/hospitality-04.jpg",
+      "alt": "Hospitality project 4"
+    },
+    "cover.hospitality": {
+      "src": "/images/portfolio/hospitality-01.jpg",
+      "alt": "Hospitality portfolio"
+    },
+    "gallery.commercial.1": {
+      "src": "/images/portfolio/commercial-01.jpg",
+      "alt": "Commercial project 1"
+    },
+    "gallery.commercial.2": {
+      "src": "/images/portfolio/commercial-02.jpg",
+      "alt": "Commercial project 2"
+    },
+    "gallery.commercial.3": {
+      "src": "/images/portfolio/commercial-03.jpg",
+      "alt": "Commercial project 3"
+    },
+    "gallery.commercial.4": {
+      "src": "/images/portfolio/commercial-04.jpg",
+      "alt": "Commercial project 4"
+    },
+    "cover.commercial": {
+      "src": "/images/portfolio/commercial-01.jpg",
+      "alt": "Commercial portfolio"
+    },
+    "about.headshot": {
+      "src": "/images/rowanne-headshot.jpg",
+      "alt": "Black-and-white headshot of Rowanne, founder of Sixth Street Creative"
+    }
+  },
+  "galleries": {
+    "residential": [
+      "gallery.residential.1",
+      "gallery.residential.2",
+      "gallery.residential.3",
+      "gallery.residential.4"
+    ],
+    "hospitality": [
+      "gallery.hospitality.1",
+      "gallery.hospitality.2",
+      "gallery.hospitality.3",
+      "gallery.hospitality.4"
+    ],
+    "commercial": [
+      "gallery.commercial.1",
+      "gallery.commercial.2",
+      "gallery.commercial.3",
+      "gallery.commercial.4"
+    ]
+  },
+  "artistGroups": [
+    {
+      "id": "featured-artists",
+      "title": "Featured Artists",
+      "artists": []
+    }
+  ]
+}

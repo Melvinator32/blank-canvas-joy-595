@@ -1,0 +1,75 @@
+.about-hero > .eyebrow,
+.about-hero .portfolio-title-row > p,
+.journey .section-heading-row > .section-intro {
+  display: none;
+}
+
+.about-hero .portfolio-title-row,
+.journey .section-heading-row {
+  grid-template-columns: 1fr;
+}
+
+.journey-logo {
+  display: block;
+  width: clamp(140px, 16vw, 200px);
+  max-width: 100%;
+  height: auto;
+  margin-top: 24px;
+  object-fit: contain;
+}
+
+@media (max-width: 620px) {
+  .journey-logo {
+    width: 150px;
+    margin: 0 0 24px;
+  }
+}
+
+.about-hero .portfolio-title-row {
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(32px, 5vw, 72px);
+}
+
+.about-headshot {
+  width: 100%;
+  max-width: 420px;
+  justify-self: end;
+}
+
+.about-headshot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+@media (max-width: 900px) {
+  .about-hero .portfolio-title-row {
+    grid-template-columns: 1fr;
+  }
+
+  .about-headshot {
+    justify-self: start;
+  }
+}
+
+/* Frame the printed logo, keeping the surrounding table out of view. */
+.studio-logo {
+  position: relative;
+  width: clamp(180px, 20vw, 240px);
+  max-width: 100%;
+  aspect-ratio: 798 / 825;
+  overflow: hidden;
+  margin-bottom: clamp(28px, 4vw, 48px);
+}
+
+.studio-logo img {
+  position: absolute;
+  width: 144.36%;
+  max-width: none;
+  height: auto;
+  left: -17.54%;
+  top: -51.03%;
+}
