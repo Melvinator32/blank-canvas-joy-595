@@ -28,8 +28,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 
 .site-shell { overflow: hidden; }
 .site-header {
-  position: sticky;
-  top: 0;
+  position: relative;
   z-index: 20;
   display: flex;
   align-items: center;
@@ -160,3 +159,4 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 500; }
   .footer-bottom { flex-direction: column; }
   .footer-meta { flex-direction: column; gap: 12px; }
 }
+
