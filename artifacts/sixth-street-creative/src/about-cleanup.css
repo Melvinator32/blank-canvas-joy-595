@@ -54,3 +54,22 @@
     justify-self: start;
   }
 }
+
+/* Frame the printed logo, keeping the surrounding table out of view. */
+.studio-logo {
+  position: relative;
+  width: clamp(180px, 20vw, 240px);
+  max-width: 100%;
+  aspect-ratio: 798 / 825;
+  overflow: hidden;
+  margin-bottom: clamp(28px, 4vw, 48px);
+}
+
+.studio-logo img {
+  position: absolute;
+  width: 144.36%;
+  max-width: none;
+  height: auto;
+  left: -17.54%;
+  top: -51.03%;
+}

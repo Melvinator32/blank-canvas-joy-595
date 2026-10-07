@@ -125,10 +125,15 @@ function ArtistSection({ groups, isEditing, onChange }: { groups: ArtistGroup[];
   );
 }
 
+function StudioLogo() {
+  return <div className="studio-logo"><img src="/images/sixth-street-logo.jpeg" alt="Sixth Street Creative logo with a green and cream geometric pattern" width={1152} height={1536} decoding="async" /></div>;
+}
+
 function HomePage() {
   const editor = useSiteEditor();
   return <main>
     <section className="hero shell-section">
+      <StudioLogo />
       <div className="eyebrow"><EditableText id="home.eyebrow" /></div>
       <div className="hero-grid"><h1><EditableText id="home.title" /><br /><em><EditableText id="home.titleEm" /></em></h1><div className="hero-aside"><p><EditableText id="home.intro" /></p><a className="button-link" href="#/portfolio"><EditableText id="home.cta" /><ArrowRight size={18} /></a></div></div>
       <div className="hero-photo-wrap"><EditableImage id="home.hero" className="hero-photo-frame" imageClassName="hero-photo" eager /><div className="canvas-note"><span><EditableText id="home.stampTop" /></span><strong><EditableText id="home.stamp" /></strong><span><EditableText id="home.stampBottom" /></span></div></div>
@@ -147,7 +152,7 @@ function HomePage() {
 }
 function AboutPage() {
   return <main>
-    <section className="portfolio-hero shell-section about-hero"><div className="eyebrow"><EditableText id="about.eyebrow" /></div><div className="portfolio-title-row"><h1><EditableText id="about.title" /><br /><em><EditableText id="about.titleEm" /></em></h1><p><EditableText id="about.intro" /></p><EditableImage id="about.headshot" className="about-headshot" eager /></div></section>
+    <section className="portfolio-hero shell-section about-hero"><StudioLogo /><div className="eyebrow"><EditableText id="about.eyebrow" /></div><div className="portfolio-title-row"><h1><EditableText id="about.title" /><br /><em><EditableText id="about.titleEm" /></em></h1><p><EditableText id="about.intro" /></p><EditableImage id="about.headshot" className="about-headshot" eager /></div></section>
     <section className="journey shell-section" id="journey"><div className="section-heading-row"><div><h2><EditableText id="journey.title" /></h2></div><p className="section-intro"><EditableText id="journey.intro" /></p></div>
       <div className="journey-list">{journey.map(id => <article className="journey-item" key={id}><div><div className="journey-label"><EditableText id={`journey.${id}.label`} /></div><h3><EditableText id={`journey.${id}.name`} /></h3>{id === 'collective' && <EditableImage id="journey.collective.logo" className="journey-logo" optional />}</div><p><EditableText id={`journey.${id}.copy`} /></p></article>)}</div>
     </section>
