@@ -136,8 +136,7 @@ function HomePage() {
   return <main>
     <section className="hero shell-section">
       <div className="eyebrow"><EditableText id="home.eyebrow" /></div>
-      <div className="hero-grid"><h1><EditableText id="home.title" /><br /><em><EditableText id="home.titleEm" /></em></h1><div className="hero-aside"><p><EditableText id="home.intro" /></p><a className="button-link" href="#/portfolio"><EditableText id="home.cta" /><ArrowRight size={18} /></a></div></div>
-      <div className="hero-photo-wrap"><EditableImage id="home.hero" className="hero-photo-frame" imageClassName="hero-photo" eager /><div className="canvas-note"><span><EditableText id="home.stampTop" /></span><strong><EditableText id="home.stamp" /></strong><span><EditableText id="home.stampBottom" /></span></div></div>
+      <div className="hero-grid"><div className="hero-copy"><h1><EditableText id="home.title" /><br /><em><EditableText id="home.titleEm" /></em></h1><div className="hero-aside"><p><EditableText id="home.intro" /></p><a className="button-link" href="#/portfolio"><EditableText id="home.cta" /><ArrowRight size={18} /></a></div></div><div className="hero-photo-wrap"><EditableImage id="home.hero" className="hero-photo-frame" imageClassName="hero-photo" eager /><div className="canvas-note"><span><EditableText id="home.stampTop" /></span><strong><EditableText id="home.stamp" /></strong><span><EditableText id="home.stampBottom" /></span></div></div></div>
     </section>
     <section className="statement slate-section"><p className="statement-copy"><EditableText id="approach.title" /> <em><EditableText id="approach.titleEm" /></em></p><div className="statement-detail"><span /><p><EditableText id="approach.copy" /></p></div></section>
     <MediumsSection />
