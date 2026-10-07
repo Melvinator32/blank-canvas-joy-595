@@ -147,7 +147,7 @@ function HomePage() {
 }
 function AboutPage() {
   return <main>
-    <section className="portfolio-hero shell-section about-hero"><div className="eyebrow"><EditableText id="about.eyebrow" /></div><div className="portfolio-title-row"><h1><EditableText id="about.title" /><br /><em><EditableText id="about.titleEm" /></em></h1><p><EditableText id="about.intro" /></p></div></section>
+    <section className="portfolio-hero shell-section about-hero"><div className="eyebrow"><EditableText id="about.eyebrow" /></div><div className="portfolio-title-row"><h1><EditableText id="about.title" /><br /><em><EditableText id="about.titleEm" /></em></h1><p><EditableText id="about.intro" /></p><EditableImage id="about.headshot" className="about-headshot" eager /></div></section>
     <section className="journey shell-section" id="journey"><div className="section-heading-row"><div><h2><EditableText id="journey.title" /></h2></div><p className="section-intro"><EditableText id="journey.intro" /></p></div>
       <div className="journey-list">{journey.map(id => <article className="journey-item" key={id}><div><div className="journey-label"><EditableText id={`journey.${id}.label`} /></div><h3><EditableText id={`journey.${id}.name`} /></h3>{id === 'collective' && <EditableImage id="journey.collective.logo" className="journey-logo" optional />}</div><p><EditableText id={`journey.${id}.copy`} /></p></article>)}</div>
     </section>

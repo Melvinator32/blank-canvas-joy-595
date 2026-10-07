@@ -150,6 +150,10 @@
     "cover.commercial": {
       "src": "/images/portfolio/commercial-01.jpg",
       "alt": "Commercial portfolio"
+    },
+    "about.headshot": {
+      "src": "/images/rowanne-headshot.jpg",
+      "alt": "Black-and-white headshot of Rowanne, founder of Sixth Street Creative"
     }
   },
   "galleries": {
