@@ -169,7 +169,10 @@ function PortfolioPage({ category: selectedCategory }: { category?: string }) {
 function useHomepageSectionScroll(enabled: boolean) {
   useEffect(() => {
     if (!enabled || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const mobile = window.matchMedia('(max-width: 900px), (pointer: coarse)');
     let lastY = window.scrollY;
+    let downward = false;
+    let touching = false;
     let userScrollAt = 0;
     let lockedUntil = 0;
     let timer: ReturnType<typeof setTimeout> | undefined;
@@ -177,35 +180,51 @@ function useHomepageSectionScroll(enabled: boolean) {
     const keyboardIntent = (event: KeyboardEvent) => {
       if (['ArrowDown', 'PageDown', ' ', 'ArrowUp', 'PageUp'].includes(event.key)) intent();
     };
+    const advance = () => {
+      if (!downward || touching || Date.now() < lockedUntil) return;
+      const focused = document.activeElement;
+      if (focused?.matches('input, textarea, select, [contenteditable]')) return;
+      const sections = [...document.querySelectorAll<HTMLElement>('.site-shell > main > section, .site-shell > footer')];
+      for (let i = 1; i < sections.length; i++) {
+        const next = sections[i].getBoundingClientRect();
+        const previous = sections[i - 1];
+        const content = previous.lastElementChild?.getBoundingClientRect();
+        // Touch screens advance later, after every stacked card has been read.
+        const threshold = window.innerHeight * (mobile.matches ? .35 : .75);
+        if (previous.getBoundingClientRect().top < -24 && next.top > 24 && next.top <= threshold && content && content.bottom <= window.innerHeight - 16) {
+          lockedUntil = Date.now() + 1500;
+          window.scrollTo({ top: window.scrollY + next.top, behavior: 'smooth' });
+          break;
+        }
+      }
+    };
+    const schedule = () => {
+      clearTimeout(timer);
+      timer = setTimeout(advance, mobile.matches ? 280 : 160);
+    };
     const scroll = () => {
-      const downward = window.scrollY > lastY;
+      downward = window.scrollY > lastY;
       lastY = window.scrollY;
       clearTimeout(timer);
       if (!downward || Date.now() < lockedUntil || Date.now() - userScrollAt > 700) return;
-      timer = setTimeout(() => {
-        const focused = document.activeElement;
-        if (focused?.matches('input, textarea, select, [contenteditable]')) return;
-        const sections = [...document.querySelectorAll<HTMLElement>('.site-shell > main > section, .site-shell > footer')];
-        for (let i = 1; i < sections.length; i++) {
-          const next = sections[i].getBoundingClientRect();
-          const previous = sections[i - 1];
-          const content = previous.lastElementChild?.getBoundingClientRect();
-          if (previous.getBoundingClientRect().top < -24 && next.top > 24 && next.top <= window.innerHeight * .75 && content && content.bottom <= window.innerHeight - 16) {
-            lockedUntil = Date.now() + 1200;
-            window.scrollTo({ top: window.scrollY + next.top, behavior: 'smooth' });
-            break;
-          }
-        }
-      }, 160);
+      schedule();
     };
+    const touchStart = () => { touching = true; intent(); };
+    const touchEnd = () => { touching = false; if (downward) schedule(); };
     window.addEventListener('wheel', intent, { passive: true });
+    window.addEventListener('touchstart', touchStart, { passive: true });
     window.addEventListener('touchmove', intent, { passive: true });
+    window.addEventListener('touchend', touchEnd, { passive: true });
+    window.addEventListener('touchcancel', touchEnd, { passive: true });
     window.addEventListener('keydown', keyboardIntent);
     window.addEventListener('scroll', scroll, { passive: true });
     return () => {
       clearTimeout(timer);
       window.removeEventListener('wheel', intent);
+      window.removeEventListener('touchstart', touchStart);
       window.removeEventListener('touchmove', intent);
+      window.removeEventListener('touchend', touchEnd);
+      window.removeEventListener('touchcancel', touchEnd);
       window.removeEventListener('keydown', keyboardIntent);
       window.removeEventListener('scroll', scroll);
     };

@@ -388,3 +388,14 @@ a:focus-visible, button:focus-visible { outline: 2px solid currentColor; outline
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; }
 }
+
+/* Let the portfolio previews fill the screen while keeping phones naturally stacked. */
+@media (min-width: 621px) {
+  .portfolio-tease { min-height: 100svh; display: flex; flex-direction: column; }
+  .portfolio-tease .tease-grid { margin-top: 0; margin-bottom: 40px; }
+  .portfolio-tease .category-strip { flex: 1; }
+  .portfolio-tease .category-card { height: 100%; min-height: clamp(320px, 46svh, 620px); }
+}
+@media (max-width: 620px) {
+  .portfolio-tease .category-card { min-height: 300px; min-height: clamp(280px, 45svh, 420px); }
+}
