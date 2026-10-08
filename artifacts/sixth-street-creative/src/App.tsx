@@ -9,10 +9,11 @@ const categories = [{ id: 'residential', tone: 'jade' }, { id: 'hospitality', to
 const journey = ['rowanne', 'collective', 'studio'];
 
 function useHashPage() {
-  const getPage = (): Page => window.location.hash === '#/portfolio' ? 'portfolio' : window.location.hash === '#/about' ? 'about' : 'home';
-  const [page, setPage] = useState<Page>(getPage);
-  useEffect(() => { const change = () => setPage(getPage()); window.addEventListener('hashchange', change); return () => window.removeEventListener('hashchange', change); }, []);
-  return page;
+  const [hash, setHash] = useState(window.location.hash);
+  useEffect(() => { const change = () => setHash(window.location.hash); window.addEventListener('hashchange', change); return () => window.removeEventListener('hashchange', change); }, []);
+  const category = categories.find(item => hash === `#/portfolio/${item.id}`)?.id;
+  const page: Page = hash === '#/portfolio' || category ? 'portfolio' : hash === '#/about' ? 'about' : 'home';
+  return { page, category };
 }
 function Navigation({ page }: { page: Page }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -144,7 +145,7 @@ function HomePage() {
     <section className="portfolio-tease driftwood-section">
       <div className="tease-grid"><h2><EditableText id="work.title" /></h2><div><p><EditableText id="work.intro" /></p><a className="text-link dark" href="#/portfolio"><EditableText id="work.cta" /><ArrowRight size={17} /></a></div></div>
       <div className="category-strip">{categories.map(category => <div className="category-card-shell" key={category.id}>
-        <a className={`category-card category-card-photo ${category.tone}`} href="#/portfolio" style={{ backgroundImage: `linear-gradient(180deg, rgba(41,45,40,.05), rgba(41,45,40,.72)), url(${JSON.stringify(editor.image(`cover.${category.id}`).src)})` }}><strong><EditableText id={`portfolio.${category.id}.name`} /></strong><ArrowRight size={20} /></a>
+        <a className={`category-card category-card-photo ${category.tone}`} href={`#/portfolio/${category.id}`} style={{ backgroundImage: `linear-gradient(180deg, rgba(41,45,40,.05), rgba(41,45,40,.72)), url(${JSON.stringify(editor.image(`cover.${category.id}`).src)})` }}><strong><EditableText id={`portfolio.${category.id}.name`} /></strong><ArrowRight size={20} /></a>
         {editor.active && <button className="image-edit-button" type="button" onClick={() => editor.editImage(`cover.${category.id}`)}>Change cover photo</button>}
       </div>)}</div>
     </section>
@@ -158,10 +159,10 @@ function AboutPage() {
     </section>
   </main>;
 }
-function PortfolioPage() {
+function PortfolioPage({ category: selectedCategory }: { category?: string }) {
   return <main>
-    <section className="portfolio-hero shell-section"><div className="eyebrow"><EditableText id="portfolio.eyebrow" /></div><div className="portfolio-title-row"><h1><EditableText id="portfolio.title" /><br /><em><EditableText id="portfolio.titleEm" /></em></h1><p><EditableText id="portfolio.intro" /></p></div></section>
-    <section className="portfolio-categories">{categories.map(category => <article className={`portfolio-row ${category.tone}`} key={category.id}><div className="portfolio-row-copy"><h2><EditableText id={`portfolio.${category.id}.name`} /></h2><p><EditableText id={`portfolio.${category.id}.copy`} /></p></div><Gallery category={category.id} /></article>)}</section>
+    <section className="portfolio-hero shell-section"><div className="eyebrow"><EditableText id="portfolio.eyebrow" /></div><div className="portfolio-title-row"><h1>{selectedCategory ? <EditableText id={`portfolio.${selectedCategory}.name`} /> : <><EditableText id="portfolio.title" /><br /><em><EditableText id="portfolio.titleEm" /></em></>}</h1><div><p><EditableText id={selectedCategory ? `portfolio.${selectedCategory}.copy` : "portfolio.intro"} /></p>{selectedCategory && <a className="text-link dark" href="#/portfolio">View all projects<ArrowRight size={17} /></a>}</div></div></section>
+    <section className="portfolio-categories">{categories.filter(category => !selectedCategory || category.id === selectedCategory).map(category => <article className={`portfolio-row ${category.tone}`} key={category.id}><div className="portfolio-row-copy"><h2><EditableText id={`portfolio.${category.id}.name`} /></h2><p><EditableText id={`portfolio.${category.id}.copy`} /></p></div><Gallery category={category.id} /></article>)}</section>
     <section className="portfolio-note shell-section"><span className="eyebrow"><EditableText id="portfolio.noteEyebrow" /></span><h2><EditableText id="portfolio.noteTitle" /></h2><p><EditableText id="portfolio.noteCopy" /></p></section>
   </main>;
 }
@@ -212,12 +213,12 @@ function useHomepageSectionScroll(enabled: boolean) {
 }
 
 export default function App() {
-  const page = useHashPage();
+  const { page, category } = useHashPage();
   const { active } = useSiteEditor();
   useHomepageSectionScroll(page === 'home' && !active);
   useEffect(() => {
     const section = ['#mediums', '#artists', '#contact'].includes(window.location.hash) ? document.getElementById(window.location.hash.slice(1)) : null;
     if (section) section.scrollIntoView(); else window.scrollTo({ top: 0, behavior: 'instant' });
-  }, [page]);
-  return <div className="site-shell"><Navigation page={page} />{page === 'portfolio' ? <PortfolioPage /> : page === 'about' ? <AboutPage /> : <HomePage />}<Footer /></div>;
+  }, [page, category]);
+  return <div className="site-shell"><Navigation page={page} />{page === 'portfolio' ? <PortfolioPage category={category} /> : page === 'about' ? <AboutPage /> : <HomePage />}<Footer /></div>;
 }

@@ -160,3 +160,4 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 500; }
   .footer-meta { flex-direction: column; gap: 12px; }
 }
 
+.portfolio-title-row > div > p { color: var(--storm); font-size: clamp(16px, 1.4vw, 20px); line-height: 1.55; max-width: 580px; }
