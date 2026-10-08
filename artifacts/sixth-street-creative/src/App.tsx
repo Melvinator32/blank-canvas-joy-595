@@ -165,8 +165,56 @@ function PortfolioPage() {
     <section className="portfolio-note shell-section"><span className="eyebrow"><EditableText id="portfolio.noteEyebrow" /></span><h2><EditableText id="portfolio.noteTitle" /></h2><p><EditableText id="portfolio.noteCopy" /></p></section>
   </main>;
 }
+function useHomepageSectionScroll(enabled: boolean) {
+  useEffect(() => {
+    if (!enabled || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    let lastY = window.scrollY;
+    let userScrollAt = 0;
+    let lockedUntil = 0;
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const intent = () => { userScrollAt = Date.now(); };
+    const keyboardIntent = (event: KeyboardEvent) => {
+      if (['ArrowDown', 'PageDown', ' ', 'ArrowUp', 'PageUp'].includes(event.key)) intent();
+    };
+    const scroll = () => {
+      const downward = window.scrollY > lastY;
+      lastY = window.scrollY;
+      clearTimeout(timer);
+      if (!downward || Date.now() < lockedUntil || Date.now() - userScrollAt > 700) return;
+      timer = setTimeout(() => {
+        const focused = document.activeElement;
+        if (focused?.matches('input, textarea, select, [contenteditable]')) return;
+        const sections = [...document.querySelectorAll<HTMLElement>('.site-shell > main > section, .site-shell > footer')];
+        for (let i = 1; i < sections.length; i++) {
+          const next = sections[i].getBoundingClientRect();
+          const previous = sections[i - 1];
+          const content = previous.lastElementChild?.getBoundingClientRect();
+          if (previous.getBoundingClientRect().top < -24 && next.top > 24 && next.top <= window.innerHeight * .75 && content && content.bottom <= window.innerHeight - 16) {
+            lockedUntil = Date.now() + 1200;
+            sections[i].scrollIntoView({ behavior: 'smooth', block: 'start' });
+            break;
+          }
+        }
+      }, 160);
+    };
+    window.addEventListener('wheel', intent, { passive: true });
+    window.addEventListener('touchmove', intent, { passive: true });
+    window.addEventListener('keydown', keyboardIntent);
+    window.addEventListener('scroll', scroll, { passive: true });
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('wheel', intent);
+      window.removeEventListener('touchmove', intent);
+      window.removeEventListener('keydown', keyboardIntent);
+      window.removeEventListener('scroll', scroll);
+    };
+  }, [enabled]);
+}
+
 export default function App() {
   const page = useHashPage();
+  const { active } = useSiteEditor();
+  useHomepageSectionScroll(page === 'home' && !active);
   useEffect(() => {
     const section = ['#mediums', '#artists', '#contact'].includes(window.location.hash) ? document.getElementById(window.location.hash.slice(1)) : null;
     if (section) section.scrollIntoView(); else window.scrollTo({ top: 0, behavior: 'instant' });
