@@ -161,7 +161,7 @@ function AboutPage() {
 }
 function PortfolioPage() {
   return <main>
-    <section className="portfolio-hero shell-section"><div className="eyebrow"><EditableText id="portfolio.eyebrow" /></div><div className="portfolio-title-row"><h1><EditableText id="portfolio.title" /><br /><em><EditableText id="portfolio.titleEm" /></em></h1><div><p><EditableText id="portfolio.intro" /></p></div></div></section>
+    <section className="portfolio-hero shell-section"><div className="eyebrow"><EditableText id="portfolio.eyebrow" /></div><div className="portfolio-title-row"><h1><EditableText id="portfolio.title" /></h1><div><p><EditableText id="portfolio.intro" /></p></div></div></section>
     <section className="portfolio-categories">{categories.map(category => <article id={`portfolio-${category.id}`} className={`portfolio-row ${category.tone}`} key={category.id}><div className="portfolio-row-copy"><h2><EditableText id={`portfolio.${category.id}.name`} /></h2><p><EditableText id={`portfolio.${category.id}.copy`} /></p></div><Gallery category={category.id} /></article>)}</section>
     <section className="portfolio-note shell-section"><span className="eyebrow"><EditableText id="portfolio.noteEyebrow" /></span><h2><EditableText id="portfolio.noteTitle" /></h2><p><EditableText id="portfolio.noteCopy" /></p></section>
   </main>;
