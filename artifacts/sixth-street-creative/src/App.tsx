@@ -19,7 +19,7 @@ function Navigation({ page }: { page: Page }) {
   const [menuOpen, setMenuOpen] = useState(false);
   useEffect(() => { setMenuOpen(false); }, [page]);
   return <header className="site-header">
-    <a className="brand" href="#/" aria-label="Sixth Street Creative home"><StudioLogo /></a>
+    <a className="brand" href="#/" aria-label="Sixth Street Creative home"><StudioLogo /><span className="header-wordmark">SIXTH STREET CREATIVE</span></a>
     <button className="nav-toggle" type="button" aria-label={menuOpen ? 'Close navigation' : 'Open navigation'} aria-expanded={menuOpen} aria-controls="primary-navigation" onClick={() => setMenuOpen(open => !open)}>{menuOpen ? <X size={22} /> : <Menu size={22} />}</button>
     <nav id="primary-navigation" className={`nav-links${menuOpen ? ' is-open' : ''}`} aria-label="Primary navigation" onClick={() => setMenuOpen(false)}>
       <a className={page === 'home' ? 'active' : ''} href="#/"><EditableText id="nav.home" /></a>
@@ -155,7 +155,7 @@ function AboutPage() {
   return <main>
     <section className="portfolio-hero shell-section about-hero"><div className="eyebrow"><EditableText id="about.eyebrow" /></div><div className="portfolio-title-row"><h1><EditableText id="about.title" /><br /><em><EditableText id="about.titleEm" /></em></h1><p><EditableText id="about.intro" /></p><EditableImage id="about.headshot" className="about-headshot" eager /></div></section>
     <section className="journey shell-section" id="journey"><div className="section-heading-row"><div><h2><EditableText id="journey.title" /></h2></div><p className="section-intro"><EditableText id="journey.intro" /></p></div>
-      <div className="journey-list">{journey.map(id => <article className={`journey-item${id !== 'rowanne' ? ' has-logo' : ''}`} key={id}>{id === 'collective' && <EditableImage id="journey.collective.logo" className="journey-icon" optional />}{id === 'studio' && <StudioLogo className="journey-icon" />}<div><h3><EditableText id={`journey.${id}.name`} /></h3></div><p><EditableText id={`journey.${id}.copy`} /></p></article>)}</div>
+      <div className="journey-list">{journey.map(id => <article className="journey-item has-logo" key={id}>{id === 'rowanne' && <div className="journey-icon rowanne-logo"><img src="/images/rowanne-designs-logo.jpeg" alt="Rowanne Designs logo" width="1152" height="1536" loading="lazy" /></div>}{id === 'collective' && <EditableImage id="journey.collective.logo" className="journey-icon" optional />}{id === 'studio' && <StudioLogo className="journey-icon" />}<div><h3><EditableText id={`journey.${id}.name`} /></h3></div><p><EditableText id={`journey.${id}.copy`} /></p></article>)}</div>
     </section>
   </main>;
 }
