@@ -161,3 +161,6 @@
 
 .journey-company-link { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 6px; }
 .journey-company-link:hover { color: var(--oxblood); }
+
+/* Center the establishment date in the homepage badge. */
+.hero .canvas-note { justify-content: center; }
