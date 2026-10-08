@@ -157,7 +157,7 @@
 }
 
 /* Give the homepage headline comfortable separation between lines. */
-.hero h1 { line-height: 1.12; }
+.hero .hero-copy h1 { line-height: 1.12; }
 
 .journey-company-link { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 6px; }
 .journey-company-link:hover { color: var(--oxblood); }
