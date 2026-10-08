@@ -219,7 +219,7 @@ export function SiteEditorProvider({ children }: { children: ReactNode }) {
   };
   return <Context.Provider value={{ content, editing, active, update, text: id => content.text[id] ?? defaultContent.text[id] ?? '', image: id => { const image = content.images[id] || { src: '', alt: '' }; return { ...image, src: previews.get(image.src) || image.src }; }, editImage: setImageId }}>
     <div className={active ? 'site-is-editing' : ''}>{children}</div>
-    {!editing ? <button className="site-editor-launch" type="button" onClick={beginEditing} disabled={!ready}><Pencil size={16} /> {ready ? 'Edit site' : 'Loading editor…'}</button> : <aside className="site-editor-toolbar" aria-label="Site editor">
+    {!editing ? <button className="site-editor-launch" type="button" onClick={beginEditing} disabled={!ready} aria-label={ready ? 'Edit site' : 'Loading editor…'} title={ready ? 'Edit site' : 'Loading editor…'}><Pencil size={18} aria-hidden="true" /></button> : <aside className="site-editor-toolbar" aria-label="Site editor">
       <div className="editor-toolbar-status"><strong>{preview ? 'Preview · changes are private' : 'Click outlined text to edit'}</strong><span role="status">{busy ? progress : storageStatus || 'Changes are private until published'}</span></div>
       <div className="editor-toolbar-buttons">
         <select className="editor-page-select" aria-label="Page to edit" value={pageHash} disabled={busy} onChange={event => { window.location.hash = event.target.value; }}><option value="#/">Studio</option><option value="#/about">About Me</option><option value="#/portfolio">Portfolio</option></select>
