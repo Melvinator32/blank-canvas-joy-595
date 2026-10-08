@@ -151,3 +151,7 @@
 @media (max-width: 1180px) {
   .portfolio-hero:not(.about-hero) .portfolio-title-row { grid-template-columns: 1fr; }
 }
+
+@media (min-width: 901px) {
+  .about-headshot { transform: translateX(-96px); }
+}
