@@ -141,3 +141,13 @@
   .site-header .brand { gap: 12px; }
   .header-wordmark { font-size: clamp(17px, 4.6vw, 25px); max-width: 220px; }
 }
+
+.portfolio-hero:not(.about-hero) .portfolio-title-row { grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 72px); }
+.portfolio-hero:not(.about-hero) .portfolio-title-row > div > p {
+  font-size: clamp(24px, 2.8vw, 40px);
+  line-height: 1.35;
+  margin: 0;
+}
+@media (max-width: 1180px) {
+  .portfolio-hero:not(.about-hero) .portfolio-title-row { grid-template-columns: 1fr; }
+}
