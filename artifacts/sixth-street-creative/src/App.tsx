@@ -13,7 +13,7 @@ function useHashPage() {
   useEffect(() => { const change = () => setHash(window.location.hash); window.addEventListener('hashchange', change); return () => window.removeEventListener('hashchange', change); }, []);
   const category = categories.find(item => hash === `#/portfolio/${item.id}`)?.id;
   const page: Page = hash === '#/portfolio' || category ? 'portfolio' : hash === '#/about' ? 'about' : 'home';
-  return { page, category };
+  return { page, category, hash };
 }
 function Navigation({ page }: { page: Page }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -159,13 +159,14 @@ function AboutPage() {
     </section>
   </main>;
 }
-function PortfolioPage({ category: selectedCategory }: { category?: string }) {
+function PortfolioPage() {
   return <main>
-    <section className="portfolio-hero shell-section"><div className="eyebrow"><EditableText id="portfolio.eyebrow" /></div><div className="portfolio-title-row"><h1>{selectedCategory ? <EditableText id={`portfolio.${selectedCategory}.name`} /> : <><EditableText id="portfolio.title" /><br /><em><EditableText id="portfolio.titleEm" /></em></>}</h1><div><p><EditableText id={selectedCategory ? `portfolio.${selectedCategory}.copy` : "portfolio.intro"} /></p>{selectedCategory && <a className="text-link dark" href="#/portfolio">View all projects<ArrowRight size={17} /></a>}</div></div></section>
-    <section className="portfolio-categories">{categories.filter(category => !selectedCategory || category.id === selectedCategory).map(category => <article className={`portfolio-row ${category.tone}`} key={category.id}><div className="portfolio-row-copy"><h2><EditableText id={`portfolio.${category.id}.name`} /></h2><p><EditableText id={`portfolio.${category.id}.copy`} /></p></div><Gallery category={category.id} /></article>)}</section>
+    <section className="portfolio-hero shell-section"><div className="eyebrow"><EditableText id="portfolio.eyebrow" /></div><div className="portfolio-title-row"><h1><EditableText id="portfolio.title" /><br /><em><EditableText id="portfolio.titleEm" /></em></h1><div><p><EditableText id="portfolio.intro" /></p></div></div></section>
+    <section className="portfolio-categories">{categories.map(category => <article id={`portfolio-${category.id}`} className={`portfolio-row ${category.tone}`} key={category.id}><div className="portfolio-row-copy"><h2><EditableText id={`portfolio.${category.id}.name`} /></h2><p><EditableText id={`portfolio.${category.id}.copy`} /></p></div><Gallery category={category.id} /></article>)}</section>
     <section className="portfolio-note shell-section"><span className="eyebrow"><EditableText id="portfolio.noteEyebrow" /></span><h2><EditableText id="portfolio.noteTitle" /></h2><p><EditableText id="portfolio.noteCopy" /></p></section>
   </main>;
 }
+
 function useHomepageSectionScroll(enabled: boolean) {
   useEffect(() => {
     if (!enabled || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -232,12 +233,19 @@ function useHomepageSectionScroll(enabled: boolean) {
 }
 
 export default function App() {
-  const { page, category } = useHashPage();
+  const { page, category, hash } = useHashPage();
   const { active } = useSiteEditor();
   useHomepageSectionScroll(page === 'home' && !active);
   useEffect(() => {
-    const section = ['#mediums', '#artists', '#contact'].includes(window.location.hash) ? document.getElementById(window.location.hash.slice(1)) : null;
-    if (section) section.scrollIntoView(); else window.scrollTo({ top: 0, behavior: 'instant' });
-  }, [page, category]);
-  return <div className="site-shell"><Navigation page={page} />{page === 'portfolio' ? <PortfolioPage category={category} /> : page === 'about' ? <AboutPage /> : <HomePage />}<Footer /></div>;
+    let cancelled = false;
+    const position = () => {
+      if (cancelled) return;
+      const section = category ? document.getElementById(`portfolio-${category}`) : ['#mediums', '#artists', '#contact'].includes(hash) ? document.getElementById(hash.slice(1)) : null;
+      window.scrollTo({ top: section ? window.scrollY + section.getBoundingClientRect().top : 0, behavior: 'instant' });
+    };
+    position();
+    void document.fonts.ready.then(position);
+    return () => { cancelled = true; };
+  }, [page, category, hash]);
+  return <div className="site-shell"><Navigation page={page} />{page === 'portfolio' ? <PortfolioPage /> : page === 'about' ? <AboutPage /> : <HomePage />}<Footer /></div>;
 }
