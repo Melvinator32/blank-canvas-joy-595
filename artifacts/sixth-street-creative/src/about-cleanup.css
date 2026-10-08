@@ -122,20 +122,8 @@
   }
 }
 
-/* Frame the handwritten wordmark from the supplied photograph. */
-.journey-icon.rowanne-logo {
-  position: relative;
-  aspect-ratio: 415 / 148;
-  overflow: hidden;
-}
-.journey-icon.rowanne-logo img {
-  position: absolute;
-  width: 277.59%;
-  max-width: none;
-  height: auto;
-  left: -101.69%;
-  top: -485.14%;
-}
+/* Clean digital wordmark with its original blue handwritten lettering. */
+.journey-icon.rowanne-logo img { width: 100%; height: auto; object-fit: contain; }
 
 .site-header { gap: 24px; }
 .site-header .brand { flex-direction: row; align-items: center; gap: clamp(16px, 2vw, 28px); min-width: 0; }
