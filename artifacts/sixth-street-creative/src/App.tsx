@@ -191,7 +191,7 @@ function useHomepageSectionScroll(enabled: boolean) {
           const content = previous.lastElementChild?.getBoundingClientRect();
           if (previous.getBoundingClientRect().top < -24 && next.top > 24 && next.top <= window.innerHeight * .75 && content && content.bottom <= window.innerHeight - 16) {
             lockedUntil = Date.now() + 1200;
-            sections[i].scrollIntoView({ behavior: 'smooth', block: 'start' });
+            window.scrollTo({ top: window.scrollY + next.top, behavior: 'smooth' });
             break;
           }
         }
