@@ -164,3 +164,6 @@
 
 /* Center the establishment date in the homepage badge. */
 .hero .canvas-note { justify-content: center; }
+
+.about-headshot { margin: 0; }
+.about-headshot-name { margin-top: 24px; text-align: center; font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(28px, 3vw, 42px); line-height: 1.2; color: var(--oxblood); }
