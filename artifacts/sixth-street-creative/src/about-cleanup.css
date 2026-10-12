@@ -167,3 +167,11 @@
 
 .about-headshot { margin: 0; }
 .about-headshot-name { margin-top: 24px; text-align: center; font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(28px, 3vw, 42px); line-height: 1.2; color: var(--oxblood); }
+
+/* Give the simplified Julia Kipling wordmark enough room to read. */
+.journey-item.has-logo:has(.julia-logo) { grid-template-columns: 140px minmax(0, 1fr) minmax(0, 1.2fr); }
+.journey-item .julia-logo { width: 140px; }
+@media (max-width: 900px) {
+  .journey-item.has-logo:has(.julia-logo) { grid-template-columns: 100px minmax(0, 1fr); }
+  .journey-item .julia-logo { width: 100px; }
+}
