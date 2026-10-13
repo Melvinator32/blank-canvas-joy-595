@@ -188,6 +188,14 @@
       "id": "featured-artists",
       "title": "Featured Artists",
       "artists": []
+    },
+    {
+      "id": "artist-group-1791908913643",
+      "title": "New Artist Section",
+      "artists": [
+        "New Artist",
+        "New Artist"
+      ]
     }
   ]
 }
