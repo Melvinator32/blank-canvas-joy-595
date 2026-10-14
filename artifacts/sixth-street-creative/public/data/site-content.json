@@ -161,6 +161,10 @@
     "journey.julia.logo": {
       "src": "/images/julia-kipling-transparent.png",
       "alt": "Julia Kipling handwritten wordmark"
+    },
+    "client.85d3c630-8e82-43e5-85eb-c65ff3f3b4be": {
+      "src": "",
+      "alt": "Client logo"
     }
   },
   "galleries": {
@@ -185,17 +189,26 @@
   },
   "artistGroups": [
     {
-      "id": "featured-artists",
-      "title": "Featured Artists",
-      "artists": []
-    },
-    {
       "id": "artist-group-1791908913643",
-      "title": "New Artist Section",
+      "title": "Featured Artists",
       "artists": [
         "New Artist",
+        "New Artist",
         "New Artist"
+      ],
+      "imageIds": [
+        "",
+        "",
+        ""
       ]
+    }
+  ],
+  "clients": [
+    {
+      "id": "85d3c630-8e82-43e5-85eb-c65ff3f3b4be",
+      "name": "",
+      "description": "",
+      "imageId": "client.85d3c630-8e82-43e5-85eb-c65ff3f3b4be"
     }
   ]
 }
