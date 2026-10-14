@@ -42,10 +42,10 @@ try {
  await gallery.getByRole('button',{name:'Add photo',exact:true}).click();await p.locator('dialog input[type="file"]').setInputFiles(`${ROOT}/public/images/nashville-logo.webp`);await p.getByRole('button',{name:'Apply photo'}).click();assert(await gallery.locator('.gallery-photo').count()===5);
  await gallery.getByRole('button',{name:'Move photo 5 earlier',exact:true}).click();
  await gallery.getByRole('button',{name:'Remove photo 1',exact:true}).click();assert(await gallery.locator('.gallery-photo').count()===4);
- await p.getByLabel('Page to edit').selectOption('#/');await p.getByRole('button',{name:'Add artist',exact:true}).click();await p.getByLabel('Artist 1',{exact:true}).fill('Test Artist');
+ await p.getByLabel('Page to edit').selectOption('#/');await p.locator('.artist-group').first().getByRole('button',{name:'Add artist',exact:true}).click();await p.locator('.artist-group').first().getByLabel('Artist 1',{exact:true}).fill('Test Artist');
  await saved('A newly edited studio');
  await p.getByRole('button',{name:'Close editor',exact:true}).click();await p.getByRole('button',{name:'Edit site',exact:true}).waitFor();assert(await p.locator('.hero h1').textContent().then(s=>s.includes(seed.text['home.title'])));
- await p.reload();await launch();assert(await title().innerText()==='A newly edited studio');assert(await p.getByLabel('Artist 1',{exact:true}).inputValue()==='Test Artist');
+ await p.reload();await launch();assert(await title().innerText()==='A newly edited studio');assert(await p.locator('.artist-group').first().getByLabel('Artist 1',{exact:true}).inputValue()==='Test Artist');
  // Untrusted text stays plain text; edits do not inject markup.
  await title().fill('<img src=x onerror="window.editorXss=true">');assert(await title().locator('img').count()===0);assert(await p.evaluate(()=>window.editorXss)===undefined);await p.getByRole('button',{name:'Undo',exact:true}).click();
  // Inspect all three pages in edit and preview modes at phone, tablet, desktop widths.

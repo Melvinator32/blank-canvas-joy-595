@@ -1,6 +1,7 @@
 import { ArrowDown, ArrowRight, ArrowUp, Mail, MapPin, Menu, Plus, Trash2, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import MediumsSection from './MediumsSection';
+import ClientsSection from './ClientsSection';
 import { EditableImage, EditableText, Gallery, useSiteEditor } from './SiteEditor';
 import type { ArtistGroup } from './content';
 
@@ -44,6 +45,7 @@ function Footer() {
   </footer>;
 }
 function ArtistSection({ groups, isEditing, onChange }: { groups: ArtistGroup[]; isEditing: boolean; onChange: (groups: ArtistGroup[]) => void }) {
+  const editor = useSiteEditor();
   const updateGroup = (id: string, patch: Partial<ArtistGroup>) => {
     onChange(groups.map((group) => (group.id === id ? { ...group, ...patch } : group)));
   };
@@ -59,7 +61,7 @@ function ArtistSection({ groups, isEditing, onChange }: { groups: ArtistGroup[];
     onChange(next);
   };
 
-  const addArtist = (group: ArtistGroup) => updateGroup(group.id, { artists: [...group.artists, 'New Artist'] });
+  const addArtist = (group: ArtistGroup) => updateGroup(group.id, { artists: [...group.artists, 'New Artist'], imageIds: [...group.artists.map((_, i) => group.imageIds?.[i] || ''), ''] });
 
   const updateArtist = (group: ArtistGroup, artistIndex: number, value: string) => {
     const artists = [...group.artists];
@@ -68,9 +70,22 @@ function ArtistSection({ groups, isEditing, onChange }: { groups: ArtistGroup[];
   };
 
   const removeArtist = (group: ArtistGroup, artistIndex: number) => {
-    updateGroup(group.id, { artists: group.artists.filter((_, index) => index !== artistIndex) });
+    updateGroup(group.id, { artists: group.artists.filter((_, index) => index !== artistIndex), imageIds: group.artists.map((_, i) => group.imageIds?.[i] || '').filter((_, i) => i !== artistIndex) });
   };
 
+  const editArtistPhoto = (group: ArtistGroup, index: number) => {
+    const existing = group.imageIds?.[index];
+    if (existing) { editor.editImage(existing); return; }
+    const id = `artist.${crypto.randomUUID()}`;
+    editor.update(draft => {
+      const target = draft.artistGroups.find(g => g.id === group.id);
+      if (!target) return;
+      target.imageIds = target.artists.map((_, i) => target.imageIds?.[i] || '');
+      target.imageIds[index] = id;
+      draft.images[id] = { src: '', alt: `${group.artists[index]} headshot or logo` };
+    });
+    editor.editImage(id);
+  };
   return (
     <section className="artists-section shell-section" id="artists">
       <div className="section-heading-row artists-heading">
@@ -104,7 +119,10 @@ function ArtistSection({ groups, isEditing, onChange }: { groups: ArtistGroup[];
 
             <div className="artist-name-grid">
               {group.artists.map((artist, artistIndex) => (
-                <div className="artist-name" key={`${group.id}-${artistIndex}`}>
+                <div className="artist-entry" key={`${group.id}-${artistIndex}`}>
+                  {group.imageIds?.[artistIndex] && <EditableImage id={group.imageIds[artistIndex]} className="artist-photo" optional />}
+                  {isEditing && !group.imageIds?.[artistIndex] && <button className="artist-photo-add" type="button" onClick={() => editArtistPhoto(group, artistIndex)}>Add headshot or logo</button>}
+                  <div className="artist-name">
                   {isEditing ? (
                     <>
                       <input value={artist} onChange={(event) => updateArtist(group, artistIndex, event.target.value)} aria-label={`Artist ${artistIndex + 1}`} />
@@ -113,6 +131,7 @@ function ArtistSection({ groups, isEditing, onChange }: { groups: ArtistGroup[];
                   ) : (
                     <span>{artist}</span>
                   )}
+                  </div>
                 </div>
               ))}
 
@@ -142,6 +161,7 @@ function HomePage() {
     <section className="statement slate-section"><p className="statement-copy"><EditableText id="approach.title" /> <em><EditableText id="approach.titleEm" /></em></p><div className="statement-detail"><span /><p><EditableText id="approach.copy" /></p></div></section>
     <MediumsSection />
     <ArtistSection groups={editor.content.artistGroups} isEditing={editor.active} onChange={groups => editor.update(draft => { draft.artistGroups = groups; })} />
+    <ClientsSection />
     <section className="portfolio-tease driftwood-section">
       <div className="tease-grid"><h2><EditableText id="work.title" /></h2><div><p><EditableText id="work.intro" /></p><a className="text-link dark" href="#/portfolio"><EditableText id="work.cta" /><ArrowRight size={17} /></a></div></div>
       <div className="category-strip">{categories.map(category => <div className="category-card-shell" key={category.id}>

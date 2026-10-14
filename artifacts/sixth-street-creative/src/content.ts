@@ -1,6 +1,7 @@
 import seed from '../public/data/site-content.json';
 
-export type ArtistGroup = { id: string; title: string; artists: string[] };
+export type ArtistGroup = { id: string; title: string; artists: string[]; imageIds?: string[] };
+export type Client = { id: string; name: string; description: string; imageId: string };
 export type SiteImage = { src: string; alt: string };
 export type SiteContent = {
   version: 1;
@@ -8,6 +9,7 @@ export type SiteContent = {
   images: Record<string, SiteImage>;
   galleries: Record<string, string[]>;
   artistGroups: ArtistGroup[];
+  clients?: Client[];
 };
 export const defaultContent = seed as SiteContent;
 export const CONTENT_PATH = 'artifacts/sixth-street-creative/public/data/site-content.json';
@@ -21,11 +23,13 @@ export function safeImageSource(v: unknown): v is string {
   return v === '' || (v.length <= 4096 && /^\/images\/[a-zA-Z0-9_./%-]+$/.test(v)) || (v.length <= 4096 && /^https:\/\/[^\s"<>]+$/.test(v)) || /^data:image\/(?:webp|png|jpeg);base64,[A-Za-z0-9+/=]+$/.test(v);
 }
 export function validArtistGroups(value: unknown): value is ArtistGroup[] {
-  return Array.isArray(value) && value.length <= 50 && value.every(g => record(g) && smallString(g.id, 100) && smallString(g.title, 300) && Array.isArray(g.artists) && g.artists.length <= 200 && g.artists.every(a => smallString(a, 300))) && new Set(value.map(g => g.id)).size === value.length;
+  return Array.isArray(value) && value.length <= 50 && value.every(g => record(g) && smallString(g.id, 100) && smallString(g.title, 300) && Array.isArray(g.artists) && g.artists.length <= 200 && g.artists.every(a => smallString(a, 300)) && (g.imageIds === undefined || (Array.isArray(g.imageIds) && g.imageIds.length === g.artists.length && g.imageIds.every(id => smallString(id, 100))))) && new Set(value.map(g => g.id)).size === value.length;
 }
 export function isSiteContent(value: unknown): value is SiteContent {
   if (!record(value) || value.version !== 1 || !record(value.text) || !record(value.images) || !record(value.galleries) || !validArtistGroups(value.artistGroups)) return false;
   const { text, images, galleries } = value;
+  if (value.clients !== undefined && (!Array.isArray(value.clients) || value.clients.length > 100 || !value.clients.every(c => record(c) && smallString(c.id, 100) && smallString(c.name, 300) && smallString(c.description) && smallString(c.imageId, 100) && record(images[c.imageId])) || new Set(value.clients.map(c => c.id)).size !== value.clients.length)) return false;
+  if (!value.artistGroups.every(g => !g.imageIds || g.imageIds.every(id => !id || record(images[id])))) return false;
   if (Object.keys(text).length > 500 || Object.keys(images).length > 200) return false;
   if (!Object.keys(defaultContent.text).every(k => smallString(text[k])) || !Object.values(text).every(v => smallString(v))) return false;
   if (!Object.keys(defaultContent.images).every(k => record(images[k]))) return false;
